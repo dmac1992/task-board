@@ -1,0 +1,21 @@
+.page-wrapper {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.page-wrapper h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-wrapper a {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    padding: 20px 50px;
+    background-color: goldenrod;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
