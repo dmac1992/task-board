@@ -1,20 +1,26 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cookieSession = require('cookie-session');
+const path = require('path');
+const passport = require('passport');
+require("dotenv").config();
+
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').load()
+}
 
 const keys = require("./config/keys");
 
 //set root, maybe find a fix for this
-const path = require('path');
-global.appRoot = path.resolve(__dirname);
 
+global.appRoot = path.resolve(__dirname);
 
 //mongoose models
 require("./models/User");
 
 //passport services
 require("./services/passport-google");
-
 
 //connect to database
 mongoose.connect(keys.mongoURI);
@@ -23,6 +29,15 @@ db.on('error', console.error.bind(console, "connection error:"));
 db.once('open', function() {
     console.log("database successfully connected");
 })
+
+//cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+}));
+//initi passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //now all references to this folder are not considred special routes, just pulls the file

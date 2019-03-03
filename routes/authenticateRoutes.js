@@ -6,12 +6,23 @@ module.exports = (app) => {
         scope: ['profile', 'email']
     }));
 
-    //just simply for redirecting???
+    //the difference in this authenticate call is that we have the code now in the url, passport will automatically grab code for usw
+    //instead of redirecting user to the conscent screen. The passport middleware callback is fired before we even get to this routes 
+    //actual callback
     app.get("/auth/google/callback",
-        passport.authenticate('google', { failureRedirect: "/login"}),
+        passport.authenticate('google'),
         function(req, res) {
-            res.redirect("/login");
+            if(req.user) {
+                res.redirect('/');
+            } else {
+                res.redirect('/login');
+            }
         }
     )
+
+    app.get("/logout", (req, res) => {
+        req.logout();
+        res.redirect("/");
+    });
 
 };
