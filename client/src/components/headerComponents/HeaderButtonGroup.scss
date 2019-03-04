@@ -1,0 +1,27 @@
+@import "variables";
+
+
+.headerButtonGroup {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+.headerButtonGroup > * {
+    margin-left: $super-fine-gutter;
+    margin-right: $super-fine-gutter;
+    background-color: blueviolet;
+    display: inline-block;
+}
+
+
+.headerButtonGroup *:first-child {
+    margin-left: 0px;
+}
+
+.headerButtonGroup *:last-child {
+    margin-right: 0px;
+}
+
+
+

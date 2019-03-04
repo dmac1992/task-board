@@ -1,0 +1,29 @@
+@import "variables";
+
+.headerButton {
+    padding: $fine-gutter;
+    font-size: 16px;
+    border-radius: $button-border-radius;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+// .headerButton img {
+//     height: 20px;
+//     width: auto;
+// }
+
+.headerButton-text{
+    position: relative;
+    bottom: 2.5px;
+}
+
+.headerButton-icon {
+    line-height: 30px;
+}
+
+.headerButton span:nth-child(2) {
+    margin-left: $fine-gutter;
+}
+

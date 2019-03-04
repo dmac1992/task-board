@@ -1,0 +1,30 @@
+@import 'variables';
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a, p  {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+input {
+    -webkit-appearance: none;
+    border: none;
+}
+
+
+input {
+    font-size: 16px;
+    padding-left: $fine-gutter;
+}
+
+
+
+
+
