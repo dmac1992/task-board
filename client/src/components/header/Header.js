@@ -9,7 +9,7 @@ import HeaderSearch from './HeaderSearch';
 //popups
 import BoardsPopup from './header-popups/BoardsPopup';
 import CreatePopup from './header-popups/CreatePopup';
-import NotifcationsPopup from './header-popups/NotifcationsPopup';
+import NotificationsPopup from './header-popups/NotificationsPopup';
 import MenuPopup from './header-popups/MenuPopup';
 
 //icons
@@ -20,15 +20,15 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <HeaderButtonGroup>
-                    <HeaderButton icon="icon-home" navigation="/"></HeaderButton>
-                    <HeaderButton text="Boards" popUp={BoardsPopup} icon="icon-page-multi" />
+                <HeaderButtonGroup menuSide="left">
+                    <HeaderButton icon="icon-home"  navigation="/"></HeaderButton>
+                    <HeaderButton text="Boards" menuSide="left" popUp={BoardsPopup} icon="icon-page-multiple" />
                     <HeaderSearch />
                 </HeaderButtonGroup>
-                <HeaderButtonGroup>
-                    <HeaderButton  popUp={CreatePopup} icon="icon-plus"  />
-                    <HeaderButton  popUp={NotifcationsPopup} icon="icon-bell"/>
-                    <HeaderButton  popUp={MenuPopup} icon="icon-user"/>
+                <HeaderButtonGroup menuSide="right">
+                    <HeaderButton popUp={CreatePopup}  menuSide="right" icon="icon-plus"   />
+                    <HeaderButton popUp={NotificationsPopup} menuSide="right" icon="icon-bell"/>
+                    <HeaderButton  popUp={MenuPopup} menuSide="right" icon="icon-user"/>
                 </HeaderButtonGroup >
              </div>
         )

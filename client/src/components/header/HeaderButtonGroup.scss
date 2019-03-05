@@ -5,12 +5,12 @@
     display: flex;
     align-items: center;
     height: 30px;
+    position: relative;
 }
 
 .headerButtonGroup > * {
     margin-left: $super-fine-gutter;
     margin-right: $super-fine-gutter;
-    background-color: blueviolet;
     display: inline-block;
 }
 

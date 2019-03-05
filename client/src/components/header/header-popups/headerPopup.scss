@@ -1,0 +1,10 @@
+
+@import 'variables';
+
+.headerPopUp {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    top: $header-height;
+    background-color: gold;
+}

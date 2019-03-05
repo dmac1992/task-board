@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 
 import './HeaderButton.scss';
 import 'styles/icons.css';
-
+import { setActiveLeftPopUp, setActiveRightPopUp } from 'actions/header.js';
 
 
 class HeaderButton extends React.Component  {
@@ -30,13 +30,22 @@ class HeaderButton extends React.Component  {
         }
         return styles;
     }
+
+    togglePopUp = () => {
+        console.log("togglePopUp event handler called");
+        if (this.props.menuSide === "left") {
+            this.props.setActiveLeftPopUp(this.props.popUp)
+        } 
+        else if (this.props.menuSide === "right") {
+            this.props.setActiveRightPopUp(this.props.popUp)
+        }
+    }
     
 
     render() {
-
         if (!this.props.navigation) {
             return (
-                <a className="headerButton" style={this.conditionalStyling()}>
+                <a className="headerButton" style={this.conditionalStyling()} onClick={this.togglePopUp} >
                     {this.renderIcon()}
                     {this.renderText()}
                 </a>
@@ -54,4 +63,4 @@ class HeaderButton extends React.Component  {
    
 }
 
-export default HeaderButton;
+export default connect(null, {setActiveLeftPopUp, setActiveRightPopUp})(HeaderButton);

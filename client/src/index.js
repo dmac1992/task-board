@@ -4,18 +4,19 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Router, BrowserRouter } from 'react-router-dom';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 import reducers from './reducers';
 import App from './components/App';
-import Header from './components/headerComponents/Header';
+import Header from 'components/header/Header';
 import "./styles/baseline.scss";
 
 //you can use this to manually call dispatch and getState but instead passing it off to provider, letting react-redux handle things.
 const store = createStore(
     reducers,
     {},
-    applyMiddleware(thunk)
+    composeWithDevTools(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
