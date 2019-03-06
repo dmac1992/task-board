@@ -1,7 +1,6 @@
 import { HEADER } from './types';
 
 export const setActiveLeftPopUp = (popUp) => {
-    console.log("set active left popup called");
     return {
         type: HEADER.TOGGLE_LEFT_POPUP,
         payload: popUp
@@ -9,7 +8,6 @@ export const setActiveLeftPopUp = (popUp) => {
 }
 
 export const setActiveRightPopUp = (popUp) => {
-    console.log("set active right popup called");
     return {
         type: HEADER.TOGGLE_RIGHT_POPUP,
         payload: popUp

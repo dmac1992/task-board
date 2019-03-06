@@ -7,4 +7,9 @@ export const HEADER = {
      CLEAR_ACTIVE_POPUPS: "clear_active_popups",
 }
 
+export const SEARCH = {
+    BOARD_INPUT: "board_input",
+    GENERIC_INPUT: "generic_input"
+}
+
 

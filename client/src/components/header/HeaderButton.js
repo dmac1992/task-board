@@ -32,7 +32,6 @@ class HeaderButton extends React.Component  {
     }
 
     togglePopUp = () => {
-        console.log("togglePopUp event handler called");
         if (this.props.menuSide === "left") {
             this.props.setActiveLeftPopUp(this.props.popUp)
         } 

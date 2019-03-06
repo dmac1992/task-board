@@ -7,10 +7,10 @@ import HeaderButton from './HeaderButton';
 import HeaderSearch from './HeaderSearch';
 
 //popups
-import BoardsPopup from './header-popups/BoardsPopup';
-import CreatePopup from './header-popups/CreatePopup';
-import NotificationsPopup from './header-popups/NotificationsPopup';
-import MenuPopup from './header-popups/MenuPopup';
+import BoardsPopup from 'components/popUps/boardsPopUp/BoardsPopup';
+import CreatePopup from 'components/popUps/CreatePopup';
+import NotificationsPopup from 'components/popUps/NotificationsPopup';
+import MenuPopup from 'components/popUps/MenuPopup';
 
 //icons
 import 'styles/icons.css';

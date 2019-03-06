@@ -18,32 +18,22 @@ class HeaderButtonGroup extends React.Component  {
         })
     }
 
-    renderPopUp() {
-        if(this.props.popUp) {
-            if (this.props.menuSide === "left") {
-                return <this.props.popUp style={{left: "0px"}}/>
-            } else {
-                return <this.props.popUp style={{right: "0px"}}/>
-            }
-        }
-    }
 
     render() {
         return (
             <div className="headerButtonGroup">
                 {this.renderChildren()}
-                {this.renderPopUp()}
+                {(this.props.popUp) ? <this.props.popUp pullPopUp={this.props.menuSide} /> : null}
             </div>
         )
     }
-    
 }
 
-function mapStateToProps({header}, ownProps)  {
+function mapStateToProps(state, ownProps)  {
     if (ownProps.menuSide === "left") {
-        return { popUp: header.activeLeftPopUp }
+        return { popUp: state.header.activeLeftPopUp }
     } else {
-        return { popUp: header.activeRightPopUp }
+        return { popUp: state.header.activeRightPopUp }
     }
 }
 

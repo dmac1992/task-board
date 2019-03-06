@@ -1,0 +1,11 @@
+@import 'variables';
+.boardsPopUp {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.boardsPopUp > * {
+    margin-bottom: 5px;
+}

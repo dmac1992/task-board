@@ -1,0 +1,26 @@
+
+.createPopUp {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    
+}
+.createPopUp-cancel {
+    position: absolute;
+    right: 10px;
+}
+
+.createPopUp-link-section, .createPopUp-title-header {
+    margin-bottom: 15px;
+}
+
+.createPopUp-link-title  {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    position: relative;
+} 
+
+.createPopUp-title-header {
+    text-align: center;
+}
