@@ -6,7 +6,6 @@ export const setActiveLeftPopUp = (popUp) => {
         payload: popUp
     }
 }
-
 export const setActiveRightPopUp = (popUp) => {
     return {
         type: HEADER.TOGGLE_RIGHT_POPUP,

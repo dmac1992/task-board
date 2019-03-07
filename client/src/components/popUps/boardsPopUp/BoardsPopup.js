@@ -1,18 +1,28 @@
 import React from 'react';
 
-import "../header-popup.scss";
+import "../generic-popup.scss";
 import "./boardsPopUp.scss";
 
 import FindBoardsInput from "./FindBoardsInput";
 
 class BoardsPopup extends React.Component {
-
     
+    generatePopUpStyles(position) {
+        const styles = {};
+        switch(position) {
+            case "left-menu":
+                styles['left'] = "0px";
+            case "right-menu":
+                styles['right'] = "0px";
+        }
+        return styles;
+    }
 
     render() {
-        const styles = ( this.props.pullPopUp === "left") ? { left: "0px"} : { right: "0px" };
+        // const styles = ( this.props.pullPopUp === "left") ? { left: "0px"} : { right: "0px" };
+
         return (
-            <div className="popup boardsPopUp" style={styles}>
+            <div className="popup boardsPopUp" style={this.generatePopUpStyles(this.props.position)}>
                 <FindBoardsInput />
                 <div className="starredBoards">
                 </div>

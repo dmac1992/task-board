@@ -8,18 +8,18 @@
     position: relative;
 }
 
-.headerButtonGroup > * {
+.headerButtonGroup > .headerButton {
     margin-left: $super-fine-gutter;
     margin-right: $super-fine-gutter;
     display: inline-block;
 }
 
 
-.headerButtonGroup *:first-child {
+.headerButtonGroup .headerButton:first-child {
     margin-left: 0px;
 }
 
-.headerButtonGroup *:last-child {
+.headerButtonGroup .headerButton:last-child {
     margin-right: 0px;
 }
 

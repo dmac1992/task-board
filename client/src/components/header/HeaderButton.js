@@ -31,12 +31,16 @@ class HeaderButton extends React.Component  {
         return styles;
     }
 
+    //needs default case
     togglePopUp = () => {
-        if (this.props.menuSide === "left") {
-            this.props.setActiveLeftPopUp(this.props.popUp)
-        } 
-        else if (this.props.menuSide === "right") {
-            this.props.setActiveRightPopUp(this.props.popUp)
+        const {popUp, position} = this.props;
+        switch(position) {
+            case "right-menu":
+                this.props.setActiveRightPopUp(popUp);
+                break;
+            case "left-menu":
+                this.props.setActiveLeftPopUp(popUp);
+                break;
         }
     }
     

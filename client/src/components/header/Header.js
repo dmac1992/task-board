@@ -20,15 +20,15 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <HeaderButtonGroup menuSide="left">
+                <HeaderButtonGroup position="left-menu">
                     <HeaderButton icon="icon-home"  navigation="/"></HeaderButton>
-                    <HeaderButton text="Boards" menuSide="left" popUp={BoardsPopup} icon="icon-page-multiple" />
+                    <HeaderButton text="Boards" position="left-menu" popUp={BoardsPopup} icon="icon-page-multiple" />
                     <HeaderSearch />
                 </HeaderButtonGroup>
-                <HeaderButtonGroup menuSide="right">
-                    <HeaderButton popUp={CreatePopup}  menuSide="right" icon="icon-plus"   />
-                    <HeaderButton popUp={NotificationsPopup} menuSide="right" icon="icon-bell"/>
-                    <HeaderButton  popUp={MenuPopup} menuSide="right" icon="icon-user"/>
+                <HeaderButtonGroup position="right-menu">
+                    <HeaderButton popUp={CreatePopup}  position="right-menu" icon="icon-plus"   />
+                    <HeaderButton popUp={NotificationsPopup} position="right-menu" icon="icon-bell"/>
+                    <HeaderButton  popUp={MenuPopup} position="right-menu" icon="icon-user"/>
                 </HeaderButtonGroup >
              </div>
         )

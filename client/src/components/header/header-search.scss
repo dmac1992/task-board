@@ -1,0 +1,30 @@
+@import "variables";
+
+.header-search-container {
+    padding-right: 10px;
+    position: relative;
+}
+
+.header-search-input {
+    height: 30px;
+    border-radius: $button-border-radius;
+    background-color: $color-secondary;
+}
+
+.header-search-search-icon {
+    position: absolute; 
+    right: 15px;
+    top: 7px;
+}
+
+.header-search-send-icon {
+    position: absolute; 
+    right: 35px;
+    top: 7px;
+}
+
+.header-search-close-icon {
+    position: absolute; 
+    right:  15px;
+    top: 7px;
+}

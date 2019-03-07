@@ -1,0 +1,35 @@
+@import "variables";
+
+.createPopUp {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+}
+.create-popup-cancel {
+    position: absolute;
+    right: 10px;
+}
+
+.create-popup-title-header {
+    padding-bottom: 15px;
+}
+
+.create-popup-link-section {
+    padding: 15px;
+    cursor: pointer;
+    &:hover {
+        background-color: $color-tertiary;
+    }
+}
+
+.create-popup-link-title  {
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    position: relative;
+} 
+
+.create-popup-title-header {
+    text-align: center;
+}

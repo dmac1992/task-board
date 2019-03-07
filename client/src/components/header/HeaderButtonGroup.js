@@ -1,6 +1,7 @@
 import React from 'react';
 import "./HeaderButtonGroup.scss";
 import { connect } from "react-redux";
+import { clearActiveLeftPopUp, clearActiveRightPopUp } from 'actions/header';
 
 class HeaderButtonGroup extends React.Component  { 
 
@@ -23,17 +24,18 @@ class HeaderButtonGroup extends React.Component  {
         return (
             <div className="headerButtonGroup">
                 {this.renderChildren()}
-                {(this.props.popUp) ? <this.props.popUp pullPopUp={this.props.menuSide} /> : null}
+                {(this.props.popUp) ? <this.props.popUp position={this.props.position} /> : null}
             </div>
         )
     }
 }
 
-function mapStateToProps(state, ownProps)  {
-    if (ownProps.menuSide === "left") {
-        return { popUp: state.header.activeLeftPopUp }
-    } else {
-        return { popUp: state.header.activeRightPopUp }
+function mapStateToProps({ header }, { position })  {
+    switch (position) {
+        case "left-menu":
+            return { popUp: header.activeLeftPopUp }
+        case "right-menu":
+            return { popUp: header.activeRightPopUp }
     }
 }
 
