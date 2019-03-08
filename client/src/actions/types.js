@@ -9,7 +9,7 @@ export const HEADER = {
 
 export const SEARCH = {
     BOARD_INPUT: "board_input",
-    GENERIC_INPUT: "generic_input"
+    GENERIC_INPUT: "generic_input",
 }
 
 

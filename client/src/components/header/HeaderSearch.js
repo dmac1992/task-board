@@ -39,6 +39,7 @@ class HeaderSearch extends React.Component {
 
     blurHandler = () => {
         this.setState({open: false});
+        this.props.update_generic_search_input("");
     }
 
     render() {
@@ -47,6 +48,7 @@ class HeaderSearch extends React.Component {
                 <input 
                     className="header-search-input" 
                     type="text" 
+                    value={this.props.value}
                     onChange={this.handleChange}
                     onFocus={this.focusHandler}
                     onBlur={this.blurHandler}

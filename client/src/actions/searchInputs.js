@@ -14,3 +14,5 @@ export const update_generic_search_input = (input) => {
         payload: input
     }
 }
+
+

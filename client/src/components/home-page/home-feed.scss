@@ -1,0 +1,33 @@
+@import "variables";
+
+
+.home-feed {
+    width: 500px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 50px;
+}
+
+.home-feed-title-container {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 20px;    
+}
+
+.home-feed-title-container .icon-check {
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+.home-feed-show-more-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        background-color: $grayscale;
+    }
+}

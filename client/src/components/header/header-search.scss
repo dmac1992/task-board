@@ -9,6 +9,16 @@
     height: 30px;
     border-radius: $button-border-radius;
     background-color: $color-secondary;
+    transition: width .25s;
+    width: 200px;
+    &:focus {
+        width: 300px;
+        background-color: white;
+    }
+}
+
+.header-search-input ~ span {
+    cursor: pointer;
 }
 
 .header-search-search-icon {

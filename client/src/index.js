@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { Router, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 import reducers from './reducers';
-import App from './components/App';
+import Home from './components/home-page/Home';
 import Header from 'components/header/Header';
 import "./styles/baseline.scss";
 
@@ -22,7 +22,10 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Header />
+            <div>
+                <Header />
+                <Route path="/" exact component={Home} />
+            </div>
         </BrowserRouter>
     </Provider>,
     document.querySelector("#root")
