@@ -1,10 +1,27 @@
 @import 'variables';
 
+#portal {
+    // width: 100vw;
+    // height: 100vh;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // pointer-events: none;
+}
+
+button {
+    border-width: 0;
+    border-style: none;
+    cursor: pointer;
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+ul {
+    list-style: none;
 }
 
 a, p  {

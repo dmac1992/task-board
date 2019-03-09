@@ -10,6 +10,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './reducers';
 import Home from './components/home-page/Home';
 import Header from 'components/header/Header';
+import Portal from './components/modals/Portal';
+
 import "./styles/baseline.scss";
 
 //you can use this to manually call dispatch and getState but instead passing it off to provider, letting react-redux handle things.
@@ -21,8 +23,10 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
+
         <BrowserRouter>
             <div>
+                <Portal />
                 <Header />
                 <Route path="/" exact component={Home} />
             </div>

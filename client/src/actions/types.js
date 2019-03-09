@@ -12,6 +12,9 @@ export const SEARCH = {
     GENERIC_INPUT: "generic_input",
 }
 
+export const SET_ACTIVE_MODAL = "set_active_modal";
+
+
 
 
 

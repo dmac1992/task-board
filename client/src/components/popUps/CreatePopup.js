@@ -1,9 +1,12 @@
 import React from 'react';
+import  { connect } from 'react-redux';
+import { setActiveModal } from "actions/modal";
 
 import "./generic-popup.scss";
 import "./create-popup.scss";
 
 import PopUpTitle from "./PopUpTitle";
+import CreateBoardModal from "components/modals/CreateBoardModal";
 
 
 class CreatePopup extends React.Component {
@@ -21,11 +24,14 @@ class CreatePopup extends React.Component {
         return styles;
     }
 
+    createBoardHandler = () => { this.props.setActiveModal(CreateBoardModal);   }
+        
+
     render() {
         return (
             <div className="popup createPopUp" style={this.generatePopUpStyles(this.props.position)}>
                 <PopUpTitle title="Create" position={this.props.position}/>
-                <div className="create-popup-link-section">
+                <div className="create-popup-link-section" onClick={this.createBoardHandler}>
                     <span className="create-popup-link-title">Create Board...</span>
                     <span className="create-popup-link-blurb">A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</span>
                 </div>
@@ -42,6 +48,6 @@ class CreatePopup extends React.Component {
     }
 }
 
-export default CreatePopup;
+export default connect(null, { setActiveModal })(CreatePopup);
 
 //all going to have piece of state that says whether they are showing their respective popup

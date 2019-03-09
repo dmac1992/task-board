@@ -8,9 +8,9 @@ const searchDefaultState = {
 export default function(state = searchDefaultState, action) {
     switch (action.type) {
         case SEARCH.BOARD_INPUT: 
-            return { ...state, ['searchBoardsInput']: action.payload };
+            return { ...state, searchBoardsInput: action.payload };
         case SEARCH.GENERIC_INPUT: 
-            return { ...state, ['searchGenericInput']: action.payload };
+            return { ...state, searchGenericInput: action.payload };
         default:
             return state;
     }
