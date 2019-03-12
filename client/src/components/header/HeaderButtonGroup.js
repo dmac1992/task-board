@@ -19,7 +19,6 @@ class HeaderButtonGroup extends React.Component  {
         })
     }
 
-
     render() {
         return (
             <div className="headerButtonGroup">
