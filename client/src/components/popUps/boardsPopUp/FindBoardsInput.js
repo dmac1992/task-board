@@ -10,7 +10,7 @@ class FindBoardsInput extends React.Component {
 
     render() {
         return (
-            <input className="findBoards" 
+            <input className="boards-popup-search" 
             value={this.props.value ? this.props.value : ""} 
             placeholder="find board..."
             onChange={this.handleChange}></input>

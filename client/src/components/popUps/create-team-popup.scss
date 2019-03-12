@@ -1,0 +1,43 @@
+@import "variables";
+.create-team-popup {
+    width: 300px;
+}
+
+.create-team-form-inputblock {
+    margin-bottom: 5px;
+    padding: 8px;
+}
+
+.create-team-form label, .create-team-form input {
+    display: block;
+    width: 100%;
+}
+
+.create-team-form label {
+    margin-bottom: 5px;
+}
+
+.create-team-form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 15px;
+    border-radius: 4px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+}
+
+.create-team-form input {
+    border: 1px solid gainsboro;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.create-team-popup-description {
+    padding: 8px;
+    border-top: 1px solid $grayscale;
+}
+
+.create-team-popup-description > p:first-of-type {
+    margin-bottom: 8px;
+}

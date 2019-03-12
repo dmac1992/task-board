@@ -44,7 +44,6 @@ class HeaderButton extends React.Component  {
         }
     }
     
-
     render() {
         if (!this.props.navigation) {
             return (

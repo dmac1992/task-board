@@ -12,6 +12,12 @@ export const SEARCH = {
     GENERIC_INPUT: "generic_input",
 }
 
+export const BOARDS_POPUP = {
+    STARRED_BOARDS: "starred_board",
+    RECENT_BOARDS: "recent_boards",
+    PERSONAL_BOARDS: "personal_boards"
+};
+
 export const SET_ACTIVE_MODAL = "set_active_modal";
 
 

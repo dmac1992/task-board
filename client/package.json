@@ -12,6 +12,7 @@
     "react-scripts": "2.1.5",
     "react-spring": "^8.0.12",
     "redux": "^4.0.1",
+    "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

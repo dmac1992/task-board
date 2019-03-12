@@ -2,12 +2,15 @@ import React from 'react';
 import  { connect } from 'react-redux';
 import { setActiveModal } from "actions/modal";
 
+
 import "./generic-popup.scss";
 import "./create-popup.scss";
 
 import PopUpTitle from "./PopUpTitle";
 import CreateBoardModal from "components/modals/CreateBoardModal";
 
+import { setActiveRightPopUp, clearActiveRightPopUp } from 'actions/header';
+import CreateTeamPopup from "./CreateTeamPopup";
 
 class CreatePopup extends React.Component {
 
@@ -24,8 +27,14 @@ class CreatePopup extends React.Component {
         return styles;
     }
 
-    createBoardHandler = () => { this.props.setActiveModal(CreateBoardModal);   }
-        
+    createBoardHandler = () => { 
+        this.props.setActiveModal(CreateBoardModal);  
+        this.props.clearActiveRightPopUp();
+     }
+
+    setActiveRightPopup = () => {
+        this.props.setActiveRightPopUp(CreateTeamPopup);
+    }
 
     render() {
         return (
@@ -35,7 +44,7 @@ class CreatePopup extends React.Component {
                     <span className="create-popup-link-title">Create Board...</span>
                     <span className="create-popup-link-blurb">A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</span>
                 </div>
-                <div className="create-popup-link-section">
+                <div className="create-popup-link-section" onClick={this.setActiveRightPopup}>
                     <span className="create-popup-link-title">Create Team...</span>
                     <span className="create-popup-link-blurb">A team is a group of boards and people. Use it to organize your company, side hustle, family, or friends.</span>
                 </div>
@@ -48,6 +57,6 @@ class CreatePopup extends React.Component {
     }
 }
 
-export default connect(null, { setActiveModal })(CreatePopup);
+export default connect(null, { setActiveModal, clearActiveRightPopUp, setActiveRightPopUp })(CreatePopup);
 
 //all going to have piece of state that says whether they are showing their respective popup
