@@ -7,21 +7,19 @@
     height: 30px;
     cursor: pointer;
     background-color: $color-secondary;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-// .headerButton img {
-//     height: 20px;
-//     width: auto;
+// .headerButton-text{
+//     position: relative;
 // }
 
-.headerButton-text{
-    position: relative;
-    bottom: 2.5px;
-}
-
 .headerButton-icon {
-    line-height: 30px;
+    top: 1px;
+    position: relative;
 }
 
 .headerButton span:nth-child(2) {

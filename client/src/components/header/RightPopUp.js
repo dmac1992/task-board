@@ -5,7 +5,7 @@ function RightPopUp(props) {
     const { Popup } = props;
     return (
         <div className="header-right-popup-container">
-            {Popup && <Popup />}
+            {Popup && <Popup clearPopup={props.clearPopup}/>}
         </div>
     );
 

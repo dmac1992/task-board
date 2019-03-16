@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { setActiveModal } from "actions/modal";
-import "./create-board-modal.scss";
+import "./CreateBoardModal.scss";
 
 export class CreateBoardModal extends Component {
   static propTypes = {

@@ -6,7 +6,7 @@ function LeftPopUp(props) {
 
   return (
     <div className="header-left-popup-container">
-      {Popup ? <Popup /> : null}
+      {Popup ? <Popup clearPopup={props.clearPopup}/> : null}
     </div>
   );
 

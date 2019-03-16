@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { withRouter } from "react-router";
 import "./Header.scss";
 
-import HeaderButtonGroup from './HeaderButtonGroup';
 import HeaderButton from './HeaderButton';
 import HeaderSearch from './HeaderSearch';
 import LeftPopUp from './LeftPopUp';
@@ -18,24 +17,27 @@ import MenuPopup from 'components/popups/MenuPopup';
 
 import * as headerActions from 'actions/header';
 
-//action creators
-    //left popup ( have to be bound to component )
-    //right popup
-    //navigate to home
-    //need left and right popup sections in header??? button group doesnt make sense
-
 //icons
 import 'styles/icons.css';
 
 class Header extends React.Component {
 
+    constructor() {
+        super();
+        document.addEventListener("click", (e) => {
+            //if click outside header container clear all header popups.
+            let header = document.querySelector(".header");
+            if (!header.contains(e.target)) {
+                this.props.clearActivePopUps();
+            }
+        }, false);
+    }
 
     navigateHome = () => {
         this.props.history.push("/");
     }
 
     render() {
-        console.log(this.props);
         //current active popups on store
         const { activeLeftPopUp, activeRightPopUp } = this.props;
         //set current active headerpopups
@@ -46,17 +48,16 @@ class Header extends React.Component {
                     <HeaderButton icon="icon-home"  onClick={this.navigateHome}></HeaderButton>
                     <HeaderButton text="Boards" onClick={() => setActiveLeftPopUp(BoardsPopup)} icon="icon-page-multiple" />
                     <HeaderSearch />
-                    {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} /> : null}
+                    {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} clearPopup={() => setActiveLeftPopUp(null)} /> : null}
                 </div>
                 <div className="headerButtonGroup">
-                    <HeaderButton  onClick={() => setActiveRightPopUp(CreatePopup)} icon="icon-plus"   />
+                    <HeaderButton  onClick={() => setActiveRightPopUp(CreatePopup)} text="Create" icon="icon-plus"   />
                     <HeaderButton  onClick={() => setActiveRightPopUp(NotificationsPopup)} icon="icon-bell"/>
                     <HeaderButton  onClick={() => setActiveRightPopUp(MenuPopup)} icon="icon-user"/>
-                    {activeRightPopUp ? <RightPopUp Popup={activeRightPopUp} /> : null}
+                    {activeRightPopUp ? <RightPopUp Popup={activeRightPopUp} clearPopup={() => setActiveRightPopUp(null)} /> : null}
                 </div>
              </div>
         )
-       
     }
 }
 
@@ -68,5 +69,3 @@ const enhance = compose(
 );
 
 export default enhance(Header); 
-
-// export default connect(mapStateToProps, { ...headerActions })(Header);

@@ -3,8 +3,8 @@ import  { connect } from 'react-redux';
 import { setActiveModal } from "actions/modal";
 
 
-import "./generic-popup.scss";
-import "./create-popup.scss";
+import "./Popup.scss";
+import "./CreatePopup.scss";
 
 import PopUpTitle from "./PopUpTitle";
 import CreateBoardModal from "components/modals/CreateBoardModal";
@@ -39,7 +39,7 @@ class CreatePopup extends React.Component {
     render() {
         return (
             <div className="popup createPopUp" style={this.generatePopUpStyles(this.props.position)}>
-                <PopUpTitle title="Create" position={this.props.position}/>
+                <PopUpTitle title="Create" clearPopup={this.props.clearPopup}/>
                 <div className="create-popup-link-section" onClick={this.createBoardHandler}>
                     <span className="create-popup-link-title">Create Board...</span>
                     <span className="create-popup-link-blurb">A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</span>

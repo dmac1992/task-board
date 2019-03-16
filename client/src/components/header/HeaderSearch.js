@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import './header-search.scss';
+import './HeaderSearch.scss';
 import  { update_generic_search_input } from 'actions/searchInputs'
 
 class HeaderSearch extends React.Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import "./create-team-popup.scss";
+import "./CreateTeamPopup.scss";
 import PopUpTitle from './PopUpTitle';
 
 
@@ -23,7 +23,7 @@ class CreateTeamPopup extends Component {
     render() {
     return (
         <div className="popup create-team-popup" style={this.generatePopUpStyles(this.props.position)}>
-            <PopUpTitle title="Create Team" position={this.props.position}/>
+            <PopUpTitle title="Create Team" clearPopup={this.props.clearPopup}/>
             <form className="create-team-form">
                 <div className="create-team-form-inputblock">
                     <label htmlFor="team_name">Name</label>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import "./generic-popup.scss";
-import "./menu-popup.scss";
+import "./Popup.scss";
+import "./MenuPopup.scss";
 import PopUpTitle from "./PopUpTitle";
 
 
@@ -23,7 +23,7 @@ class MenuPopup extends React.Component {
     render() {
         return (
             <div className="popup menu-popup" style={this.generatePopUpStyles(this.props.position)}>
-                <PopUpTitle title="User name" position={this.props.position} />
+                <PopUpTitle title="User name" clearPopup={this.props.clearPopup} />
                 <div className="menu-popup-section">
                     <span className="menu-popup-link">Profile</span>
                     <span className="menu-popup-link">Cards</span>

@@ -8,3 +8,44 @@
     padding: $fine-gutter;
     height: $header-height;
 }
+
+.header-left-popup-container {
+    position: absolute;
+    left: 0;
+    top: 35px;
+    z-index: 10;
+    
+}
+
+.header-right-popup-container {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    z-index: 10;
+}
+
+//divs that group and= divide left and right menus in header
+
+.headerButtonGroup {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    position: relative;
+}
+
+.headerButtonGroup > .headerButton {
+    margin-left: $super-fine-gutter;
+    margin-right: $super-fine-gutter;
+}
+
+
+.headerButtonGroup .headerButton:first-child {
+    margin-left: 0px;
+}
+
+.headerButtonGroup .headerButton:last-child {
+    margin-right: 0px;
+}
+
+
+

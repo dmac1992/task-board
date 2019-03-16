@@ -1,0 +1,58 @@
+@import 'variables';
+
+
+
+.boards-popup {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+
+.boards-popup-search {
+    border: 1px solid gainsboro;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.boards-popup-section {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.boards-popup-section-symbol {
+    margin-right: 4px;
+}
+
+.boards-popup-title-section {
+    display: flex;
+    align-items: center;
+}
+
+.boards-popup-section-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 3px;
+    &:hover {
+        background-color: $grayscale;
+    }
+}
+
+.boards-popup-links-li {
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: $grayscale;
+    }
+}
+
+
+

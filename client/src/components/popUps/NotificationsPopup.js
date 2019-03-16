@@ -1,7 +1,7 @@
 import React from 'react';
 
-import "./generic-popup.scss";
-import "./notifications-popup.scss";
+import "./Popup.scss";
+import "./NotificationsPopup.scss";
 import PopUpTitle from "./PopUpTitle";
 
 class NotificationsPopup extends React.Component {
@@ -22,7 +22,7 @@ class NotificationsPopup extends React.Component {
     render() {
         return (
             <div className="popup notifications-popup" style={this.generatePopUpStyles(this.props.position)}>
-                <PopUpTitle title="Notifications" position={this.props.position} />
+                <PopUpTitle title="Notifications" clearPopup={this.props.clearPopup} />
                 <div className="notifications-popup-feed"></div>
                 <span className="notifications-popup-email-frequency notifications-popup-link">Change notification email frequency</span>
                 <span className="notifications-popup-desktop-notifications notifications-popup-link">Allow desktop notifications</span>
