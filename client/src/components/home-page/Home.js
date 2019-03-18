@@ -6,6 +6,8 @@ import HomeRecentlyViewedFeed from './HomeRecentlyViewedFeed';
 
 import "./home.scss";
 
+//
+
 export default class Home extends Component {
   render() {
     return (

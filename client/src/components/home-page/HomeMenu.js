@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
+import HomeMenuPopup from './HomeMenuPopup';
+import CreateTeamPopup from 'components/popups/CreateTeamPopup';
 
 import "./home-menu.scss";
 
-export default class HomeMenu extends Component {
-
-
-
-
-  render() {
+//will get passed home menu popup component
+const HomeMenu = () =>{
     return (
       <div className="home-menu">
         <ul className="home-menu-ul">
@@ -25,9 +23,10 @@ export default class HomeMenu extends Component {
                 <span >Create a team</span>
             </li>
         </ul>
+        <HomeMenuPopup Popup={CreateTeamPopup}/>
       </div>
     )
 
-
-  }
 }
+
+export default HomeMenu;

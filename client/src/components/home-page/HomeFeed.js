@@ -1,15 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
 import "./home-feed.scss";
 
 import HomeFeedItem from './HomeFeedItem';
 
-export class HomeFeed extends Component {
-
+const HomeFeed = () => {
   //needs to fetch all up next items and render them as HomeFeedItems
-
-  render() {
+ 
     return (
       <div className="home-feed">
         <div className="home-feed-title-container">
@@ -26,15 +23,7 @@ export class HomeFeed extends Component {
         </div>
       </div>
     )
-  }
 }
 
-const mapStateToProps = (state) => ({
-  
-})
 
-const mapDispatchToProps = {
-  
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeFeed)
+export default HomeFeed

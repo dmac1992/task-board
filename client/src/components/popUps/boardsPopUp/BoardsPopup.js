@@ -16,43 +16,55 @@ class BoardsPopup extends React.Component {
     }
 
     render() {
-
+        const { starredBoardsOpen, recentBoardsOpen, personalBoardsOpen } = this.state;
         return (
             <div className="popup boards-popup" >
                 <FindBoardsInput />
                 <div className="boards-popup-foldout-section">
-
                     <div className="boards-popup-section">
                         <div className="boards-popup-title-section">
                             <span className="icon-star boards-popup-section-symbol"></span>
                             <span className="boards-popup-foldout-title">STARRED BOARDS</span>
-                            <span className="icon-plus boards-popup-section-toggle"></span>
+                            <span className="boards-popup-section-toggle">
+                                <span className={starredBoardsOpen ? "icon-minus" : "icon-plus"} onClick={() => this.setState({starredBoardsOpen: !starredBoardsOpen})}></span>
+                            </span>
                         </div>
-                        <div className="boards-popup-foldout-content-container">
-                        </div>
+                        { starredBoardsOpen ? (
+                            <div className="boards-popup-foldout-content-container">
+                                <h1>Starred board Content</h1>
+                            </div>
+                        ) : null}
                     </div>
                     
                     <div className="boards-popup-section">
                         <div className="boards-popup-title-section">
-                            <span className="icon-star boards-popup-section-symbol"></span>
+                            <span className="icon-clock-o boards-popup-section-symbol"></span>
                             <span className="boards-popup-foldout-title">RECENT BOARDS</span>
                             <span className="boards-popup-section-toggle">
-                                <span className="icon-plus"></span>
+                                <span className={recentBoardsOpen ? "icon-minus" : "icon-plus"} onClick={() => this.setState({recentBoardsOpen: !recentBoardsOpen})}></span>
                             </span>
-                            
                         </div>
-                        <div className="boards-popup-foldout-content-container">
-                        </div>
+                        { recentBoardsOpen ? (
+                            <div className="boards-popup-foldout-content-container">
+                                <h1>Recent boards Content</h1>
+                            </div>
+                        ) : null}
                     </div>
 
                     <div className="boards-popup-section">
                         <div className="boards-popup-title-section">
-                            <span className="icon-star boards-popup-section-symbol"></span>
+                            <span className="icon-page-multiple boards-popup-section-symbol"></span>
                             <span className="boards-popup-foldout-title">PERSONAL BOARDS</span>
-                            <span className="icon-plus boards-popup-section-toggle"></span>
+                            <span className="boards-popup-section-toggle">
+                                <span className={personalBoardsOpen ? "icon-minus" : "icon-plus"} onClick={() => this.setState({personalBoardsOpen: !personalBoardsOpen})}></span>
+                            </span>
                         </div>
-                        <div className="boards-popup-foldout-content-container">
-                        </div>
+                        { personalBoardsOpen ? (
+                            <div className="boards-popup-foldout-content-container">
+                                <h1>Personal boards Content</h1>
+                            </div>
+                        ) : null}
+                        
                     </div>
 
                     <ul className="boards-popup-links-ul">
@@ -68,12 +80,9 @@ class BoardsPopup extends React.Component {
     }
 }
 
-const mapStateToProps = ({ boardsPopupShowing: { starredBoardsOpen, recentBoardsOpen, personalBoardsOpen } }) => {
-    return {
-        starredBoardsOpen,
-        recentBoardsOpen, 
-        personalBoardsOpen
-    }
+//needs to request the users starred / recent / personal boards. 
+const mapStateToProps = () => {
+    
 }
 
 export default connect(mapStateToProps)(BoardsPopup);

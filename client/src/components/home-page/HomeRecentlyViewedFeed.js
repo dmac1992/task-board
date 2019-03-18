@@ -1,12 +1,9 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
 import "./home-recently-viewed-feed.scss";
 
-export class HomeRecentlyViewedFeed extends Component {
- 
+const HomeRecentlyViewedFeed = () =>  {
 
-  render() {
     return (
       <div className="home-recently-viewed-feed">
         <div className="home-recently-menu-title-container">
@@ -43,15 +40,8 @@ export class HomeRecentlyViewedFeed extends Component {
 
       </div>
     )
-  }
-}
-
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
   
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeRecentlyViewedFeed)
+
+export default HomeRecentlyViewedFeed
