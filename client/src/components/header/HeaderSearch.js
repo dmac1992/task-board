@@ -1,8 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import './HeaderSearch.scss';
+// import './HeaderSearch.scss';
 import  { update_generic_search_input } from 'actions/searchInputs'
+
+
+const HeaderSearchContainer = styled.div`
+    padding-right: 10px;
+    position: relative;
+`;
+
+const HeaderSearchInput = styled.input`
+    height: 30px;
+    border-radius: 6px;
+    background-color: #DDA448;
+    transition: width .25s;
+    width: 200px;
+    &:focus {
+        width: 300px;
+        background-color: white;
+    }
+    ~ {
+        cursor pointer;
+    }
+`;
+
+const HeaderSearchInputIcon = styled.span`
+    position: absolute;
+    right: 15px;
+    top: 7px;
+`;
+
+const HeaderSearchSendIcon = styled.span`
+    position: absolute; 
+    right: 35px;
+    top: 7px;
+`;
+
+const HeaderSearchCloseIcon = styled.span`
+    position: absolute;
+    right: 15px;
+    top: 7px;
+`;
+
 
 class HeaderSearch extends React.Component {
 
@@ -21,13 +62,13 @@ class HeaderSearch extends React.Component {
         if (this.state.open) {
             return (
                 <React.Fragment>
-                    <span className="header-search-send-icon icon-page-export" ></span>
-                    <span className="header-search-close-icon icon-times"></span>
+                    <HeaderSearchSendIcon className="header-search-send-icon icon-page-export" ></HeaderSearchSendIcon>
+                    <HeaderSearchCloseIcon className="header-search-close-icon icon-times"></HeaderSearchCloseIcon>
                 </React.Fragment>
             );
         } else {
             return (
-                <span className="header-search-search-icon icon-search"></span>
+                <HeaderSearchInputIcon className="header-search-search-icon icon-search"></HeaderSearchInputIcon>
                 
             )
         }
@@ -44,18 +85,20 @@ class HeaderSearch extends React.Component {
 
     render() {
         return (
-            <div className="header-search-container">
-                <input 
+
+            <HeaderSearchContainer>
+                <HeaderSearchInput
                     className="header-search-input" 
                     type="text" 
                     value={this.props.value}
                     onChange={this.handleChange}
                     onFocus={this.focusHandler}
                     onBlur={this.blurHandler}
-                    ></input>
+                    ></HeaderSearchInput>
                 {this.renderIcons()}
-            </div>
-           
+            </HeaderSearchContainer>
+
+         
         )
     }
 }

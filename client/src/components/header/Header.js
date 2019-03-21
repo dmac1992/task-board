@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { compose } from 'redux';
 import { withRouter } from "react-router";
-import "./Header.scss";
+import styled from 'styled-components';
 
 import HeaderButton from './HeaderButton';
 import HeaderSearch from './HeaderSearch';
@@ -20,14 +20,46 @@ import * as headerActions from 'actions/header';
 //icons
 import 'styles/icons.css';
 
+
+const HeaderContainer =  styled.div`
+    background-color: #BB342F;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5px;
+    height: 35px;
+
+`;
+//
+
+const HeaderButtonGroup = styled.div`
+    display: flex;
+    align-items: center;
+    height: 30px;
+    position: relative;
+    * {
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+    }
+    *:first-child {
+        margin-left: 0px;
+    }
+    *:last-child {
+        margin-right: 0px;
+    }
+
+`;
+
+
+
 class Header extends React.Component {
 
     constructor() {
         super();
         document.addEventListener("click", (e) => {
             //if click outside header container clear all header popups.
-            let header = document.querySelector(".header");
-            if (!header.contains(e.target)) {
+            let headerContainer = document.querySelector(".header-container");
+            if (!headerContainer.contains(e.target)) {
                 this.props.clearActivePopUps();
             }
         }, false);
@@ -43,20 +75,20 @@ class Header extends React.Component {
         //set current active headerpopups
         const {setActiveLeftPopUp, setActiveRightPopUp } = this.props;
         return (
-            <div className="header">
-                <div className="headerButtonGroup">
+            <HeaderContainer className="header-container" >
+                <HeaderButtonGroup>
                     <HeaderButton icon="icon-home"  onClick={this.navigateHome}></HeaderButton>
                     <HeaderButton text="Boards" onClick={() => setActiveLeftPopUp(BoardsPopup)} icon="icon-page-multiple" />
                     <HeaderSearch />
                     {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} clearPopup={() => setActiveLeftPopUp(null)} /> : null}
-                </div>
-                <div className="headerButtonGroup">
+                </HeaderButtonGroup>
+                <HeaderButtonGroup>
                     <HeaderButton  onClick={() => setActiveRightPopUp(CreatePopup)} text="Create" icon="icon-plus"   />
                     <HeaderButton  onClick={() => setActiveRightPopUp(NotificationsPopup)} icon="icon-bell"/>
                     <HeaderButton  onClick={() => setActiveRightPopUp(MenuPopup)} icon="icon-user"/>
                     {activeRightPopUp ? <RightPopUp Popup={activeRightPopUp} clearPopup={() => setActiveRightPopUp(null)} /> : null}
-                </div>
-             </div>
+                </HeaderButtonGroup>
+             </HeaderContainer>
         )
     }
 }

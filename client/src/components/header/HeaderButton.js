@@ -1,14 +1,39 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import './HeaderButton.scss';
+// import './HeaderButton.scss';
 import 'styles/icons.css';
+
+const Button = styled.a`
+    padding: 2.5px;
+    font-size: 16px;
+    border-radius: 6px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #DDA448;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+const ButtonIcon = styled.span`
+    top: 1px;
+    position: relative;
+`;
+
+// if icon exists
+const ButtonText = styled.span`
+    margin-left: 2.5px;
+`;
+
 
 const HeaderButton = (props) => {
     return (
-        <a className="headerButton" onClick={props.onClick} >
-            {props.icon ? <span className={`${props.icon} headerButton-icon`}></span> : null}
-            {props.text ? <span className="headerButton-text">{props.text}</span> : null}
-        </a>
+        <Button onClick={props.onClick} >
+            {props.icon ? <ButtonIcon className={`${props.icon} headerButton-icon`}></ButtonIcon> : null}
+            {props.text ? <ButtonText className="headerButton-text">{props.text}</ButtonText> : null}
+        </Button>
     );
 }
 
