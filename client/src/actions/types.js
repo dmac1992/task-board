@@ -1,10 +1,8 @@
 //Header action creators
 export const HEADER = {
-     TOGGLE_LEFT_POPUP: "toggle_left_popup",
-     TOGGLE_RIGHT_POPUP: "toggle_right_popup",
-     CLEAR_ACTIVE_LEFT_POPUP: "clear_active_left_popup",
-     CLEAR_ACTIVE_RIGHT_POPUP: "clear_active_right",
-     CLEAR_ACTIVE_POPUPS: "clear_active_popups",
+     TOGGLE_LEFT_POPUP: "header_toggle_left_popup",
+     TOGGLE_RIGHT_POPUP: "header_toggle_right_popup",
+     SEARCH_CHANGE: "header_search_change"
 }
 
 export const SEARCH = {
@@ -12,14 +10,21 @@ export const SEARCH = {
     GENERIC_INPUT: "generic_input",
 }
 
-export const BOARDS_POPUP = {
-    STARRED_BOARDS: "starred_board",
-    RECENT_BOARDS: "recent_boards",
-    PERSONAL_BOARDS: "personal_boards"
+
+//MODALS
+export const MODALS = {
+    SET_ACTIVE_MODAL: "set_active_modal"
+}
+
+
+// HOME PAGE
+export const HOME = {
+    TOGGLE_HOME_MENU_POPUP :"toggle_home_menu_popup"
+}
+
+//POPUPS
+export const POPUPS = {
+
 };
-
-export const SET_ACTIVE_MODAL = "set_active_modal";
-
-
 
 

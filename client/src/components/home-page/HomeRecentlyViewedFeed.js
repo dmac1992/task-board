@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const FeedContainer = styled.div`
   width: 300px;
-  margin-top: 50px;
 `;
 
 const FeedTitleContainer = styled.div`
@@ -85,7 +84,7 @@ const LinksTitle = styled.span`
 `;
 
 
-const HomeRecentlyViewedFeed = () =>  {
+const HomeRecentlyViewedFeed = (props) =>  {
 
     return (
       <FeedContainer>
@@ -115,7 +114,7 @@ const HomeRecentlyViewedFeed = () =>  {
       
         <ul className="home-recently-viewed-links-ul">
           <LinksTitle>Links</LinksTitle>
-          <LinksItem>
+          <LinksItem onClick={props.createBoardModal}>
             <span className="home-recently-viewed-link-icon icon-plus"></span>
             <span className="home-recently-viwed-link-text">Create a board</span>
           </LinksItem>

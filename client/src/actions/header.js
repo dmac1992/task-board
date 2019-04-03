@@ -13,23 +13,10 @@ export const setActiveRightPopUp = (popUp) => {
     }
 }
 
-export const clearActiveLeftPopUp = () => {
+export const changeHeaderSearchInput = (input) => {
     return {
-        type: HEADER.CLEAR_ACTIVE_LEFT_POPUP,
-        payload: null
-    }
+        type: HEADER.SEARCH_CHANGE,
+        payload: input
+    };
 }
 
-export const clearActiveRightPopUp = () => {
-    return {
-        type: HEADER.CLEAR_ACTIVE_RIGHT_POPUP,
-        payload: null
-    }
-}
-
-export const clearActivePopUps = () => {
-    return {
-        type: HEADER.CLEAR_ACTIVE_POPUPS,
-        payload: null
-    }
-}

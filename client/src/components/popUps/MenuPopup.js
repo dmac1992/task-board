@@ -1,43 +1,54 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import "./Popup.scss";
-import "./MenuPopup.scss";
+
+
 import PopUpTitle from "./PopUpTitle";
+
+const Container = styled.div`
+    width: 250px;
+    box-shadow: 5px 10px;
+    top: 35px;
+    box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
+    background-color: #fff;
+    z-index: 100;
+`;
+const Section = styled.div`
+    margin-top: 5px;
+    margin-right: 5px;
+`;
+const Link = styled.span`
+    padding: 5px;
+    padding-left: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: #8D6A9F;
+    }
+    display: block;
+`;
 
 
 class MenuPopup extends React.Component {
 
-    generatePopUpStyles(position) {
-        const styles = {};
-        switch(position) {
-            case "left-menu":
-                styles['left'] = "0px";
-                break;
-            case "right-menu":
-                styles['right'] = "0px";
-                break;
-        }
-        return styles;
-    }
 
     render() {
         return (
-            <div className="popup menu-popup" style={this.generatePopUpStyles(this.props.position)}>
+            <Container>
                 <PopUpTitle title="User name" clearPopup={this.props.clearPopup} />
-                <div className="menu-popup-section">
-                    <span className="menu-popup-link">Profile</span>
-                    <span className="menu-popup-link">Cards</span>
-                    <span className="menu-popup-link">Settings</span>
-                </div>
-                <div className="menu-popup-section">
-                    <span className="menu-popup-link">Help</span>
-                    <span className="menu-popup-link">Shortcuts</span>
-                    <span className="menu-popup-link">Change Language...</span>
-                </div>
-                <div className="menu-popup-section">
-                    <span className="menu-popup-link">Log Out</span>
-                </div>
-            </div>
+                <Section>
+                    <Link>Profile</Link>
+                    <Link>Cards</Link>
+                    <Link>Settings</Link>
+                </Section>
+                <Section>
+                    <Link>Help</Link>
+                    <Link>Shortcuts</Link>
+                    <Link>Change Language...</Link>
+                </Section>
+                <Section>
+                    <Link>Log Out</Link>
+                </Section>
+            </Container>
         )
     }
 }

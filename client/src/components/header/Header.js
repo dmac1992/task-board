@@ -10,7 +10,7 @@ import LeftPopUp from './LeftPopUp';
 import RightPopUp from './RightPopUp';
 
 //popups
-import BoardsPopup from 'components/popups/boardsPopup/BoardsPopup';
+import BoardsPopup from 'components/popups/BoardsPopup';
 import CreatePopup from 'components/popups/CreatePopup';
 import NotificationsPopup from 'components/popups/NotificationsPopup';
 import MenuPopup from 'components/popups/MenuPopup';
@@ -32,22 +32,23 @@ const HeaderContainer =  styled.div`
 `;
 //
 
+
+//this is not working as intended 
 const HeaderButtonGroup = styled.div`
     display: flex;
     align-items: center;
     height: 30px;
     position: relative;
-    * {
+    > * {
         margin-left: 2.5px;
         margin-right: 2.5px;
     }
-    *:first-child {
+    :first-child {
         margin-left: 0px;
     }
-    *:last-child {
+    :last-child {
         margin-right: 0px;
     }
-
 `;
 
 
@@ -60,7 +61,8 @@ class Header extends React.Component {
             //if click outside header container clear all header popups.
             let headerContainer = document.querySelector(".header-container");
             if (!headerContainer.contains(e.target)) {
-                this.props.clearActivePopUps();
+                this.props.setActiveRightPopUp(null);
+                this.props.setActiveLeftPopUp(null);
             }
         }, false);
     }

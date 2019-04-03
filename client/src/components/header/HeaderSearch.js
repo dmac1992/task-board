@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 // import './HeaderSearch.scss';
-import  { update_generic_search_input } from 'actions/searchInputs'
+import  { changeHeaderSearchInput } from 'actions/header'
 
 
 const HeaderSearchContainer = styled.div`
@@ -55,7 +55,7 @@ class HeaderSearch extends React.Component {
     }
 
     handleChange = (e) => {
-        this.props.update_generic_search_input(e.target.value);
+        this.props.changeHeaderSearchInput(e.target.value);
     }
 
     renderIcons() {
@@ -80,7 +80,7 @@ class HeaderSearch extends React.Component {
 
     blurHandler = () => {
         this.setState({open: false});
-        this.props.update_generic_search_input("");
+        this.props.changeHeaderSearchInput("");
     }
 
     render() {
@@ -103,9 +103,9 @@ class HeaderSearch extends React.Component {
     }
 }
 
-function mapStateToProps({search}) {
-    return { value: search.searchGenericInput }
+function mapStateToProps({header}) {
+    return { value: header.headerSearchInput }
 }
 
 
-export default connect(mapStateToProps, { update_generic_search_input })(HeaderSearch);
+export default connect(mapStateToProps, { changeHeaderSearchInput })(HeaderSearch);

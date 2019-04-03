@@ -10,9 +10,7 @@ const LeftPopUpDiv = styled.div`
 
 
 function LeftPopUp(props) {
-
   const { Popup } = props;
-
   return (
     <LeftPopUpDiv>
       {Popup ? <Popup clearPopup={props.clearPopup}/> : null}

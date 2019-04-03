@@ -8,7 +8,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 import reducers from './reducers';
-import Home from './components/home-page/Home';
+import Home from 'components/home-page/Home';
+import Boards from 'components/boards-page/Boards';
 import Header from 'components/header/Header';
 import Portal from './components/modals/Portal';
 
@@ -28,6 +29,7 @@ ReactDOM.render(
                 <Portal />
                 <Header />
                 <Route path="/" exact component={Home} />
+                <Route path="/boards" exact component={Boards} />
             </div>
         </BrowserRouter>
     </Provider>,

@@ -2,7 +2,8 @@ import { HEADER } from 'actions/types';
 
 const headerDefaultState = {
     activeLeftPopUp: null,
-    activeRightPopUp: null
+    activeRightPopUp: null,
+    headerSearchInput: ""
 }
 
 export default function(state = headerDefaultState, action) {
@@ -17,12 +18,8 @@ export default function(state = headerDefaultState, action) {
                 return { ...state, activeRightPopUp: null };
             };
             return { ...state, activeRightPopUp:action.payload } ;
-        case HEADER.CLEAR_ACTIVE_LEFT_POPUP:
-            return { ...state, activeLeftPopUp: null}
-        case HEADER.CLEAR_ACTIVE_RIGHT_POPUP:
-            return { ...state, activeRightPopUp: null}
-        case HEADER.CLEAR_ACTIVE_POPUPS:
-            return { ...state, activeRightPopUp: null, activeLeftPopUp: null};
+        case HEADER.SEARCH_CHANGE:
+            return { ...state, headerSearchInput: action.payload}
         default:
             return state;
     }

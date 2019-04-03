@@ -1,8 +1,8 @@
-import { SET_ACTIVE_MODAL } from './types';
+import { MODALS } from './types';
 
 export const setActiveModal = (modal) => {
     return {
-        type: SET_ACTIVE_MODAL,
+        type: MODALS.SET_ACTIVE_MODAL,
         payload: modal
     }
 }

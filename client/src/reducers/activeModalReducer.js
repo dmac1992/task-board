@@ -1,13 +1,11 @@
-import { SET_ACTIVE_MODAL } from "../actions/types";
+import { MODALS } from "../actions/types";
 
-const initialState = {
-    activeModal: null
-}
+const initialState = null;
 
-export default (state = initialState, { type, payload }) => {
-    switch (type) {
-      case SET_ACTIVE_MODAL:
-        return payload;
+export default (state = initialState, action) => {
+    switch (action.type) {
+      case MODALS.SET_ACTIVE_MODAL:
+        return action.payload;
       default:
         return state
     }

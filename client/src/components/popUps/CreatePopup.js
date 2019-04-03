@@ -1,35 +1,56 @@
 import React from 'react';
 import  { connect } from 'react-redux';
+import styled from 'styled-components';
+
 import { setActiveModal } from "actions/modal";
 
 
-import "./Popup.scss";
-import "./CreatePopup.scss";
 
 import PopUpTitle from "./PopUpTitle";
 import CreateBoardModal from "components/modals/CreateBoardModal";
 
-import { setActiveRightPopUp, clearActiveRightPopUp } from 'actions/header';
+import { setActiveRightPopUp } from 'actions/header';
+
+
 import CreateTeamPopup from "./CreateTeamPopup";
+
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    z-index: 5;
+    box-shadow: 5px 10px;
+    top: 35px;
+    box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
+    background-color: #fff;
+    z-index: 100;
+`;
+
+const Section = styled.div`
+    padding: 15px;
+    cursor: pointer;
+    &:hover {
+        background-color: #8D6A9F;
+    }
+`;
+
+const SectionTitle = styled.span`
+    display: block;
+    margin-bottom: 3px;
+    font-weight: bold;
+    position: relative;
+`;
+
+const SectionSpan = styled.span`
+
+`;
 
 class CreatePopup extends React.Component {
 
-    generatePopUpStyles(position) {
-        const styles = {};
-        switch(position) {
-            case "left-menu":
-                styles['left'] = "0px";
-                break;
-            case "right-menu":
-                styles['right'] = "0px";
-                break;
-        }
-        return styles;
-    }
-
     createBoardHandler = () => { 
         this.props.setActiveModal(CreateBoardModal);  
-        this.props.clearActiveRightPopUp();
+        this.props.setActiveRightPopUp(null);
      }
 
     setActiveRightPopup = () => {
@@ -38,25 +59,25 @@ class CreatePopup extends React.Component {
 
     render() {
         return (
-            <div className="popup createPopUp" style={this.generatePopUpStyles(this.props.position)}>
+            <Container className="popup">
                 <PopUpTitle title="Create" clearPopup={this.props.clearPopup}/>
-                <div className="create-popup-link-section" onClick={this.createBoardHandler}>
-                    <span className="create-popup-link-title">Create Board...</span>
-                    <span className="create-popup-link-blurb">A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</span>
-                </div>
-                <div className="create-popup-link-section" onClick={this.setActiveRightPopup}>
-                    <span className="create-popup-link-title">Create Team...</span>
-                    <span className="create-popup-link-blurb">A team is a group of boards and people. Use it to organize your company, side hustle, family, or friends.</span>
-                </div>
-                <div className="create-popup-link-section">
-                    <span className="create-popup-link-title">Create Business Team...</span>
-                    <span className="create-popup-link-blurb">With Business Class your team has more security, administrative controls, and unlimited Power-Ups.</span>
-                </div>
-             </div>
+                <Section onClick={this.createBoardHandler}>
+                    <SectionTitle>Create Board...</SectionTitle>
+                    <SectionSpan>A board is made up of cards ordered on lists. Use it to manage projects, track information, or organize anything.</SectionSpan>
+                </Section>
+                <Section onClick={this.setActiveRightPopup}>
+                    <SectionTitle>Create Team...</SectionTitle>
+                    <SectionSpan>A team is a group of boards and people. Use it to organize your company, side hustle, family, or friends.</SectionSpan>
+                </Section>
+                <Section>
+                    <SectionTitle>Create Business Team...</SectionTitle>
+                    <SectionSpan>With Business Class your team has more security, administrative controls, and unlimited Power-Ups.</SectionSpan>
+                </Section>
+             </Container>
         )
     }
 }
 
-export default connect(null, { setActiveModal, clearActiveRightPopUp, setActiveRightPopUp })(CreatePopup);
+export default connect(null, { setActiveModal, setActiveRightPopUp })(CreatePopup);
 
 //all going to have piece of state that says whether they are showing their respective popup

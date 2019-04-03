@@ -8,7 +8,6 @@ const HomeFeedContainer = styled.div`
     width: 500px;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 50px;
 `;
 
 const HomeFeedTitleContainer = styled.div`
@@ -35,7 +34,7 @@ const ShowMoreButton = styled.div`
     }
 `;
 
-const HomeFeed = () => {
+const HomeFeed = ( ) => {
   //needs to fetch all up next items and render them as HomeFeedItems
  
     return (
