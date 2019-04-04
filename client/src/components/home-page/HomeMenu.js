@@ -56,20 +56,25 @@ const HomeMenuTeamsTitle = styled.span`
 `;
 
 
+
 //will get passed home menu popup component
 class HomeMenu extends React.Component  {
-    
+  
     constructor() {
         super();
-            document.addEventListener("click", (e) => {
-                //if click outside header container clear all header popups.
-                let homeMenu = document.querySelector("#home-menu");
-                if (!homeMenu.contains(e.target)) {
-                    this.setState({ createTeamPopupShowing: null})
-                }
-            }, false);
+            document.addEventListener("click", this.clickOutsideHeader, false);
       }
 
+      componentWillUnmount() {
+            document.removeEventListener("click", this.clickOutsideHeader);
+      }
+
+      clickOutsideHeader = (e) => {
+        let homeMenu = document.querySelector("#home-menu");
+        if (!homeMenu.contains(e.target)) {
+            this.setState({ createTeamPopupShowing: null})
+        }
+    }
     
     state = {
         createTeamPopupShowing: false

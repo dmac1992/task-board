@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 
 
 import PopUpTitle from "./PopUpTitle";
@@ -17,7 +17,7 @@ const Section = styled.div`
     margin-top: 5px;
     margin-right: 5px;
 `;
-const Link = styled.span`
+const MenuLink = styled(Link)`
     padding: 5px;
     padding-left: 10px;
     cursor: pointer;
@@ -36,17 +36,17 @@ class MenuPopup extends React.Component {
             <Container>
                 <PopUpTitle title="User name" clearPopup={this.props.clearPopup} />
                 <Section>
-                    <Link>Profile</Link>
-                    <Link>Cards</Link>
-                    <Link>Settings</Link>
+                    <MenuLink to="/profile">Profile</MenuLink>
+                    <MenuLink to="/">Cards</MenuLink>
+                    <MenuLink to="/">Settings</MenuLink>
                 </Section>
                 <Section>
-                    <Link>Help</Link>
-                    <Link>Shortcuts</Link>
-                    <Link>Change Language...</Link>
+                    <MenuLink to="/">Help</MenuLink>
+                    <MenuLink to="/">Shortcuts</MenuLink>
+                    <MenuLink to="/">Change Language...</MenuLink>
                 </Section>
                 <Section>
-                    <Link>Log Out</Link>
+                    <MenuLink to="/">Log Out</MenuLink>
                 </Section>
             </Container>
         )
