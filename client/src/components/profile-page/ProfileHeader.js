@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
+import ProfileHeaderForm from 'components/profile-page/ProfileHeaderForm';
+
 const Container = styled.div`
   background-color: #f5f6f7;
   padding-top: 30px;
@@ -85,6 +87,33 @@ const Tab = styled.div`
 
 
 export class ProfileHeader extends Component {
+
+  state = {
+    formShowing: false
+  }
+
+  componentDidUpdate(){
+    console.log(this.state.formShowing);
+  }
+
+ 
+  renderDetails(){
+    return (
+      <ProfileUsernameContainer>
+        <UserNameHandleContainer>
+          <Username>Mccarthyd</Username>
+          <UserHandle>mccarthyd1</UserHandle>
+        </UserNameHandleContainer>
+        <EditProfileButton onClick={() => this.setState({formShowing: true})}>
+            <span className="icon-pencil"></span>
+            <span>Edit profile</span>
+        </EditProfileButton>
+      </ProfileUsernameContainer>
+    );
+  }
+
+
+
   render() {
     return (
       <Container>
@@ -93,16 +122,7 @@ export class ProfileHeader extends Component {
               <ProfileImageContainer>
                 <ProfileImage />
               </ProfileImageContainer>
-              <ProfileUsernameContainer>
-                <UserNameHandleContainer>
-                  <Username>Mccarthyd</Username>
-                  <UserHandle>mccarthyd1</UserHandle>
-                </UserNameHandleContainer>
-                <EditProfileButton>
-                    <span className="icon-pencil"></span>
-                    <span>Edit profile</span>
-                </EditProfileButton>
-              </ProfileUsernameContainer>
+              {this.state.formShowing ? <ProfileHeaderForm toggleDetails={() => this.setState({formShowing: false})}/> : this.renderDetails() }
           </ProfileInfoContainer>
           <TabsContainer>
             <Tab>Profile</Tab>
@@ -115,4 +135,4 @@ export class ProfileHeader extends Component {
   }
 }
 
-export default ProfileHeader
+export default ProfileHeader;
