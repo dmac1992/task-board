@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { BrowserRouter, Route } from 'react-router-dom';
+
 
 import ProfileHeader from 'components/profile-page/ProfileHeader';
+
+import ProfileFeed from 'components/profile-page/ProfileFeedSection/ProfileFeed';
+import ProfileCards from 'components/profile-page/ProfileCardsSection/ProfileCards';
+import ProfileSettings from 'components/profile-page/ProfileSettingsSection/ProfileSettings';
 
 const Container = styled.div`
   height: 300px;
@@ -9,14 +15,15 @@ const Container = styled.div`
 `;
 
 export class Profile extends Component {
-  render() {
+
+  render = () => {
     return (
       <React.Fragment>
-        <ProfileHeader />
-        <Container>
-        </Container>
+          <ProfileHeader toggleTabs={this.toggleTabs} subpages={this.subpages}/>
+          <Route exact path='/profile' component={ProfileFeed}/>
+          <Route exact path='/profile/cards' component={ProfileCards} />
+          <Route exact path='/profile/settings' component={ProfileSettings} />
       </React.Fragment>
-    
     )
   }
 }

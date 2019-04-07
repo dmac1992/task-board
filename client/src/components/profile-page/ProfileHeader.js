@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
 
 import ProfileHeaderForm from 'components/profile-page/ProfileHeaderForm';
 
@@ -79,6 +80,7 @@ const TabsContainer = styled.div`
 const Tab = styled.div`
   padding: 5px 10px;
   background-color: aqua;
+  cursor: pointer;
   &:nth-of-type(2) {
     margin: 0 5px;
   }
@@ -112,9 +114,9 @@ export class ProfileHeader extends Component {
     );
   }
 
-
-
   render() {
+
+    const { history } = this.props;
     return (
       <Container>
         <InnerContainer>
@@ -125,9 +127,9 @@ export class ProfileHeader extends Component {
               {this.state.formShowing ? <ProfileHeaderForm toggleDetails={() => this.setState({formShowing: false})}/> : this.renderDetails() }
           </ProfileInfoContainer>
           <TabsContainer>
-            <Tab>Profile</Tab>
-            <Tab>Cards</Tab>
-            <Tab>Settings</Tab>
+            <Tab onClick={() => history.push('/profile')} >Profile</Tab>
+            <Tab onClick={() => history.push('/profile/cards')}>Cards</Tab>
+            <Tab onClick={() => history.push('/profile/settings')}>Settings</Tab>
           </TabsContainer>
         </InnerContainer>
       </Container>
@@ -135,4 +137,4 @@ export class ProfileHeader extends Component {
   }
 }
 
-export default ProfileHeader;
+export default withRouter(ProfileHeader);

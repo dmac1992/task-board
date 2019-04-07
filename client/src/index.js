@@ -31,7 +31,7 @@ ReactDOM.render(
                 <Header />
                 <Route path="/" exact component={Home} />
                 <Route path="/boards" exact component={Boards} />
-                <Route path="/profile" exact component={Profile} />
+                <Route path="/profile" component={Profile} />
             </div>
         </BrowserRouter>
     </Provider>,
