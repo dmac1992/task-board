@@ -29,9 +29,7 @@ const CreateNewBoard = styled.div`
     align-items: center;
     background-color: gray;
     cursor: pointer;
-`
-
-
+`;
 
 export class Boards extends Component {
   render() {

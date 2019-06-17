@@ -13,6 +13,7 @@ import Boards from 'components/boards-page/Boards';
 import Profile from 'components/profile-page/Profile'
 import Header from 'components/header/Header';
 import Portal from './components/modals/Portal';
+import SingleBoard from './components/single-board-page/SingleBoard';
 
 import "./styles/baseline.scss";
 
@@ -32,6 +33,7 @@ ReactDOM.render(
                 <Route path="/" exact component={Home} />
                 <Route path="/boards" exact component={Boards} />
                 <Route path="/profile" component={Profile} />
+                <Route path='/b' component={SingleBoard} />
             </div>
         </BrowserRouter>
     </Provider>,

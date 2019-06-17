@@ -14,15 +14,23 @@ const Container = styled.div`
   background-color: aqua;
 `;
 
+const SubPageContainer = styled.div`
+  padding-top: 50px;
+  width: 800px;
+  margin: 0 auto;
+`;
+
 export class Profile extends Component {
 
   render = () => {
     return (
       <React.Fragment>
           <ProfileHeader toggleTabs={this.toggleTabs} subpages={this.subpages}/>
-          <Route exact path='/profile' component={ProfileFeed}/>
-          <Route exact path='/profile/cards' component={ProfileCards} />
-          <Route exact path='/profile/settings' component={ProfileSettings} />
+          <SubPageContainer>
+            <Route exact path='/profile' component={ProfileFeed}/>
+            <Route exact path='/profile/cards' component={ProfileCards} />
+            <Route exact path='/profile/settings' component={ProfileSettings} />
+          </SubPageContainer>
       </React.Fragment>
     )
   }

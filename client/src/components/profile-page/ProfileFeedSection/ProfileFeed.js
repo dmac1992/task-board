@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import ProfileFeedActivity from './ProfileFeedActivity';
+import ProfileFeedTeams from './ProfileFeedTeams';
+
 
 export class ProfileFeed extends Component {
   render() {
     return (
       <div>
-        <h1>Profile Feed</h1>
+        <ProfileFeedTeams />
+        <ProfileFeedActivity />
       </div>
     )
   }

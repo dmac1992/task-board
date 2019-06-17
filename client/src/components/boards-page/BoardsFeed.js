@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import BoardLink from './BoardLink';
 
@@ -29,7 +30,6 @@ const BoardsContainer = styled.div`
     }
 `;
 
-
 function BoardsFeed(props) {
   return (
     <FeedContainer>
@@ -38,14 +38,14 @@ function BoardsFeed(props) {
             <span>Recently viewed </span>
         </TitleSection>
         <BoardsContainer>
-                <BoardLink name="welcome board" color="purple"/>
-                <BoardLink name="welcome board" color="green"/>
-                <BoardLink name="welcome board" color="purple"/>
-                <BoardLink name="welcome board" color="green"/>
-                <BoardLink name="welcome board" color="purple"/>
-                <BoardLink name="welcome board" color="purple"/>
-                <BoardLink name="welcome board" color="green"/>
-                <BoardLink name="welcome board" color="purple"/>
+                <Link to='/b'><BoardLink name="welcome board" color="purple"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="green"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="purple"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="green"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="purple"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="purple"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="green"/></Link>
+                <Link to='/b'><BoardLink name="welcome board" color="purple"/></Link>
         </BoardsContainer>
     </FeedContainer>
   )
