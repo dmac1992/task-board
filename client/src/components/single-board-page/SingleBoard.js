@@ -42,6 +42,14 @@ class SingleBoard extends Component {
                     <SprintContainer />
                     <SprintContainer />
                     <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
+                    <SprintContainer />
                 </BoardsCanvas>
             </Container>
         )
