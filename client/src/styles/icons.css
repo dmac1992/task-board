@@ -170,3 +170,18 @@
 .icon-circle:before {
   content: "\52";
 }
+.icon-align-left:before {
+  content: "\53";
+}
+.icon-align-right:before {
+  content: "\54";
+}
+.icon-align-center:before {
+  content: "\55";
+}
+.icon-database:before {
+  content: "\56";
+}
+.icon-columns:before {
+  content: "\57";
+}

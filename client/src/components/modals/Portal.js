@@ -3,26 +3,24 @@ import { connect } from 'react-redux'
 import ReactDOM from 'react-dom';
 
 //app level portals . . .
+import ModalBackgroundHOC from 'components/modals/ModalBackgroundHOC';
 import CreateBoardModal from './CreateBoardModal';
+import TaskPopup from 'components/single-board-task-popup/TaskPopup';
 
 
 class Portal extends Component {
-
 
   constructor() {
       super();
   }
 
-
   renderActivePortal = () => {
-      if(this.props.activeModal ==  CreateBoardModal) {
-        console.log("components are equal");
-      } else {
-        console.log("components are not equal");
-      }
+      
       switch(this.props.activeModal) {
         case CreateBoardModal:
-          return <CreateBoardModal />;
+          return ModalBackgroundHOC(CreateBoardModal);
+        case TaskPopup:
+          return ModalBackgroundHOC(TaskPopup);
         default:
           return null;
       }

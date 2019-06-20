@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { setActiveModal } from "actions/modal";
 
 
-
 import PopUpTitle from "./PopUpTitle";
 import CreateBoardModal from "components/modals/CreateBoardModal";
 

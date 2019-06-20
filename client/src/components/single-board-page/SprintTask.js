@@ -1,5 +1,10 @@
 import React, {Component} from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux'; 
+
+import  { setActiveModal } from 'actions/modal';
+import TaskPopup from 'components/single-board-task-popup/TaskPopup';
+
 
 const Container = styled.div`
     width: 100%;
@@ -14,13 +19,19 @@ class SprintTask extends Component {
         'addingCard' : false
     }
 
+    createTaskModal = () => {
+        console.log('called create task modal');
+        this.props.setActiveModal(TaskPopup);
+    }
+
     render() {
         return (
-            <Container>
+            <Container onClick={this.createTaskModal}>
                 
             </Container>
         )
     }
+
 }
 
-export default SprintTask
+export default connect(null, { setActiveModal })(SprintTask);
