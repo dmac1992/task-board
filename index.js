@@ -13,7 +13,6 @@ if(process.env.NODE_ENV !== "production") {
 const keys = require("./config/keys");
 
 //set root, maybe find a fix for this
-
 global.appRoot = path.resolve(__dirname);
 
 //mongoose models

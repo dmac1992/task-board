@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -10,4 +9,6 @@ const userSchema = new Schema({
     signup_date: { type: Date, default: Date.now() }
 });
 
-mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
+modules.exports = User;
+//started boards

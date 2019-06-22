@@ -27,4 +27,10 @@ export const POPUPS = {
 
 };
 
+export const FLOATINGPOPUP = {
+    SET_FLOATING_POPUP: 'set_floating_popup'
+}
+
+
+
 

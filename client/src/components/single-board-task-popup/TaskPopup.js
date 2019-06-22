@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { setActiveModal } from 'actions/modal'
+import { setActiveModal } from 'actions/modal';
+import { setFloatingPopup } from 'actions/floatingPopups';
 
 import Header from './Header';
 import Description from './Description';
@@ -34,19 +35,26 @@ const RightHandSide = styled.div`
     height: 100%;
 `;
 
-
-
 class TaskPopup extends React.Component {
+
+    state = {
+
+    }
 
     clearPopup = () => {
         this.props.setActiveModal(null);
+        this.props.setFloatingPopup(null, null);
     }
 
+    MenuFloatingPopup = (popup, ref) => {
+        this.props.setFloatingPopup(popup, ref);
+    }
 
     render() {
+        console.log(this.props);
         return (
             <Container>
-                <Header clearPopup={this.clearPopup}/>
+                <Header clearPopup={this.clearPopup} />
                 <ColumnsContainer>
                     <LeftHandSide>
                         <Description />
@@ -54,7 +62,7 @@ class TaskPopup extends React.Component {
                         <Activity />
                     </LeftHandSide>
                     <RightHandSide>
-                        <SideMenu />
+                        <SideMenu MenuFloatingPopup={this.MenuFloatingPopup} />
                     </RightHandSide>
                 </ColumnsContainer>
             </Container>
@@ -63,4 +71,5 @@ class TaskPopup extends React.Component {
 
 }
 
-export default connect(null, {setActiveModal})(TaskPopup);
+
+export default connect(null, {setActiveModal, setFloatingPopup })(TaskPopup);

@@ -14,6 +14,7 @@ import Profile from 'components/profile-page/Profile'
 import Header from 'components/header/Header';
 import Portal from './components/modals/Portal';
 import SingleBoard from './components/single-board-page/SingleBoard';
+import FloatedPopupPortal from './components/modals/FloatedPopupPortal';
 
 import "./styles/baseline.scss";
 
@@ -24,11 +25,15 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
+
+
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
                 <Portal />
+                <FloatedPopupPortal />
                 <Header />
                 <Route path="/" exact component={Home} />
                 <Route path="/boards" exact component={Boards} />

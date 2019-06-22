@@ -20,14 +20,12 @@ class SprintTask extends Component {
     }
 
     createTaskModal = () => {
-        console.log('called create task modal');
         this.props.setActiveModal(TaskPopup);
     }
 
     render() {
         return (
             <Container onClick={this.createTaskModal}>
-                
             </Container>
         )
     }
