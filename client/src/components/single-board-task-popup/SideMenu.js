@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 //import floating popups to pass into action handler
 import AddMembers from './side-menu-popups/AddMembers';
+import DueDate from './side-menu-popups/DueDate';
+import AddLabels from './side-menu-popups/AddLabels'; 
+import AddChecklist from './side-menu-popups/AddChecklist';
 
 const Container = styled.div`
 `;
@@ -30,14 +33,12 @@ const AddButton = styled.li`
     }
 `;
 
-
-
 class SideMenu extends React.Component {
 
     constructor() {
         super();
         this.addButtonRef = React.createRef();
-        this.addTagsRef = React.createRef();
+        this.addLabelsRef = React.createRef();
         this.addChecklistRef = React.createRef();
         this.addDuedateRef = React.createRef();
     }
@@ -46,12 +47,16 @@ class SideMenu extends React.Component {
         this.props.MenuFloatingPopup(AddMembers, this.addButtonRef);
     }
 
-    renderAddTagsPopup = () => {
-
+    renderAddLabelsPopup = () => {
+        this.props.MenuFloatingPopup(AddLabels, this.addLabelsRef);
     }
 
     renderAddChecklistPopup = () => {
+        this.props.MenuFloatingPopup(AddChecklist, this.addChecklistRef);
+    }
 
+    renderAddDueDatePopup = () => {
+        this.props.MenuFloatingPopup(DueDate, this.addDuedateRef)
     }
 
     render() {
@@ -64,15 +69,15 @@ class SideMenu extends React.Component {
                         <span className='icon-user' /> 
                         <span>Members</span>
                     </AddButton>
-                    <AddButton ref={this.addTagsRef}>
+                    <AddButton ref={this.addLabelsRef} onClick={this.renderAddLabelsPopup}>
                         <span className='icon-tag' /> 
                         <span>Labels</span>
                     </AddButton>
-                    <AddButton ref={this.addChecklistRef} >
+                    <AddButton ref={this.addChecklistRef} onClick={this.renderAddChecklistPopup}>
                         <span className='icon-check-square-o' /> 
                         <span>Checklist</span>
                     </AddButton>
-                    <AddButton ref={this.addDuedateRef}>
+                    <AddButton ref={this.addDuedateRef} onClick={this.renderAddDueDatePopup}>
                         <span className='icon-clock-o' /> 
                         <span>Due Date</span>
                     </AddButton>

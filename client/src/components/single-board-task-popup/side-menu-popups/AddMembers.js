@@ -5,7 +5,7 @@ const Container = styled.div`
     padding: 5px;
     width: 304px;
     position: absolute;
-    background-color: beige;
+    background-color: white;
 `;
 
 const Title = styled.div`
@@ -13,6 +13,9 @@ const Title = styled.div`
     line-height: 32px;
     text-align: center;
     border-bottom: 1px solid rgba(9,30,66,.13);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
 `;
 
 const CloseIcon = styled.span`
@@ -28,10 +31,26 @@ const Input = styled.input`
     background-color: #fafbfc;
     color: #172b4d;
     padding: 8px 12px;
+    box-shadow: inset 0 0 0 2px #dfe1e6;
+    margin-bottom: 10px;
 `;
-const HitsList = styled.ul``;
-const Hit = styled.li``;
-const Icon = styled.span``;
+const HitsList = styled.ul`
+
+`;
+const Hit = styled.li`
+    display: flex;
+    align-items: center;
+`;
+const Icon = styled.span`
+    margin-right: 10px;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    text-align: center;
+    display: inline-block;
+    background-color: #dfe1e6;
+    border-radius: 50%;
+`;
 const Username = styled.span``;
 
 const NotFound = styled.p`
@@ -48,7 +67,6 @@ class AddMembers extends React.Component {
     }
 
     renderSearchResults = () => {
-
         return (
             <NotFound></NotFound>
         )
@@ -59,12 +77,9 @@ class AddMembers extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
+     
     }
 
-    log = () => {
-        console.log('logging');
-    }
 
     render() {
         return (
@@ -78,7 +93,7 @@ class AddMembers extends React.Component {
                         <Username>Aaron (aaron5212)</Username>
                     </Hit>
                 </HitsList>
-                <NotFound></NotFound>
+                {/* <NotFound></NotFound> */}
             </Container>
         )
     }

@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
 
 import { floatingPopupPositioningHOC } from './floatingPopupPositioningHOC'
 import { setFloatingPopup } from 'actions/floatingPopups';
 
-//floating menus
+//floating side menus from task popup
 import AddMembers from 'components/single-board-task-popup/side-menu-popups/AddMembers';
-
+import DueDate from 'components/single-board-task-popup/side-menu-popups/DueDate';
+import AddLabels from 'components/single-board-task-popup/side-menu-popups/AddLabels';
+import AddChecklist from 'components/single-board-task-popup/side-menu-popups/AddChecklist';
 
 class FloatedPopupPortal extends React.Component {
 
@@ -21,6 +22,12 @@ class FloatedPopupPortal extends React.Component {
             switch(this.props.floatingPopup.floatingPopup) {
                 case AddMembers:
                     return AddMembers;
+                case DueDate:
+                    return DueDate;
+                case AddLabels:
+                    return AddLabels;
+                case AddChecklist:
+                    return AddChecklist;
                 default:
                     return null;
             }
@@ -30,7 +37,6 @@ class FloatedPopupPortal extends React.Component {
     }
 
     clearFloatingPopup = () => {
-        console.log('clear floating popup');
         this.props.setFloatingPopup(null, null);
     }
 

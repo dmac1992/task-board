@@ -17,6 +17,7 @@ import SingleBoard from './components/single-board-page/SingleBoard';
 import FloatedPopupPortal from './components/modals/FloatedPopupPortal';
 
 import "./styles/baseline.scss";
+import 'react-datepicker/dist/react-datepicker.css';
 
 //you can use this to manually call dispatch and getState but instead passing it off to provider, letting react-redux handle things.
 const store = createStore(

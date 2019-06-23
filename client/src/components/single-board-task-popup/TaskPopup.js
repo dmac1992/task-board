@@ -71,5 +71,4 @@ class TaskPopup extends React.Component {
 
 }
 
-
 export default connect(null, {setActiveModal, setFloatingPopup })(TaskPopup);
