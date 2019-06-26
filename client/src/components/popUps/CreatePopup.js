@@ -6,7 +6,7 @@ import { setActiveModal } from "actions/modal";
 
 
 import PopUpTitle from "./PopUpTitle";
-import CreateBoardModal from "components/modals/CreateBoardModal";
+import CreateBoardModal from "components/modals/create-board-modal/CreateBoardModal";
 
 import { setActiveRightPopUp } from 'actions/header';
 
@@ -46,6 +46,10 @@ const SectionSpan = styled.span`
 `;
 
 class CreatePopup extends React.Component {
+
+    state = {
+
+    }
 
     createBoardHandler = () => { 
         this.props.setActiveModal(CreateBoardModal);  

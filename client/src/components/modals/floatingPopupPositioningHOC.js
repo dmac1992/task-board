@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+//actions
+import { setFloatingPopup } from 'actions/floatingPopups';
+import { setFloatingPopupInplace } from 'actions/floatingPopups';
 
 export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopup) {
 
-    return class extends React.Component {
+
+    class WrappedFloatingPopup extends React.Component {
 
         state = {
             coords: {
@@ -22,31 +28,39 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
         }
     
         determineCoords = () => {
-            //logic
-            let x, y;
-            //get x and y based on ref co-ordinates.
-            // let viewportHeight = window.innerHeight;
-            // let viewportWidth = window.innerWidth;
-            x = this.state.anchorRef.current.offsetLeft;
-            y = this.state.anchorRef.current.offsetTop;
 
+            const domRect = this.state.anchorRef.current.getBoundingClientRect();
+            const {x, y} = domRect;
+        
             //TODO:
-
             this.setState({coords: {
                 top: `${y}px`,
                 left: `${x}px`
             }});
 
         }
-    
 
         render() {
             return (
-                <Popup coords={this.state.coords} clearFloatingPopup={clearFloatingPopup} />
+                <Popup 
+                    coords={this.state.coords} 
+                    clearFloatingPopup={clearFloatingPopup} 
+                    setFloatingPopup={this.props.setFloatingPopup}
+                    setFloatingPopupInplace={this.props.setFloatingPopupInplace} 
+                    floatingPopup={this.props.floatingPopup}
+                />
             )
         }
     }
-   
+
+    const mapStateToProps = ({ floatingPopup }) => {
+        return {
+            floatingPopup
+        }
+    }
+
+    return connect(mapStateToProps, {setFloatingPopup, setFloatingPopupInplace})(WrappedFloatingPopup);
+    
 }
 
 

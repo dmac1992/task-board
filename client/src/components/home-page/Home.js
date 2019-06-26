@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import HomeMenu from './HomeMenu';
 import HomeFeed from './HomeFeed';
 import HomeRecentlyViewedFeed from './HomeRecentlyViewedFeed';
-import CreateBoardModal from 'components/modals/CreateBoardModal';
+import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
 
 
 import { setActiveModal } from 'actions/modal';

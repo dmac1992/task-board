@@ -10,3 +10,14 @@ export const setFloatingPopup = (popup, anchorRef) => {
     }
 }
 
+export const setFloatingPopupInplace = (popup) => {
+
+    return {
+        type: FLOATINGPOPUP.SET_FLOATING_POPUP_INPLACE,
+        payload: {
+            popup
+        }
+    }
+   
+}
+

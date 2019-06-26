@@ -22,14 +22,32 @@ const HeadingTab = styled.div`
 const StarTab = styled.div`
     margin-right: 20px;
     cursor: pointer;
+    padding: 5px;
     :hover {
         background-color: gray;
+    }
+`;
+
+const TeamTab = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+    padding: 5px;
+    :hover {
+        background-color: rgba(0,0,0,.1);
     }
 `;
 const PrivacyTab = styled.div`
     display: flex;
     align-items: center;
     margin-right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    :hover {
+        background-color: rgba(0,0,0,.1);
+    }
+    
 `;
 const BoardCollaboratorsTab = styled.div`
     display: flex;
@@ -44,6 +62,7 @@ const Collaborator = styled.span`
     height: 28px;
     text-align: center;
     line-height: 28px;
+    cursor: pointer;
 `;
 
 const InviteButton = styled.div`
@@ -79,16 +98,19 @@ function SingleBoardHeader(props) {
         <Container>
             <HeadingTab>[2019 T1] SIT302</HeadingTab>
             <StarTab className='icon-star'></StarTab>
-            <PrivacyTab className=''>
+            <TeamTab onClick={props.addTeamPopup}   ref={props.addTeamButtonRef}>
+                <span>Personal</span>
+            </TeamTab>
+            <PrivacyTab className='' ref={props.privacySettingsButtonRef} onClick={props.changePrivacySettings}>
                 <span className='icon-lock' style={{'marginRight': '5px'}}></span>
                 <span>Private</span>
             </PrivacyTab>
             <BoardCollaboratorsTab>
-                <Collaborator>A</Collaborator>
+                <Collaborator ref={props.userAdminButtonRef} onClick={props.changeUserPermissions}>A</Collaborator>
                 <Collaborator>B</Collaborator>
                 <Collaborator>C</Collaborator>
             </BoardCollaboratorsTab>
-            <InviteButton>
+            <InviteButton onClick={props.inviteToBoardPopup} ref={props.inviteToBoardButtonRef}>
                 Invite
             </InviteButton>
             <OpenSlideMenuButton onClick={props.toggleMenu}>Show Menu</OpenSlideMenuButton>

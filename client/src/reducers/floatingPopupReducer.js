@@ -10,7 +10,11 @@ export default (state = initialState, action) => {
                 floatingPopup: action.payload.popup,
                 anchorRef: action.payload.anchorRef
             }
-            
+        case FLOATINGPOPUP.SET_FLOATING_POPUP_INPLACE:
+            return {
+                floatingPopup: action.payload.popup,
+                anchorRef: state.anchorRef
+            }
         default:
             return state;
     }

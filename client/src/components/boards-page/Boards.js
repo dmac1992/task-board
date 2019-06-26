@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import HomeMenu from 'components/home-page/HomeMenu';
 import BoardsFeed from 'components/boards-page/BoardsFeed';
 import TeamsFeed from 'components/boards-page/TeamsFeed'; 
-import CreateBoardModal from 'components/modals/CreateBoardModal';
+import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
 
 import { setActiveModal } from 'actions/modal';
 

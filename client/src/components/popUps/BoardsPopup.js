@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect} from 'react-redux';
 
+//actions
+import { setActiveModal } from 'actions/modal';
+import { setActiveLeftPopUp } from 'actions/header';
+
+//modals to spawn
+import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
 
 const Container = styled.div`
     box-shadow: 5px 10px;
@@ -35,9 +41,6 @@ const TitleSection = styled.div`
     align-items: center;
 `;
 
-// const PopupTitle = styled.span`
-
-// `;
 
 const ToggleIcon = styled.div`
     margin-left: auto;
@@ -74,6 +77,11 @@ class BoardsPopup extends React.Component {
     handleSearchChange = (e) => {
         this.setState({searchValue: e.target.value})
     }
+
+    createBoardHandler = () => { 
+        this.props.setActiveModal(CreateBoardModal);  
+        this.props.setActiveLeftPopUp(null);
+     }
 
     render() {
         const { starredBoardsOpen, recentBoardsOpen, personalBoardsOpen } = this.state;
@@ -128,7 +136,7 @@ class BoardsPopup extends React.Component {
                     </PopupSection>
 
                     <ul className="boards-popup-links-ul">
-                        <Link>Create new board...</Link>
+                        <Link onClick={this.createBoardHandler}>Create new board...</Link>
                         <Link>Always keep this menu open</Link>
                         <Link>See closed boards...</Link>
                     </ul>
@@ -143,6 +151,7 @@ const mapStateToProps = () => {
     
 }
 
-export default connect(mapStateToProps)(BoardsPopup);
+
+export default connect(mapStateToProps, {setActiveModal, setActiveLeftPopUp})(BoardsPopup);
 
 //all going to have piece of state that says whether they are showing their respective popup

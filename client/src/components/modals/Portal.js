@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 //app level portals . . .
 import ModalBackgroundHOC from 'components/modals/ModalBackgroundHOC';
-import CreateBoardModal from './CreateBoardModal';
+import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
 import TaskPopup from 'components/single-board-task-popup/TaskPopup';
 
 

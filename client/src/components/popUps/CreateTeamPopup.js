@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
 import styled from 'styled-components';
 
 
@@ -32,6 +31,12 @@ const Label = styled.label`
     margin-bottom: 5px;
 `;
 
+const NameInput = styled.input``;
+
+const DescriptionTextArea = styled.textarea`
+    width: 100%;
+`;
+
 const SubmitButton = styled.button`
     display: flex;
     align-items: center;
@@ -44,6 +49,8 @@ const SubmitButton = styled.button`
 const DescriptionContainer = styled.div`
     padding: 8px;
     border-top: 1px solid #DCDCDC;
+    width: 100%;
+    
     p:first-of-type {
         margin-bottom: 8px;
     }
@@ -52,18 +59,41 @@ const DescriptionContainer = styled.div`
 
 class CreateTeamPopup extends Component {
 
+    state = {
+        name: '',
+        description: ''
+    }
+
+    NameInputChangeHandler = (e) => {
+        this.setState({name: e.target.value})
+    }
+
+    DescriptionInputChangeHandler = (e) => {
+        this.setState({description: e.target.value})
+    }
+
+    enabledButtonStyles = {
+        backgroundColor: 'green',
+        color: 'white',
+    }
+
+    renderSubmitButton = () => {
+
+    }
+
     render() {
+
     return (
         <Container>
             <PopUpTitle title="Create Team" clearPopup={this.props.clearPopup}/>
             <Form>
                 <InputBlock>
                     <Label htmlFor="team_name">Name</Label>
-                    <Field name="team_name" component="input" type="text" />
+                    <NameInput onChange={this.NameInputChangeHandler} value={this.state.name} component="input" type="text" />
                 </InputBlock>
                 <InputBlock className="create-team-form-inputblock">
                     <Label htmlFor="team_description">Description</Label>
-                    <Field name="team_description" component="input" type="text" />
+                    <DescriptionTextArea onChange={this.DescriptionInputChangeHandler} value={this.state.description} component="input"  rows='6' />
                 </InputBlock>
                 <SubmitButton type="submit"><span>Create</span></SubmitButton>
             </Form>
@@ -77,7 +107,4 @@ class CreateTeamPopup extends Component {
 }
 
 
-
-export default reduxForm({
-    name: "createTeam"
-})(CreateTeamPopup);
+export default CreateTeamPopup;
