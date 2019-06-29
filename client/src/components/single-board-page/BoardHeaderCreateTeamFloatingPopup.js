@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
-import BoardAddTeamFloatingPopup from './BoardAddTeamFloatingPopup';
+import BoardAddTeamFloatingPopup from '../floated-popup-system/single-board-header/BoardHeaderAddTeamFloatingPopup';
 
 const Container = styled.div`
     padding: 5px;

@@ -7,7 +7,6 @@ import { setFloatingPopupInplace } from 'actions/floatingPopups';
 
 export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopup) {
 
-
     class WrappedFloatingPopup extends React.Component {
 
         state = {
@@ -29,6 +28,7 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
     
         determineCoords = () => {
 
+         
             const domRect = this.state.anchorRef.current.getBoundingClientRect();
             const {x, y} = domRect;
         

@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 
 //app level portals . . .
 import ModalBackgroundHOC from 'components/modals/ModalBackgroundHOC';
-import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
+import CreateBoardModal from 'components/modals/CreateBoardModal';
 import TaskPopup from 'components/single-board-task-popup/TaskPopup';
 
 
-class Portal extends Component {
+class ModalPortal extends Component {
 
   constructor() {
       super();
@@ -44,4 +44,4 @@ const mapDispatchToProps = {
   
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Portal)
+export default connect(mapStateToProps, mapDispatchToProps)(ModalPortal)

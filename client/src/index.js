@@ -12,9 +12,9 @@ import Home from 'components/home-page/Home';
 import Boards from 'components/boards-page/Boards';
 import Profile from 'components/profile-page/Profile'
 import Header from 'components/header/Header';
-import Portal from './components/modals/Portal';
+import ModalPortal from './components/modals/ModalPortal';
 import SingleBoard from './components/single-board-page/SingleBoard';
-import FloatedPopupPortal from './components/modals/FloatedPopupPortal';
+import FloatedPopupPortal from 'components/floated-popup-system/FloatedPopupPortal';
 
 import "./styles/baseline.scss";
 import 'react-datepicker/dist/react-datepicker.css';
@@ -31,7 +31,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <Portal />
+                <ModalPortal />
                 <FloatedPopupPortal />
                 <Header />
                 <Route path="/" exact component={Home} />

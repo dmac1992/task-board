@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 
 import SingleBoardHeader from './SingleBoardHeader';
 import SprintContainer from './SprintContainer';
+import AddSprintColumn from './AddSprintColumn';
 
 //action creators
 import { setFloatingPopup } from 'actions/floatingPopups';
 
 //floating popup reference
-import BoardInviteFloatingPopup from 'components/single-board-page/BoardInviteFloatingPopup';
-import BoardAddTeamFloatingPopup from 'components/single-board-page/BoardAddTeamFloatingPopup';
-import BoardCreateTeamFloatingPopup from 'components/single-board-page/BoardCreateTeamFloatingPopup';
-import BoardChangePrivacyFloatingPopup from 'components/single-board-page/BoardChangePrivacyFloatingPopup';
-import BoardChangeAdminLevelFloatingPopup from './BoardChangeAdminLevelFloatingPopup';
+import BoardHeaderInviteFloatingPopup from 'components/floated-popup-system/single-board-header/BoardHeaderInviteFloatingPopup';
+import BoardHeaderAddTeamFloatingPopup from 'components/floated-popup-system/single-board-header/BoardHeaderAddTeamFloatingPopup';
+import BoardHeaderCreateTeamFloatingPopup from 'components/floated-popup-system/single-board-header/BoardHeaderCreateTeamFloatingPopup';
+import BoardHeaderChangePrivacyFloatingPopup from 'components/floated-popup-system/single-board-header/BoardHeaderChangePrivacyFloatingPopup';
+import BoardHeaderChangeAdminLevelFloatingPopup from 'components/floated-popup-system/single-board-header/BoardHeaderChangeAdminLevelFloatingPopup';
+import CloseBoardFloatingPopup from 'components/floated-popup-system/slide-out-menu/SlideCloseBoardFloatingPopup';
 
 
 const Container = styled.div`
@@ -26,7 +28,10 @@ const BoardsCanvas = styled.div`
     background-color: purple;
     height: calc(100% - 34px);
     display: flex;
+    padding-top: 3px;
 `;
+
+
 
 class SingleBoard extends Component {
 
@@ -53,36 +58,40 @@ class SingleBoard extends Component {
         }
     }
 
-    inviteToBoardPopup = () => {
+    inviteToBoardHeaderPopup = () => {
         console.log('invite to board popup');
-        this.props.setFloatingPopup(BoardInviteFloatingPopup , this.inviteToBoardButtonRef);
+        this.props.setFloatingPopup(BoardHeaderInviteFloatingPopup , this.inviteToBoardHeaderButtonRef);
     }
 
     addTeamPopup = () => {
         console.log('add team popup');
-        this.props.setFloatingPopup(BoardAddTeamFloatingPopup, this.addTeamButtonRef);
+        this.props.setFloatingPopup(BoardHeaderAddTeamFloatingPopup, this.addTeamButtonRef);
     }
 
     createTeamPopup = () => {
         console.log('create team popup');
-        this.props.setFloatingPopup(BoardCreateTeamFloatingPopup, this.addTeamButtonRef);
+        this.props.setFloatingPopup(BoardHeaderCreateTeamFloatingPopup, this.addTeamButtonRef);
     }
 
     changePrivacySettings = () => {
-        this.props.setFloatingPopup(BoardChangePrivacyFloatingPopup, this.privacySettingsButtonRef);
+        this.props.setFloatingPopup(BoardHeaderChangePrivacyFloatingPopup, this.privacySettingsButtonRef);
     }
 
     changeUserPermissions = () => {
         console.log('change user permissions single board header');
-        this.props.setFloatingPopup(BoardChangeAdminLevelFloatingPopup, this.userAdminButtonRef);
+        this.props.setFloatingPopup(BoardHeaderChangeAdminLevelFloatingPopup, this.userAdminButtonRef);
     }
 
+    closeBoard = () => {
+        this.props.setFloatingPopup(CloseBoardFloatingPopup, )
+    }
 
 
     render() {
         return (
             <Container>
-                <SingleBoardHeader toggleMenu={this.toggleMenu} 
+                <SingleBoardHeader 
+                    toggleMenu={this.toggleMenu} 
                     inviteToBoardPopup={this.inviteToBoardPopup}
                     inviteToBoardButtonRef={this.inviteToBoardButtonRef}
                     addTeamPopup={this.addTeamPopup}
@@ -92,20 +101,12 @@ class SingleBoard extends Component {
                     changePrivacySettings={this.changePrivacySettings}
                     changeUserPermissions={this.changeUserPermissions}
                     userAdminButtonRef={this.userAdminButtonRef}
+                    setFloatingPopup={this.props.setFloatingPopup}
+
                      />
                 <BoardsCanvas>
                     <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
-                    <SprintContainer />
+                    <AddSprintColumn />
                 </BoardsCanvas>
             </Container>
         )

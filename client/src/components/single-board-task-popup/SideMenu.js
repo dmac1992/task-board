@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 
 //import floating popups to pass into action handler
-import AddMembers from './side-menu-popups/AddMembers';
-import DueDate from './side-menu-popups/DueDate';
-import AddLabels from './side-menu-popups/AddLabels'; 
-import AddChecklist from './side-menu-popups/AddChecklist';
+import AddMembersFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddMembersFloatingPopup';
+import DueDateFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DueDateFloatingPopup';
+import AddLabelsFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddLabelsFloatingPopup'; 
+import AddChecklistFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddChecklistFloatingPopup';
 
 const Container = styled.div`
 `;
@@ -44,19 +44,19 @@ class SideMenu extends React.Component {
     }
 
     renderAddUsersPopup = () => {
-        this.props.MenuFloatingPopup(AddMembers, this.addButtonRef);
+        this.props.MenuFloatingPopup(AddMembersFloatingPopup, this.addButtonRef);
     }
 
     renderAddLabelsPopup = () => {
-        this.props.MenuFloatingPopup(AddLabels, this.addLabelsRef);
+        this.props.MenuFloatingPopup(AddLabelsFloatingPopup, this.addLabelsRef);
     }
 
     renderAddChecklistPopup = () => {
-        this.props.MenuFloatingPopup(AddChecklist, this.addChecklistRef);
+        this.props.MenuFloatingPopup(AddChecklistFloatingPopup, this.addChecklistRef);
     }
 
     renderAddDueDatePopup = () => {
-        this.props.MenuFloatingPopup(DueDate, this.addDuedateRef)
+        this.props.MenuFloatingPopup(DueDateFloatingPopup, this.addDuedateRef)
     }
 
     render() {

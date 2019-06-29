@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import BoardSlideMenu from './BoardSlideMenu';
+import BoardSlideMenuParent from './single-board-page-slide-menu/BoardSlideMenuParent';
 
 const Container = styled.div`
     display: flex;
@@ -115,7 +115,7 @@ function SingleBoardHeader(props) {
             </InviteButton>
             <OpenSlideMenuButton onClick={props.toggleMenu}>Show Menu</OpenSlideMenuButton>
             <MenuContainer>
-                <BoardSlideMenu toggleMenu={props.toggleMenu}/>
+                <BoardSlideMenuParent toggleMenu={props.toggleMenu} setFloatingPopup={props.setFloatingPopup}/>
             </MenuContainer>
         </Container>
     )

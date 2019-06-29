@@ -6,7 +6,7 @@ import { setActiveModal } from "actions/modal";
 
 
 import PopUpTitle from "./PopUpTitle";
-import CreateBoardModal from "components/modals/create-board-modal/CreateBoardModal";
+import CreateBoardModal from "components/modals/CreateBoardModal";
 
 import { setActiveRightPopUp } from 'actions/header';
 

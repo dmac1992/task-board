@@ -32,6 +32,23 @@ export const FLOATINGPOPUP = {
     SET_FLOATING_POPUP_INPLACE: 'set_floating_popup_inplace'
 }
 
+export const SPRINTS = {
+    CREATE_SPRINT: 'create_sprint',
+    DELETE_SPRINT: 'delete_sprint',
+    REORDER_SPRINT: 'reorder_sprint'
+}
+
+export const TASKS = {
+    CREATE_TASK: 'create_task',
+    DELETE_TASK: 'delete_task'
+}
+
+export const BOARDS = {
+    LOAD_BOARD: 'load_board',
+    CREATE_BOARD: 'create_board',
+    DELETE_BOARD: 'delete_board',
+}
+
 
 
 

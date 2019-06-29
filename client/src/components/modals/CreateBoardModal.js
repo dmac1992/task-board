@@ -6,7 +6,7 @@ import { setActiveModal } from "actions/modal";
 import { setFloatingPopup } from 'actions/floatingPopups';
 
 //floating popups
-import CreateBoardFloatingPrivacyMenu from './CreateBoardFloatingPrivacyMenu';
+import CreateBoardFloatingPrivacyMenu from 'components/floated-popup-system/modals/CreateBoardFloatingPrivacyMenu';
 
 const Form = styled.form`
   width: 404px;

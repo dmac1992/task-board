@@ -7,7 +7,7 @@ import { setActiveModal } from 'actions/modal';
 import { setActiveLeftPopUp } from 'actions/header';
 
 //modals to spawn
-import CreateBoardModal from 'components/modals/create-board-modal/CreateBoardModal';
+import CreateBoardModal from 'components/modals/CreateBoardModal';
 
 const Container = styled.div`
     box-shadow: 5px 10px;
