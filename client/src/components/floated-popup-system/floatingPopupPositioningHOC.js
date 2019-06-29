@@ -31,10 +31,11 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
          
             const domRect = this.state.anchorRef.current.getBoundingClientRect();
             const {x, y} = domRect;
+            const refElementHeight = domRect.height;
         
             //TODO:
             this.setState({coords: {
-                top: `${y}px`,
+                top: `${y + refElementHeight}px`,
                 left: `${x}px`
             }});
 

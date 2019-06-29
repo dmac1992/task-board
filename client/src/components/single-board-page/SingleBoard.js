@@ -32,7 +32,6 @@ const BoardsCanvas = styled.div`
 `;
 
 
-
 class SingleBoard extends Component {
 
     constructor(props) {
