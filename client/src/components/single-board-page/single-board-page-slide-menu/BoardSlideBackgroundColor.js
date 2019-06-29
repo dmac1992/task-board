@@ -44,9 +44,8 @@ const PhotoImage = styled.div`
     :hover {
         opacity: .8;
     }
-    
-
 `;
+
 const ColorsImage = styled.div`
     width: 100%;
     height: 100px;
@@ -58,7 +57,8 @@ const ColorsImage = styled.div`
     }
 `;
 
-const BottomSection = styled.div``;
+//TODO unused 'BottomSection' styled component
+// const BottomSection = styled.div``;
 
 function BoardSlideBackgroundColor(props) {
     return (

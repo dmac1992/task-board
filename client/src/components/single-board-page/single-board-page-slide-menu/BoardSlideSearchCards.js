@@ -89,7 +89,8 @@ const Filter = styled.li`
 `;
 
 const FilterName = styled.span``;
-const FilterCheck = styled.span``;
+//TODO unused 'FilterCheck' styled component
+// const FilterCheck = styled.span``;
 
 
 const MasterFiltersSection = styled.ul`

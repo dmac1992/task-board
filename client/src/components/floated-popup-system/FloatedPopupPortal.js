@@ -7,9 +7,6 @@ import { setFloatingPopup } from 'actions/floatingPopups';
 
 class FloatedPopupPortal extends React.Component {
 
-    constructor() {
-        super();
-    }
     
     clearFloatingPopup = () => {
         this.props.setFloatingPopup(null, null);

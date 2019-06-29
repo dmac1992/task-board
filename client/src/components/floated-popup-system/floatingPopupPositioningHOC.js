@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import { connect } from 'react-redux';
 
 //actions
@@ -33,7 +33,6 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
             const {x, y} = domRect;
             const refElementHeight = domRect.height;
         
-            //TODO:
             this.setState({coords: {
                 top: `${y + refElementHeight}px`,
                 left: `${x}px`

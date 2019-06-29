@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 
 import ProfileHeader from 'components/profile-page/ProfileHeader';
@@ -9,10 +9,12 @@ import ProfileFeed from 'components/profile-page/ProfileFeedSection/ProfileFeed'
 import ProfileCards from 'components/profile-page/ProfileCardsSection/ProfileCards';
 import ProfileSettings from 'components/profile-page/ProfileSettingsSection/ProfileSettings';
 
-const Container = styled.div`
-  height: 300px;
-  background-color: aqua;
-`;
+
+//TODO unused 'Container' styled component
+// const Container = styled.div`
+//   height: 300px;
+//   background-color: aqua;
+// `;
 
 const SubPageContainer = styled.div`
   padding-top: 50px;

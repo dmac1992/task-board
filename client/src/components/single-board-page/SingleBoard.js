@@ -46,6 +46,10 @@ class SingleBoard extends Component {
         MenuOpen: false
     }
 
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     toggleMenu = () => {
         let SlideMenu = document.querySelector('#board-slide-menu');
         if (this.state.MenuOpen) {
@@ -112,4 +116,12 @@ class SingleBoard extends Component {
     }
 }
 
-export default connect(null, { setFloatingPopup })(SingleBoard);
+function mapStateToProps(state) {
+    return {
+        boards: state.boards,
+        sprints: state.sprints,
+        tasks: state.tasks
+    }
+}
+
+export default connect(mapStateToProps, { setFloatingPopup })(SingleBoard);

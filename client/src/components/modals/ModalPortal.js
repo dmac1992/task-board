@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactDOM from 'react-dom';
 
@@ -10,9 +10,6 @@ import TaskPopup from 'components/single-board-task-popup/TaskPopup';
 
 class ModalPortal extends Component {
 
-  constructor() {
-      super();
-  }
 
   renderActivePortal = () => {
       

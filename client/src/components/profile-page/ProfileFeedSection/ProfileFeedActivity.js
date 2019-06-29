@@ -34,8 +34,8 @@ const ActionCreatorText = styled.div`
     margin-bottom: 3px;
 `;
 const ActionMetaText = styled.div``;
-const ActionCommentText = styled.div``;
-
+// const ActionCommentText = styled.div``; 
+//TODO unused 'ActionCommentText' component
 
 function ProfileFeedActivity(props) {
   return (

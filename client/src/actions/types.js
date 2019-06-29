@@ -16,7 +16,6 @@ export const MODALS = {
     SET_ACTIVE_MODAL: "set_active_modal"
 }
 
-
 // HOME PAGE
 export const HOME = {
     TOGGLE_HOME_MENU_POPUP :"toggle_home_menu_popup"
@@ -49,6 +48,29 @@ export const BOARDS = {
     DELETE_BOARD: 'delete_board',
 }
 
+export const CHECKLIST = {
+    CREATE_CHECKLIST: 'create_checklist',
+    DELETE_CHECKLIST: 'delete_checklist' 
+}
 
+export const CHECKLIST_ITEM = {
+    TOGGLE_CHECKLIST_ITEM: 'toggle_checklist_item',
+    CREATE_CHECKLIST_ITEM: 'create_checklist_item',
+    DELETE_CHECKLIST_ITEM: 'delete_checklist_item'
+}
 
+export const COMMENT = {
+    CREATE_COMMENT: 'create_comment',
+    DELETE_COMMENT: 'delete_comment',
+    EDIT_COMMENT: 'edit_comment'
+}
+
+export const ACTIVITY = {
+    RECORD_ACTIVITY: 'record_activity'
+}
+
+export const USER = {
+    CHANGE_USERNAME: 'change_username',
+    CHANGE_FULLNAME: 'change_fullname',
+}
 

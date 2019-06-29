@@ -32,9 +32,10 @@ const PopupSection = styled.div`
     padding: 5px;
     margin-bottom: 10px;
 `
-const Symbol = styled.span`
-    margin-right: 4px;
-`;
+//TODO what is this 'Symbol' styled component
+// const Symbol = styled.span`
+//     margin-right: 4px;
+// `;
 
 const TitleSection = styled.div`
     display: flex;

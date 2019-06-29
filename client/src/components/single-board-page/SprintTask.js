@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import  { setActiveModal } from 'actions/modal';
 import TaskPopup from 'components/single-board-task-popup/TaskPopup';
-import { NONAME } from 'dns';
 
 
 const Container = styled.div`

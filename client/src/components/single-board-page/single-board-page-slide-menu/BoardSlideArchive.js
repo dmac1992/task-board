@@ -26,10 +26,10 @@ const SwitchButton = styled.button`
 `;
 
 
-const ArchivedCard = styled.div``;
-const ArchivedCardName = styled.span``;
-const ArchivedCardWatching = styled.span``;
-const ArchivedCardChecklist = styled.span``;
+// const ArchivedCard = styled.div``;
+// const ArchivedCardName = styled.span``;
+// const ArchivedCardWatching = styled.span``;
+// const ArchivedCardChecklist = styled.span``;
 
 
 class BoardSlideArchive extends Component {
