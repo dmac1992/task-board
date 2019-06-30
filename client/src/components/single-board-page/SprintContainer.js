@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import SprintTask from './SprintTask';
 import AddCardForm from './AddCardForm';
@@ -63,6 +64,9 @@ class SprintContainer extends React.Component {
         addCardFormOpen: false
     }
 
+    componentDidMount() {
+    }
+
     renderAddCardForm = () => {
         return (
             <AddCardForm closeForm={this.closeForm}/>
@@ -86,24 +90,30 @@ class SprintContainer extends React.Component {
         this.setState({addCardFormOpen: false})
     }
 
+    renderTasks = () => this.props.tasks.map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
+
     render() {
+        const { sprint , tasks } = this.props;
         return (
             <SprintColumn>
                  <Container>
                     <SprintHeadingContainer>
-                        <Heading>Sprint heading</Heading>
+                        <Heading>{sprint.name}</Heading>
                         <OpenMenuIcon className='icon-dot-3'></OpenMenuIcon>
                     </SprintHeadingContainer>
-                    <SprintTask />
-                    <SprintTask />
-                    <SprintTask />
-                    <SprintTask />
+                    {this.renderTasks()}
                     {!this.state.addCardFormOpen ? this.renderOpenAddCard() : this.renderAddCardForm()}
                  </Container>
             </SprintColumn>
         )
     }
-       
 }
 
-export default SprintContainer
+const mapStateToProps = (state, ownProps) => {
+    return {
+        sprint: state.sprints.find((sprint) => sprint.id === ownProps.sprintID ),
+        tasks: state.tasks.filter((task) => task.sprintID === ownProps.sprintID)
+    }
+}
+
+export default connect(mapStateToProps, null)(SprintContainer);

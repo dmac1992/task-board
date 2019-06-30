@@ -37,7 +37,7 @@ ReactDOM.render(
                 <Route path="/" exact component={Home} />
                 <Route path="/boards" exact component={Boards} />
                 <Route path="/profile" component={Profile} />
-                <Route path='/b' component={SingleBoard} />
+                <Route path='/b/:id' component={SingleBoard} />
             </div>
         </BrowserRouter>
     </Provider>,

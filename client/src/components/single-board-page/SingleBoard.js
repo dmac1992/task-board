@@ -31,7 +31,6 @@ const BoardsCanvas = styled.div`
     padding-top: 3px;
 `;
 
-
 class SingleBoard extends Component {
 
     constructor(props) {
@@ -46,9 +45,6 @@ class SingleBoard extends Component {
         MenuOpen: false
     }
 
-    componentDidMount() {
-        console.log(this.props);
-    }
 
     toggleMenu = () => {
         let SlideMenu = document.querySelector('#board-slide-menu');
@@ -62,17 +58,14 @@ class SingleBoard extends Component {
     }
 
     inviteToBoardHeaderPopup = () => {
-        console.log('invite to board popup');
         this.props.setFloatingPopup(BoardHeaderInviteFloatingPopup , this.inviteToBoardHeaderButtonRef);
     }
 
     addTeamPopup = () => {
-        console.log('add team popup');
         this.props.setFloatingPopup(BoardHeaderAddTeamFloatingPopup, this.addTeamButtonRef);
     }
 
     createTeamPopup = () => {
-        console.log('create team popup');
         this.props.setFloatingPopup(BoardHeaderCreateTeamFloatingPopup, this.addTeamButtonRef);
     }
 
@@ -81,7 +74,6 @@ class SingleBoard extends Component {
     }
 
     changeUserPermissions = () => {
-        console.log('change user permissions single board header');
         this.props.setFloatingPopup(BoardHeaderChangeAdminLevelFloatingPopup, this.userAdminButtonRef);
     }
 
@@ -89,7 +81,11 @@ class SingleBoard extends Component {
         this.props.setFloatingPopup(CloseBoardFloatingPopup, )
     }
 
+    renderSprintBoards = () => {
+        return this.props.sprints.map((sprint) => <SprintContainer key={sprint.id} sprintID={sprint.id} /> )
+    }
 
+    //TODO - PERFORMANCE ISSUE - SingleBoardHeader component should connect to state and grab board data itself to prevent this component rendering excessively.
     render() {
         return (
             <Container>
@@ -105,10 +101,10 @@ class SingleBoard extends Component {
                     changeUserPermissions={this.changeUserPermissions}
                     userAdminButtonRef={this.userAdminButtonRef}
                     setFloatingPopup={this.props.setFloatingPopup}
-
+                    board={this.props.board}
                      />
                 <BoardsCanvas>
-                    <SprintContainer />
+                    {this.renderSprintBoards()}
                     <AddSprintColumn />
                 </BoardsCanvas>
             </Container>
@@ -116,12 +112,15 @@ class SingleBoard extends Component {
     }
 }
 
-function mapStateToProps(state) {
+//TODO MAIN -> use methods here to narrow everything down, based on the board paramater
+function mapStateToProps(state, ownProps) {
+    const boardID = Number(ownProps.match.params.id);
     return {
-        boards: state.boards,
-        sprints: state.sprints,
-        tasks: state.tasks
+        board: state.boards.find((board) => board.id === boardID),
+        sprints: state.sprints.filter((sprint) => sprint.boardID === boardID),
     }
 }
 
 export default connect(mapStateToProps, { setFloatingPopup })(SingleBoard);
+
+// state.boards.find((board) => board.id === ownProps.match.params.id),

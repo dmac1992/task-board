@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 import BoardSlideMenuParent from './single-board-page-slide-menu/BoardSlideMenuParent';
+import { access } from 'fs';
 
 const Container = styled.div`
     display: flex;
@@ -93,17 +94,36 @@ const MenuContainer = styled.div`
     height: 34px;
 `;
 
+const LockIcon = styled.span`
+    color: red;
+`;
+
+const PublicIcon = styled.span`
+    color: green;
+`;
+
+function renderPrivacyIcon(accessibilityLevel)  {
+    if ( accessibilityLevel === 'private') {
+        return (
+            <LockIcon className='icon-lock' />
+        )
+    } else {
+        return <PublicIcon className='icon-world' />
+    }
+}
+
 function SingleBoardHeader(props) {
+    const { board } = props; 
     return (
         <Container>
-            <HeadingTab>[2019 T1] SIT302</HeadingTab>
+            <HeadingTab>{board.name}</HeadingTab>
             <StarTab className='icon-star'></StarTab>
             <TeamTab onClick={props.addTeamPopup}   ref={props.addTeamButtonRef}>
                 <span>Personal</span>
             </TeamTab>
             <PrivacyTab className='' ref={props.privacySettingsButtonRef} onClick={props.changePrivacySettings}>
-                <span className='icon-lock' style={{'marginRight': '5px'}}></span>
-                <span>Private</span>
+                {renderPrivacyIcon(board.accessibilityLevel)}
+                <span>{board.accessibilityLevel}</span>
             </PrivacyTab>
             <BoardCollaboratorsTab>
                 <Collaborator ref={props.userAdminButtonRef} onClick={props.changeUserPermissions}>A</Collaborator>

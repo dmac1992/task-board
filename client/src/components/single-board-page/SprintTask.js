@@ -65,6 +65,9 @@ class SprintTask extends Component {
     state = {
         hovered: false
     }
+    componentDidMount() {
+        console.log(this.props);
+    }
 
     createTaskModal = () => {
         this.props.setActiveModal(TaskPopup);
@@ -87,10 +90,11 @@ class SprintTask extends Component {
     }
 
     render() {
+        const { task } = this.props;
         return (
             <Container style={this.state.hovered ? this.hoverContainerStyles : null } onClick={this.createTaskModal} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
                 <TopHalf>
-                    <Title>task title</Title>
+                    <Title>{task.name}</Title>
                     <EditIcon className='icon-pencil' style={!this.state.hovered ? this.hideElement : null}  />
                 </TopHalf>
                 <BottomHalf>
@@ -107,4 +111,10 @@ class SprintTask extends Component {
 
 }
 
-export default connect(null, { setActiveModal })(SprintTask);
+const mapStateToProps = (state, ownProps) => {
+    return {
+        task: state.tasks.find((task) =>  task.ID === ownProps.taskID )
+    }
+}
+
+export default connect(mapStateToProps, { setActiveModal })(SprintTask);
