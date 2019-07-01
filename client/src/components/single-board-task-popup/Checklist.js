@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import { setFloatingPopup } from 'actions/floatingPopups';
+import { deleteChecklist } from 'actions/checklist';
+
+import DeleteChecklistFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DeleteChecklistFloatingPopup';
 import ChecklistItem from './ChecklistItem';
 
 const Container = styled.div`
     position: relative;
     margin-top: 10px;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `;
 
 const SectionIcon = styled.span`
@@ -19,12 +23,20 @@ const SectionIcon = styled.span`
 
 const Header = styled.div`
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
 `;
 
 const Title = styled.h3`
     display: inline-block;
     margin-right: 5px;
 `;
+
+const DeleteButton = styled.button`
+    padding: 7px;
+    background-color: rgba(9,30,66,.04);
+    margin-left: auto;
+`
 
 const ProgressBarContainer = styled.div`
     display: flex;
@@ -41,12 +53,19 @@ const ProgressBar = styled.div`
     flex-grow: 1;
 `;
 
-const CheckboxUL = styled.ul``;
+const CheckboxUL = styled.ul`
+    margin-bottom: 6px;
+`;
 
 
 const ProgressBarFill = styled.div`
     height: 5px;
 `;
+
+const AddItemButton = styled.button`
+    padding: 7px;
+    background-color: rgba(9,30,66,.04);
+`
 
 export class Checklist extends Component {
 
@@ -60,6 +79,7 @@ export class Checklist extends Component {
         };
         this.progressBarRef = React.createRef();
         this.progressBarFillRef = React.createRef();
+        this.deleteButtonRef = React.createRef();
     }
 
     componentDidMount() {
@@ -70,6 +90,17 @@ export class Checklist extends Component {
         this.updateProgressBar();
     }
 
+    openDeleteChecklistFloatingPopup = () => {
+        this.props.setFloatingPopup(DeleteChecklistFloatingPopup, this.deleteButtonRef, { deleteChecklist: this.deleteChecklist })
+    }
+
+    deleteChecklist = () => {
+        this.props.deleteChecklist(this.props.checklist.id);
+    }
+
+    addChecklistItem = () => {
+
+    }
     
 
     renderChecklistItems = () => {
@@ -119,10 +150,7 @@ export class Checklist extends Component {
         const { numberOfCheckboxes, checkboxesCheckedCount } = this.state;
         return Math.round(checkboxesCheckedCount / numberOfCheckboxes * 100);
     }
-    
-    addItem = () => {
-
-    }
+  
 
     getProgressBarFillColor = () => {
         const progressBarPercentage = this.getProgressBarPercentage();
@@ -151,6 +179,7 @@ export class Checklist extends Component {
                  <Header>
                     <Title>{checklist.name}</Title>
                     <SectionIcon className='icon-check-square-o'></SectionIcon>
+                    <DeleteButton onClick={this.openDeleteChecklistFloatingPopup} ref={this.deleteButtonRef}>Delete</DeleteButton>
                 </Header>
                 <ProgressBarContainer>
                     <ProgressBarPercentage>{this.state.progressBarPercentage}%</ProgressBarPercentage>
@@ -161,6 +190,7 @@ export class Checklist extends Component {
                 <CheckboxUL>
                     {this.renderChecklistItems()}
                 </CheckboxUL>
+                <AddItemButton>Add an item</AddItemButton>
             </Container>
         )
     }
@@ -173,5 +203,5 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, null)(Checklist)
+export default connect(mapStateToProps, { setFloatingPopup, deleteChecklist })(Checklist)
 

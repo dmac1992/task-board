@@ -48,6 +48,7 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
                     setFloatingPopup={this.props.setFloatingPopup}
                     setFloatingPopupInplace={this.props.setFloatingPopupInplace} 
                     floatingPopup={this.props.floatingPopup}
+                    { ...this.props.floatingPopup.argumentsAsProps }
                 />
             )
         }

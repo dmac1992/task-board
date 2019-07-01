@@ -13,7 +13,7 @@ class FloatedPopupPortal extends React.Component {
     }
 
     render() {
-        // let FloatingPopup = this.renderFloatingPopup();
+
         let FloatingPopup;
         if (this.props.floatingPopup) {
             FloatingPopup = this.props.floatingPopup.floatingPopup
@@ -23,7 +23,7 @@ class FloatedPopupPortal extends React.Component {
         if (FloatingPopup) {
             FloatingPopup = floatingPopupPositioningHOC(FloatingPopup, this.props.floatingPopup.anchorRef, this.clearFloatingPopup);
             return (
-                ReactDOM.createPortal(<FloatingPopup/>, document.querySelector('#floating-portal'))
+                ReactDOM.createPortal(<FloatingPopup  />, document.querySelector('#floating-portal'))
             );
         } else {
             return null;

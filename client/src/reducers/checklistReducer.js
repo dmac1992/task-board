@@ -28,13 +28,12 @@ let testData = [
 ];
 
 
-
 export default(state = testData, action) => {
     switch ( action.type ) {
         case CHECKLIST.CREATE_CHECKLIST:
             return action.payload;
         case CHECKLIST.DELETE_CHECKLIST:
-            return action.payload;
+            return state.filter(({id}) => id !== action.payload);
         default: 
             return state;
     }
