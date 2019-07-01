@@ -10,6 +10,7 @@ import checklistItemReducer from './checklistItemReducer';
 import commentsReducer from './commentsReducer';
 import activityReducer from './activityReducer';
 import usersReducer from './usersReducer'
+import currentTaskPopupReducer from './currentTaskPopupReducer';
 
 
 export default combineReducers({
@@ -23,7 +24,8 @@ export default combineReducers({
     checklistItem: checklistItemReducer,
     comments: commentsReducer,
     activitys: activityReducer,
-    users: usersReducer
+    users: usersReducer,
+    currentTaskPopup: currentTaskPopupReducer
     
 })
 

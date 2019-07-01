@@ -5,7 +5,7 @@ let testData = [
         id: 0,
         checklistID: 0,
         name: 'checklist item name',
-        checked: false,
+        checked: true,
         created: new Date()
     },
    

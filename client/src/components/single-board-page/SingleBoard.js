@@ -112,7 +112,6 @@ class SingleBoard extends Component {
     }
 }
 
-//TODO MAIN -> use methods here to narrow everything down, based on the board paramater
 function mapStateToProps(state, ownProps) {
     const boardID = Number(ownProps.match.params.id);
     return {

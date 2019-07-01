@@ -36,7 +36,7 @@ const HeaderIcon = styled.span`
 `;
 
 
-function Header({clearPopup}) {
+function Header({clearPopup, taskName}) {
     return (
         <Container>
             <TitleTextArea className=''/>

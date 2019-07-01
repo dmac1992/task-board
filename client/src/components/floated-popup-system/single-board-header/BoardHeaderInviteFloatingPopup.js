@@ -72,7 +72,6 @@ class CreateBoardFloatingPrivacyMenu extends React.Component {
 
     sendInvite = (e) => {
         e.preventDefault();
-        console.log('sent invite');
     }
 
     renderSendInviteButton = () => {

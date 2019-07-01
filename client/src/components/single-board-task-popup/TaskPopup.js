@@ -9,7 +9,10 @@ import Header from './Header';
 import Description from './Description';
 import AddComment from './AddComment';
 import SideMenu from './SideMenu';
+import Checklist from './Checklist';
 import Activity from './Activity';
+import ActivityComment from './ActivityComment';
+import ActivityItem from './ActivityItem';
 
 const Container = styled.div`
     width: 800px;
@@ -23,7 +26,6 @@ const Container = styled.div`
 
 const ColumnsContainer = styled.div`
     display: flex;
-    height: 600px;
 `
 
 const LeftHandSide = styled.div`
@@ -50,16 +52,32 @@ class TaskPopup extends React.Component {
         this.props.setFloatingPopup(popup, ref);
     }
 
+    renderCheckLists = () => {
+        return this.props.checklists.map((checklist) => <Checklist key={checklist.id} checklist={checklist} />)
+    }
+
+    renderTaskComments = () => {
+        return this.props.comments.map((comment) => <ActivityComment comment={comment} key={comment.id} />)
+    }
+
+
+
+    //TODO - render activities
+    // renderTaskActivities() {
+    //     return this.props.
+    // }
+
+
     render() {
-        console.log(this.props);
         return (
             <Container>
                 <Header clearPopup={this.clearPopup} />
                 <ColumnsContainer>
                     <LeftHandSide>
                         <Description />
+                        {this.renderCheckLists()}
                         <AddComment />
-                        <Activity />
+                        <Activity renderTaskComments={this.renderTaskComments}/>
                     </LeftHandSide>
                     <RightHandSide>
                         <SideMenu MenuFloatingPopup={this.MenuFloatingPopup} />
@@ -71,4 +89,18 @@ class TaskPopup extends React.Component {
 
 }
 
-export default connect(null, {setActiveModal, setFloatingPopup })(TaskPopup);
+//TODO - remove the date sorting functions back end functionality is implemented.
+//SQL command will take care of the sorting
+
+//TODO - Pull in activities associated with task
+const mapStateToProps = (state, ownProps) => {
+    let taskID = state.currentTaskPopup;
+    return {
+        task: state.tasks.find((task) => taskID === task.ID),
+        comments: state.comments.filter((comment) => taskID === comment.taskID).sort((a, b) => a.created > b.created ? 1 : -1),
+        checklists: state.checklists.filter((checklist) => taskID === checklist.taskID),
+        
+    }
+}
+
+export default connect(mapStateToProps, {setActiveModal, setFloatingPopup })(TaskPopup);

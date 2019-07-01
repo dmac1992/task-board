@@ -74,3 +74,7 @@ export const USER = {
     CHANGE_FULLNAME: 'change_fullname',
 }
 
+export const CURRENT_TASK_POPUP = {
+    SET_ID: 'set_id'
+}
+

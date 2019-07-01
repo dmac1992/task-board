@@ -95,7 +95,6 @@ export class ProfileHeader extends Component {
   }
 
   componentDidUpdate(){
-    console.log(this.state.formShowing);
   }
 
  

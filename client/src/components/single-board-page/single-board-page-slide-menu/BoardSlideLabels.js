@@ -60,12 +60,10 @@ class BoardSlideLabels extends React.Component {
     }
 
     changeLabelFloating = (e) => {
-        console.log('Change label Floating');
         this.props.setFloatingPopup( ChangeLabelFloatingPopup , this.rowOneRef);
     }   
 
     createLabelFloating = (e) => {
-        console.log();
         this.props.setFloatingPopup( CreateLabelFloatingPopup, this.createButtonRef);
     }
 

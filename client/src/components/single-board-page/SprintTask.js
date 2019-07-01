@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'; 
 
 import  { setActiveModal } from 'actions/modal';
+import { setCurrentTaskPopupID } from 'actions/currentTaskPopup';
 import TaskPopup from 'components/single-board-task-popup/TaskPopup';
 
 
@@ -66,10 +67,11 @@ class SprintTask extends Component {
         hovered: false
     }
     componentDidMount() {
-        console.log(this.props);
     }
 
-    createTaskModal = () => {
+    createTaskModal = () => 
+    {
+        this.props.setCurrentTaskPopupID(this.props.taskID);
         this.props.setActiveModal(TaskPopup);
     }
 
@@ -117,4 +119,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, { setActiveModal })(SprintTask);
+export default connect(mapStateToProps, { setActiveModal, setCurrentTaskPopupID })(SprintTask);
