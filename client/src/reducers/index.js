@@ -12,7 +12,7 @@ import activityReducer from './activityReducer';
 import usersReducer from './usersReducer'
 import currentTaskPopupReducer from './currentTaskPopupReducer';
 
-
+//TODO - refactor 'currentTaskPopup' key to 'currentTaskPopupID'
 export default combineReducers({
     header: headerReducer,
     activeModal: activeModalReducer,
@@ -23,7 +23,7 @@ export default combineReducers({
     checklists: checklistReducer,
     checklistItem: checklistItemReducer,
     comments: commentsReducer,
-    activitys: activityReducer,
+    activities: activityReducer,
     users: usersReducer,
     currentTaskPopup: currentTaskPopupReducer
     

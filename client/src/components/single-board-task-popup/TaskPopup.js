@@ -56,17 +56,6 @@ class TaskPopup extends React.Component {
         return this.props.checklists.map((checklist) => <Checklist key={checklist.id} checklist={checklist} />)
     }
 
-    renderTaskComments = () => {
-        return this.props.comments.map((comment) => <ActivityComment comment={comment} key={comment.id} />)
-    }
-
-
-
-    //TODO - render activities
-    // renderTaskActivities() {
-    //     return this.props.
-    // }
-
 
     render() {
         return (
@@ -97,7 +86,6 @@ const mapStateToProps = (state, ownProps) => {
     let taskID = state.currentTaskPopup;
     return {
         task: state.tasks.find((task) => taskID === task.ID),
-        comments: state.comments.filter((comment) => taskID === comment.taskID).sort((a, b) => a.created > b.created ? 1 : -1),
         checklists: state.checklists.filter((checklist) => taskID === checklist.taskID),
         
     }
