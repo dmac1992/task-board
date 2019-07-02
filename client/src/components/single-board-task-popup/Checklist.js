@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
 import { deleteChecklist } from 'actions/checklist';
+import { addChecklistItem, deleteChecklistItem }  from 'actions/checklistItem';
 
 import DeleteChecklistFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DeleteChecklistFloatingPopup';
 import ChecklistItem from './ChecklistItem';
@@ -65,7 +66,32 @@ const ProgressBarFill = styled.div`
 const AddItemButton = styled.button`
     padding: 7px;
     background-color: rgba(9,30,66,.04);
+`;
+
+
+const AddItemTextArea = styled.textarea`
+    width: 100%;
+    padding: 6px;
 `
+
+const AddItemFormBottomPanel = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const AddItemFormSubmitButton = styled.button`
+    padding: 7px;
+    margin-right: 5px;
+    background-color: green;
+    color: white;
+`;
+
+const CloseAddItemForm = styled.span`
+    font-size: 20px;
+    cursor: pointer;
+`;
+
+
 
 export class Checklist extends Component {
 
@@ -75,7 +101,9 @@ export class Checklist extends Component {
             numberOfCheckboxes: this.props.checklistItems.length,
             checkboxesCheckedCount: this.props.checklistItems.reduce((acc, item) => {
                 return item.checked ? acc + 1 : acc
-            }, 0)
+            }, 0),
+            addItemFormInput: '',
+            addItemFormOpen: false
         };
         this.progressBarRef = React.createRef();
         this.progressBarFillRef = React.createRef();
@@ -86,7 +114,9 @@ export class Checklist extends Component {
        this.updateProgressBar();
     }
 
+    //TODO - setState causing extra render here, look for a work around
     componentDidUpdate() {
+        console.log(`${this.state.checkboxesCheckedCount} / ${this.state.numberOfCheckboxes}`);
         this.updateProgressBar();
     }
 
@@ -99,9 +129,11 @@ export class Checklist extends Component {
     }
 
     addChecklistItem = () => {
-
+        if ( this.state.addItemFormInput ) {
+            this.setState({numberOfCheckboxes: this.state.numberOfCheckboxes + 1})
+            this.props.addChecklistItem(this.props.checklist.id, this.state.addItemFormInput);
+        }   
     }
-    
 
     renderChecklistItems = () => {
         return this.props.checklistItems.map((checklistItem) => {
@@ -111,18 +143,18 @@ export class Checklist extends Component {
                     checklistItem={checklistItem} 
                     addToCheckboxesCheckedCount={this.addToCheckboxesCheckedCount}
                     subtractFromCheckboxesCheckedCount={this.subtractFromCheckboxesCheckedCount}
+                    deleteChecklistItem={this.props.deleteChecklistItem}
+                    decrementTotalCheckboxCount={this.decrementTotalCheckboxCount}
                 />
             )
         })
     }
 
     addToCheckboxesCheckedCount = () => {
-        console.log('adding to checkbox count');
         this.setState({checkboxesCheckedCount: this.state.checkboxesCheckedCount+1});
     }
 
     subtractFromCheckboxesCheckedCount = () => {
-        console.log('subtracting from checkbox count');
         if ( this.state.checkboxesCheckedCount > 0 ) {
             this.setState({checkboxesCheckedCount: this.state.checkboxesCheckedCount - 1})
         }
@@ -150,7 +182,6 @@ export class Checklist extends Component {
         const { numberOfCheckboxes, checkboxesCheckedCount } = this.state;
         return Math.round(checkboxesCheckedCount / numberOfCheckboxes * 100);
     }
-  
 
     getProgressBarFillColor = () => {
         const progressBarPercentage = this.getProgressBarPercentage();
@@ -164,11 +195,39 @@ export class Checklist extends Component {
         }
         return color;
     }
-
   
     updateProgressBar = () => {
         this.progressBarFillRef.current.style.backgroundColor = this.getProgressBarFillColor();
         this.progressBarFillRef.current.style.width = this.getProgressBarWidth();
+    }
+
+    addItemFormChangeHandler = (e) => {
+        this.setState({addItemFormInput: e.target.value});
+    }
+
+    openAddItemForm = () => {this.setState({addItemFormOpen: true})};
+    closeAddItemForm = () => { this.setState({addItemFormOpen: false})}
+
+    decrementTotalCheckboxCount = () => {
+        this.setState({numberOfCheckboxes: this.state.numberOfCheckboxes - 1});
+    }
+
+    renderAddItemSection = () => {
+        if (this.state.addItemFormOpen) {
+            return (
+                <>
+                    <AddItemTextArea onChange={this.addItemFormChangeHandler} value={this.state.addItemFormInput} rows='5' />
+                    <AddItemFormBottomPanel>
+                        <AddItemFormSubmitButton onClick={this.addChecklistItem}>Add</AddItemFormSubmitButton>
+                        <CloseAddItemForm className='icon-times' onClick={this.closeAddItemForm}/>
+                    </AddItemFormBottomPanel>
+                </>
+            )
+        } else {
+            return (
+                <AddItemButton onClick={this.openAddItemForm}>Add an item</AddItemButton>
+            )
+        }
     }
 
 
@@ -190,7 +249,7 @@ export class Checklist extends Component {
                 <CheckboxUL>
                     {this.renderChecklistItems()}
                 </CheckboxUL>
-                <AddItemButton>Add an item</AddItemButton>
+                {this.renderAddItemSection()}
             </Container>
         )
     }
@@ -203,5 +262,5 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, { setFloatingPopup, deleteChecklist })(Checklist)
+export default connect(mapStateToProps, { setFloatingPopup, deleteChecklist, addChecklistItem, deleteChecklistItem})(Checklist)
 

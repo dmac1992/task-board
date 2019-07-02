@@ -1,4 +1,8 @@
+import _ from 'lodash';
+
 import { CHECKLIST_ITEM } from 'actions/types';
+
+
 
 let testData = [
     {
@@ -41,9 +45,10 @@ export default(state = testData, action) => {
         case CHECKLIST_ITEM.TOGGLE_CHECKLIST_ITEM:
             return action.payload;
         case CHECKLIST_ITEM.CREATE_CHECKLIST_ITEM:
-            return action.payload;
+            action.payload.id = _.maxBy(state, 'id').id + 1; //TODO - logic put in place for front end demo, until back end is implemented.
+            return [...state, action.payload];
         case CHECKLIST_ITEM.DELETE_CHECKLIST_ITEM:
-            return action.payload;
+            return state.filter((item) => item.id !== action.payload);
         default: 
             return state;
     }

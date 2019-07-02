@@ -34,16 +34,27 @@ const DeleteButton = styled.button`
 `
 
 //need callback passed in to this.
-function DeleteChecklist(props) {
-    console.log(props);
-    return (
-        <Container style={props.coords}>
-            <Title>Members</Title>
-            <CloseIcon className='icon-times' onClick={props.clearFloatingPopup} />
-            <Warning>Deleting a checklist is permanent and there is no way to get it back.</Warning>
-            <DeleteButton onClick={props.deleteChecklist}>Delete Checklist</DeleteButton>
-        </Container>
-    )
-}
+
+
+
+class DeleteChecklist extends React.Component {
+
+    deleteButtonHandler = () => {
+        this.props.deleteChecklist();
+        this.props.clearFloatingPopup();
+    }
+
+    render() {
+        return (
+            <Container style={this.props.coords}>
+                <Title>Members</Title>
+                <CloseIcon className='icon-times' onClick={this.props.clearFloatingPopup} />
+                <Warning>Deleting a checklist is permanent and there is no way to get it back.</Warning>
+                <DeleteButton onClick={this.deleteButtonHandler}>Delete Checklist</DeleteButton>
+            </Container>
+        )
+    }
+    }
+    
 
 export default DeleteChecklist

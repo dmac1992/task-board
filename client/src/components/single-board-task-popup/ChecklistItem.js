@@ -26,6 +26,11 @@ const CheckboxName = styled.span`
     flex-grow: 1;
 `;
 
+const DeleteItemIcon = styled.span`
+    margin-left: auto;
+    cursor: pointer;
+`;
+
 class ChecklistItem extends Component {
 
     constructor(props) {
@@ -34,9 +39,12 @@ class ChecklistItem extends Component {
             checked: this.props.checklistItem.checked
         }
     }
-
-    componentDidMount() {
-       
+    
+    componentWillUnmount() {
+        if ( this.state.checked ) {
+            this.props.subtractFromCheckboxesCheckedCount();
+        } 
+        this.props.decrementTotalCheckboxCount();
     }
 
 
@@ -62,12 +70,18 @@ class ChecklistItem extends Component {
         this.props.subtractFromCheckboxesCheckedCount();
     }
 
+    deleteCheckBox = () => {
+        this.props.deleteChecklistItem(this.props.checklistItem.id);
+    }
+
+    //TODO - the delete item icon needs to be converted to a popup. the popup offers delete functionality and the ability to convert the item to a task.
     render() {
         
         return (
             <Container>
                 {this.renderCheckbox()}
                 <CheckboxName>{this.props.checklistItem.name}</CheckboxName>
+                <DeleteItemIcon onClick={this.deleteCheckBox} className='icon-times' />
             </Container>
         )
     }
