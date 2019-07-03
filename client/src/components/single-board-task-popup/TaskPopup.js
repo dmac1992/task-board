@@ -53,7 +53,7 @@ class TaskPopup extends React.Component {
     }
 
     renderCheckLists = () => {
-        return this.props.checklists.map((checklist) => <Checklist key={checklist.id} checklist={checklist} />)
+        return this.props.checklists.map((checklist, index) => <Checklist key={index} checklist={checklist} />)
     }
 
 

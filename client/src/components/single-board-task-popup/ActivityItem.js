@@ -11,9 +11,6 @@ const Container = styled.li`
     border-bottom: 1px solid gray;
 `;
 
-
-
-
 const DP = styled.span`
     position: absolute;
     width: 30px;
@@ -36,7 +33,6 @@ const Username = styled.span`
 `
 
 function RenderActivityStatement(activity, user) {
-    console.log(activity.type);
     let at = ActivityTypes;
     switch(activity.type) {
         case at.MARKED:
@@ -52,7 +48,6 @@ function RenderActivityStatement(activity, user) {
         default:
             return '';
     }
-
 }
 
 

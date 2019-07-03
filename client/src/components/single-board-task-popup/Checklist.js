@@ -116,7 +116,6 @@ export class Checklist extends Component {
 
     //TODO - setState causing extra render here, look for a work around
     componentDidUpdate() {
-        console.log(`${this.state.checkboxesCheckedCount} / ${this.state.numberOfCheckboxes}`);
         this.updateProgressBar();
     }
 
@@ -136,10 +135,10 @@ export class Checklist extends Component {
     }
 
     renderChecklistItems = () => {
-        return this.props.checklistItems.map((checklistItem) => {
+        return this.props.checklistItems.map((checklistItem, index) => {
             return (
                 <ChecklistItem 
-                    key={checklistItem.id} 
+                    key={index} 
                     checklistItem={checklistItem} 
                     addToCheckboxesCheckedCount={this.addToCheckboxesCheckedCount}
                     subtractFromCheckboxesCheckedCount={this.subtractFromCheckboxesCheckedCount}
