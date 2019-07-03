@@ -60,6 +60,7 @@ class Header extends React.Component {
         document.addEventListener("click", (e) => {
             //if click outside header container clear all header popups.
             let headerContainer = document.querySelector(".header-container");
+            //check if redux store is already null
             if (!headerContainer.contains(e.target)) {
                 this.props.setActiveRightPopUp(null);
                 this.props.setActiveLeftPopUp(null);

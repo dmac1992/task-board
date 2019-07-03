@@ -19,6 +19,11 @@ import FloatedPopupPortal from 'components/floated-popup-system/FloatedPopupPort
 import "./styles/baseline.scss";
 import 'react-datepicker/dist/react-datepicker.css';
 
+if (process.env.NODE_ENV !== 'production') {
+    const { whyDidYouUpdate } = require('why-did-you-update');
+    whyDidYouUpdate(React, { exclude: [/^StyledComponent/]});
+}
+
 //you can use this to manually call dispatch and getState but instead passing it off to provider, letting react-redux handle things.
 const store = createStore(
     reducers,

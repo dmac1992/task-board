@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { DateTime } from 'luxon';
 import ActivityTypes from 'utilityFiles/ActivityTypes';
 
 const Container = styled.li`
@@ -28,34 +29,38 @@ const DP = styled.span`
 const ActivityStatement = styled.span`
     display: block;
 `;
+
+const Timestamp = styled.span``;
+
 const Username = styled.span`
-    text-style: bold;
+    font-weight: bold;
+    font-size: 120%;
 `
 
 function RenderActivityStatement(activity, user) {
     let at = ActivityTypes;
     switch(activity.type) {
         case at.MARKED:
-            return <ActivityStatement><Username>{user.username}</Username> marked {activity.entity} on this card</ActivityStatement>
+            return <ActivityStatement><Username>{user.username}</Username> marked {activity.entityName} on this card</ActivityStatement>
         case at.REMOVED:
-            return <ActivityStatement><Username>{user.username}</Username> removed {activity.entity} from this card</ActivityStatement>
+            return <ActivityStatement><Username>{user.username}</Username> removed {activity.entityName} from this card</ActivityStatement>
         case at.COMPLETED:
-            return <ActivityStatement><Username>{user.username}</Username> completed {activity.entity} on this card</ActivityStatement>
+            return <ActivityStatement><Username>{user.username}</Username> completed {activity.entityName} on this card</ActivityStatement>
         case at.ADDED:
-            return <ActivityStatement><Username>{user.username}</Username> added {activity.entity} to this card</ActivityStatement>
-        case at.UNMARK:
-            return <ActivityStatement><Username>{user.name}</Username> marked {activity.entity} uncomplete</ActivityStatement>
+            return <ActivityStatement><Username>{user.username}</Username> added {activity.entityName} to this card</ActivityStatement>
+        case at.UNMARKED:
+            return <ActivityStatement><Username>{user.username}</Username> marked {activity.entityName} uncomplete</ActivityStatement>
         default:
             return '';
     }
 }
-
 
 function ActivityItem({activity, user}) {
     return (
         <Container>
             <DP>{user.intial}</DP>
             {RenderActivityStatement(activity, user)}
+            <Timestamp>{activity.timestamp.toLocaleString(DateTime.DATETIME_MED)}</Timestamp>
         </Container>
     )
 }

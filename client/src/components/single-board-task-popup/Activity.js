@@ -54,15 +54,15 @@ class Activity extends React.Component  {
         return sortedCommentsAndActivities.map((item, index) => {
             //item objects have comment property
             if (item.comment) {
-                return <ActivityComment comment={item} key={index} user={users[item.userID]} />
+                return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} />
             } else {
-                return <ActivityItem activity={item} key={index} user={users[item.userID]} />
+                return <ActivityItem activity={item} key={`taskpopup_activity_statement_${item.id}`} user={users[item.userID]} />
             }
         })
     }
 
     renderCommentsOnly = () => {
-        return this.props.comments.map((comment) => <ActivityComment comment={comment} key={comment.id} />)
+        return this.props.comments.map((comment) => <ActivityComment comment={comment} key={`taskpopup_activity_comment_${comment.id}`} />)
     }
 
     renderActivity = () => {
@@ -78,9 +78,9 @@ class Activity extends React.Component  {
 
     renderButton = () => {
         if (this.state.includeActivities){
-            return  <CommentsOnlyButton onClick={this.hideActivities} />
+            return  <CommentsOnlyButton onClick={this.hideActivities}>Comments only</CommentsOnlyButton>
         } else {
-            return <IncludeActivitiesButton onClick={this.showActivities} />
+            return <IncludeActivitiesButton onClick={this.showActivities}>Include activities</IncludeActivitiesButton>
         }
     }
 

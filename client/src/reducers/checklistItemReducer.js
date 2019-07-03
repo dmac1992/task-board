@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import { CHECKLIST_ITEM } from 'actions/types';
+import { DateTime } from 'luxon'; 
 
 
 
@@ -10,7 +11,7 @@ let testData = [
         checklistID: 0,
         name: 'checklist item name',
         checked: true,
-        created: new Date()
+        created: DateTime.local()
     },
    
     {
@@ -18,7 +19,7 @@ let testData = [
         checklistID: 0,
         name: 'checklist item name',
         checked: false,
-        created: new Date()
+        created: DateTime.local()
     },
    
     {
@@ -26,7 +27,7 @@ let testData = [
         checklistID: 1,
         name: 'checklist item name',
         checked: false,
-        created: new Date()
+        created: DateTime.local()
     },
    
     {
@@ -34,7 +35,7 @@ let testData = [
         checklistID: 1,
         name: 'checklist item name',
         checked: false,
-        created: new Date()
+        created: DateTime.local()
     },
 ];
 

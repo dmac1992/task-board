@@ -1,4 +1,5 @@
 import { BOARDS } from 'actions/types';
+import { DateTime } from 'luxon';
 
 const testState = [
     {
@@ -6,21 +7,21 @@ const testState = [
         accessibilityLevel: 'private',
         teamID: 0,
         name: 'board 1',
-        timestamp: new Date()
+        timestamp: DateTime.local()
     },
     {
         id: 1,
         accessibilityLevel: 'private',
         teamID: 0,
         name: 'board 2',
-        timestamp: new Date()
+        timestamp: DateTime.local()
     },
     {
         id: 2,
         accessibilityLevel: 'public',
         teamID: 0,
         name: 'board 3',
-        timestamp: new Date()
+        timestamp: DateTime.local()
     },
 
     

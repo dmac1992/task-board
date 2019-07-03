@@ -45,7 +45,7 @@ const HeaderSearchCloseIcon = styled.span`
 `;
 
 
-class HeaderSearch extends React.Component {
+class HeaderSearch extends React.PureComponent {
 
     constructor(props) {
         super(props);

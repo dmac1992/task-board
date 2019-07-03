@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000",
   "dependencies": {
     "lodash": "^4.17.11",
+    "luxon": "^1.16.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-datepicker": "^2.7.0",
@@ -34,6 +35,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "why-did-you-update": "^1.0.6"
   }
 }

@@ -1,6 +1,6 @@
 import { ACTIVITY } from 'actions/types';
 import ACTIVITY_TYPES from 'utilityFiles/ActivityTypes';
-
+import { DateTime } from 'luxon';
 
 let testData = [
     {
@@ -8,49 +8,56 @@ let testData = [
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.MARKED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 1,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.REMOVED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 2,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.REMOVED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 3,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.COMPLETED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 4,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.COMPLETED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 5,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.UNMARKED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     },
     {
         id: 6,
         taskID: 0,
         userID: 0,
         type: ACTIVITY_TYPES.ADDED,
-        timestamp: new Date()
+        entityName: 'sdf',
+        timestamp: DateTime.local()
     }
     
 ]

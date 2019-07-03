@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -31,7 +31,7 @@ const BoardsCanvas = styled.div`
     padding-top: 3px;
 `;
 
-class SingleBoard extends Component {
+class SingleBoard extends PureComponent {
 
     constructor(props) {
         super(props);
