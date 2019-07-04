@@ -82,7 +82,9 @@ class SingleBoard extends PureComponent {
     }
 
     renderSprintBoards = () => {
-        return this.props.sprints.map((sprint) => <SprintContainer key={sprint.id} sprintID={sprint.id} /> )
+        return this.props.sprints
+            .filter((sprint) => sprint.boardID === Number(this.props.match.params.id))
+            .map((sprint) => <SprintContainer key={sprint.id} sprintID={sprint.id} /> )
     }
 
     //TODO - PERFORMANCE ISSUE - SingleBoardHeader component should connect to state and grab board data itself to prevent this component rendering excessively.
@@ -111,14 +113,14 @@ class SingleBoard extends PureComponent {
         )
     }
 }
-
+// sprints: state.sprints.filter((sprint) => sprint.boardID === boardID),
 
 //TODO - !!!URGENT PERFORMANCE i am returning brand new arrays each time. this is causing re-renders.
 function mapStateToProps(state, ownProps) {
     const boardID = Number(ownProps.match.params.id);
     return {
         board: state.boards.find((board) => board.id === boardID),
-        sprints: state.sprints.filter((sprint) => sprint.boardID === boardID),
+        sprints: state.sprints
     }
 }
 

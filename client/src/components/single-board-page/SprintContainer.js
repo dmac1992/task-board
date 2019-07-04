@@ -57,7 +57,7 @@ const Plus = styled.span`
 `;
 
 
-class SprintContainer extends React.Component {
+class SprintContainer extends React.PureComponent {
 
 
     state = {
@@ -90,7 +90,11 @@ class SprintContainer extends React.Component {
         this.setState({addCardFormOpen: false})
     }
 
-    renderTasks = () => this.props.tasks.map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
+    renderTasks = () => {
+        return this.props.tasks
+            .filter((task) => task.sprintID === this.props.sprintID)
+            .map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
+    }
 
     render() {
         const { sprint , tasks } = this.props;
@@ -109,10 +113,11 @@ class SprintContainer extends React.Component {
     }
 }
 
+// tasks: state.tasks.filter((task) => task.sprintID === ownProps.sprintID)
 const mapStateToProps = (state, ownProps) => {
     return {
         sprint: state.sprints.find((sprint) => sprint.id === ownProps.sprintID ),
-        tasks: state.tasks.filter((task) => task.sprintID === ownProps.sprintID)
+        tasks: state.tasks
     }
 }
 
