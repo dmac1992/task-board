@@ -112,6 +112,8 @@ class SingleBoard extends PureComponent {
     }
 }
 
+
+//TODO - !!!URGENT PERFORMANCE i am returning brand new arrays each time. this is causing re-renders.
 function mapStateToProps(state, ownProps) {
     const boardID = Number(ownProps.match.params.id);
     return {

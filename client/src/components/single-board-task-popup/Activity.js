@@ -51,7 +51,7 @@ class Activity extends React.Component  {
     renderCommentsAndActivities = () => {
         const { comments, activities, users } = this.props;
         let sortedCommentsAndActivities = _.orderBy([ ...comments, ...activities], ['timestamp']);
-        return sortedCommentsAndActivities.map((item, index) => {
+        return sortedCommentsAndActivities.map((item) => {
             //item objects have comment property
             if (item.comment) {
                 return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} />

@@ -53,7 +53,7 @@ const HeaderButtonGroup = styled.div`
 
 
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
 
     constructor() {
         super();
@@ -61,15 +61,24 @@ class Header extends React.Component {
             //if click outside header container clear all header popups.
             let headerContainer = document.querySelector(".header-container");
             //check if redux store is already null
+
+            //
             if (!headerContainer.contains(e.target)) {
-                this.props.setActiveRightPopUp(null);
-                this.props.setActiveLeftPopUp(null);
+                this.clearHeaderPopups();
             }
         }, false);
     }
 
     navigateHome = () => {
         this.props.history.push("/");
+    }
+
+    clearHeaderPopups = () => {
+        const { activeLeftPopUp, activeRightPopUp } = this.props;
+        if ( activeLeftPopUp || activeRightPopUp) {
+            this.props.setActiveRightPopUp(null);
+            this.props.setActiveLeftPopUp(null);
+        }
     }
 
     render() {
