@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { DateTime } from 'luxon';
 import ActivityTypes from 'utilityFiles/ActivityTypes';
 
+import ActivityUserDPPopup from 'components/floated-popup-system/single-board-task-popup/ActivityUserDPPopup';
+
 const Container = styled.li`
     margin-top: 4px;
     padding-left: 45px;
@@ -55,14 +57,29 @@ function RenderActivityStatement(activity, user) {
     }
 }
 
-function ActivityItem({activity, user}) {
-    return (
-        <Container>
-            <DP>{user.intial}</DP>
-            {RenderActivityStatement(activity, user)}
-            <Timestamp>{activity.timestamp.toLocaleString(DateTime.DATETIME_MED)}</Timestamp>
-        </Container>
-    )
+class ActivityItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.DPRef = React.createRef();
+    }
+
+    spawnActivityUserPopup = () => {
+        this.props.setFloatingPopup(ActivityUserDPPopup, this.DPRef, {user: this.props.user});
+    }
+
+    render() {
+        const { activity, user } = this.props;
+        return (
+            <Container>
+                <DP onClick={this.spawnActivityUserPopup} ref={this.DPRef}>{user.initial}</DP>
+                {RenderActivityStatement(activity, user)}
+                <Timestamp>{activity.timestamp.toLocaleString(DateTime.DATETIME_MED)}</Timestamp>
+            </Container>
+        )
+    }
+
+    
 }
 
 export default ActivityItem

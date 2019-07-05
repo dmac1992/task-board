@@ -12,23 +12,23 @@ let testData = [
         lastEdited: null
     },
     {
-        id: 0,
+        id: 1,
         taskID: 0,
-        userID: 0,
+        userID: 1,
         comment: 'Hi, this is my second comment',
         timestamp: DateTime.local(),
         lastEdited: null
     },
     {
-        id: 0,
+        id: 2,
         taskID: 0,
-        userID: 0,
+        userID: 2,
         comment: 'Hi, this is my third comment',
         timestamp: DateTime.local(),
         lastEdited: null
     },
     {
-        id: 0,
+        id: 3,
         taskID: 0,
         userID: 0,
         comment: 'Hi, this is my fourth comment',
@@ -36,9 +36,9 @@ let testData = [
         lastEdited: null
     },
     {
-        id: 0,
+        id: 4,
         taskID: 0,
-        userID: 0,
+        userID: 1,
         comment: 'Hi, this is my fifth comment',
         timestamp: DateTime.local(),
         lastEdited: null

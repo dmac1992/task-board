@@ -19,22 +19,24 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
     
         componentDidMount() {
             window.addEventListener('resize', this.determineCoords);
+            window.addEventListener('scroll', this.determineCoords);
             this.determineCoords();
         }
     
         componentWillUnmount() {
             window.removeEventListener('resize', this.determineCoords);
+            window.removeEventListener('scroll', this.determineCoords);
         }
     
         determineCoords = () => {
 
-         
+            
             const domRect = this.state.anchorRef.current.getBoundingClientRect();
             const {x, y} = domRect;
             const refElementHeight = domRect.height;
         
             this.setState({coords: {
-                top: `${y + refElementHeight}px`,
+                top: `${y + refElementHeight + window.scrollY}px`,
                 left: `${x}px`
             }});
 

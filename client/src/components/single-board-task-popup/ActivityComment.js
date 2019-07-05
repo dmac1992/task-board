@@ -1,5 +1,7 @@
-import React from 'react'
+import React , {PureComponent} from 'react'
 import styled from 'styled-components'
+
+import ActivityUserDPPopup from 'components/floated-popup-system/single-board-task-popup/ActivityUserDPPopup';
 
 const Container = styled.li`
     margin-top: 4px;
@@ -65,24 +67,39 @@ const Delete = styled.span`
 `;
 
 
-function ActivityComment({comment}) {
-    return (
-        <Container>
-            <DP>A</DP>
-            <NameDateContainer>
-                <Username>username</Username>
-                <DatePosted>17th may 2000</DatePosted>
-            </NameDateContainer>
-            <Comment>{comment.comment}</Comment>
-            <BottomButtons>
-                <EmoticonsLink className='icon-smile-o' />
-                <TextBreakDash>-</TextBreakDash>
-                <Edit>Edit</Edit>
-                <TextBreakDash>-</TextBreakDash>
-                <Delete>Delete</Delete>
-            </BottomButtons>
-        </Container>
-    )
+class ActivityComment extends PureComponent {
+
+
+    constructor(props) {
+        super(props);
+        this.DPRef = React.createRef();
+    }
+
+    spawnActivityUserPopup = () => {
+        this.props.setFloatingPopup(ActivityUserDPPopup, this.DPRef, { user: this.props.user });
+    }
+
+    render() {
+       const {comment, user} = this.props;
+       return (
+            <Container>
+                <DP onClick={this.spawnActivityUserPopup} ref={this.DPRef}>{user.initial}</DP>
+                <NameDateContainer>
+                    <Username>username</Username>
+                    <DatePosted>17th may 2000</DatePosted>
+                </NameDateContainer>
+                <Comment>{comment.comment}</Comment>
+                <BottomButtons>
+                    <EmoticonsLink className='icon-smile-o' />
+                    <TextBreakDash>-</TextBreakDash>
+                    <Edit>Edit</Edit>
+                    <TextBreakDash>-</TextBreakDash>
+                    <Delete>Delete</Delete>
+                </BottomButtons>
+            </Container>
+       )
+    }
+  
 }
 
 export default ActivityComment

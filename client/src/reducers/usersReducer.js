@@ -5,19 +5,19 @@ const testState = {
     id: 0,
     username: 'username 0',
     fullname: 'full name 0',
-    intial: 'D'
+    initial: 'D'
   }, 
   '1': {
     id: 1,
     username: 'username 1',
     fullname: 'full name 1',
-    intial: 'M'
+    initial: 'M'
   }, 
   '2': {
-    id: 0,
+    id: 2,
     username: 'username 2',
     fullname: 'full name 2',
-    intial: 'C'
+    initial: 'C'
   }, 
 }
 

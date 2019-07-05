@@ -59,7 +59,7 @@ class TaskPopup extends React.Component {
 
     render() {
         return (
-            <Container>
+            <Container className='task-popup-active'>
                 <Header clearPopup={this.clearPopup} />
                 <ColumnsContainer>
                     <LeftHandSide>

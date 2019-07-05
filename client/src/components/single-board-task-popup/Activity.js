@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import { setFloatingPopup } from 'actions/floatingPopups';
+
 import ActivityComment from './ActivityComment';
 import ActivityItem from './ActivityItem';
 
@@ -48,21 +50,23 @@ class Activity extends React.Component  {
         includeActivities: true
     }
 
+    
     renderCommentsAndActivities = () => {
         const { comments, activities, users } = this.props;
         let sortedCommentsAndActivities = _.orderBy([ ...comments, ...activities], ['timestamp']);
         return sortedCommentsAndActivities.map((item) => {
             //item objects have comment property
             if (item.comment) {
-                return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} />
+                return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} setFloatingPopup={this.props.setFloatingPopup}  />
             } else {
-                return <ActivityItem activity={item} key={`taskpopup_activity_statement_${item.id}`} user={users[item.userID]} />
+                return <ActivityItem activity={item} key={`taskpopup_activity_statement_${item.id}`} user={users[item.userID]} setFloatingPopup={this.props.setFloatingPopup}/>
             }
         })
     }
 
     renderCommentsOnly = () => {
-        return this.props.comments.map((comment) => <ActivityComment comment={comment} key={`taskpopup_activity_comment_${comment.id}`} />)
+        const { comments, users } = this.props;
+        return comments.map((comment) => <ActivityComment comment={comment} key={`taskpopup_activity_comment_${comment.id}`} user={users[comment.userID]} />)
     }
 
     renderActivity = () => {
@@ -112,4 +116,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {})(Activity)
+export default connect(mapStateToProps, { setFloatingPopup })(Activity)

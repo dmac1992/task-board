@@ -14,7 +14,7 @@ let testData = [
     {
         id: 1,
         taskID: 0,
-        userID: 0,
+        userID: 1,
         type: ACTIVITY_TYPES.REMOVED,
         entityName: 'sdf',
         timestamp: DateTime.local()
@@ -22,7 +22,7 @@ let testData = [
     {
         id: 2,
         taskID: 0,
-        userID: 0,
+        userID: 2,
         type: ACTIVITY_TYPES.REMOVED,
         entityName: 'sdf',
         timestamp: DateTime.local()
@@ -30,7 +30,7 @@ let testData = [
     {
         id: 3,
         taskID: 0,
-        userID: 0,
+        userID: 2,
         type: ACTIVITY_TYPES.COMPLETED,
         entityName: 'sdf',
         timestamp: DateTime.local()
@@ -38,7 +38,7 @@ let testData = [
     {
         id: 4,
         taskID: 0,
-        userID: 0,
+        userID: 1,
         type: ACTIVITY_TYPES.COMPLETED,
         entityName: 'sdf',
         timestamp: DateTime.local()

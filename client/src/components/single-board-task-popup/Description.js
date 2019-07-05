@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -57,7 +57,7 @@ const CloseEditIcon = styled.span`
 
 
 
-class Description extends Component {
+class Description extends PureComponent {
 
     constructor(props) {
         super(props);

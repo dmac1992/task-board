@@ -61,8 +61,6 @@ class Header extends React.PureComponent {
             //if click outside header container clear all header popups.
             let headerContainer = document.querySelector(".header-container");
             //check if redux store is already null
-
-            //
             if (!headerContainer.contains(e.target)) {
                 this.clearHeaderPopups();
             }
@@ -81,24 +79,53 @@ class Header extends React.PureComponent {
         }
     }
 
+    clearLeftPopup = () => {
+        if ( this.props.activeLeftPopUp ) {
+            this.props.setActiveLeftPopUp(null);
+        }
+    }
+
+    clearRightPopup = () => {
+        if ( this.props.activeRightPopUp ) {
+            this.props.setActiveRightPopUp(null);
+        }
+    }
+
+    setLeftHeaderPopupBoardsPopup = () => {
+        this.props.setActiveLeftPopUp(BoardsPopup);
+    }
+
+    setRightHeaderPopupCreate = () => {
+        this.props.setActiveRightPopUp(CreatePopup);
+    }
+
+    setRightHeaderPopupNotifications = () => {
+        this.props.setActiveRightPopUp(NotificationsPopup);
+    }
+
+    setRightHeaderPopupMenu = () => {
+        this.props.setActiveRightPopUp(MenuPopup);
+    }
+
+    
+
     render() {
         //current active popups on store
         const { activeLeftPopUp, activeRightPopUp } = this.props;
         //set current active headerpopups
-        const {setActiveLeftPopUp, setActiveRightPopUp } = this.props;
         return (
             <HeaderContainer className="header-container" >
                 <HeaderButtonGroup>
                     <HeaderButton icon="icon-home"  onClick={this.navigateHome}></HeaderButton>
-                    <HeaderButton text="Boards" onClick={() => setActiveLeftPopUp(BoardsPopup)} icon="icon-page-multiple" />
+                    <HeaderButton text="Boards" onClick={this.setLeftHeaderPopup} icon="icon-page-multiple" />
                     <HeaderSearch />
-                    {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} clearPopup={() => setActiveLeftPopUp(null)} /> : null}
+                    {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} clearPopup={this.clearLeftPopup} /> : null}
                 </HeaderButtonGroup>
                 <HeaderButtonGroup>
-                    <HeaderButton  onClick={() => setActiveRightPopUp(CreatePopup)} text="Create" icon="icon-plus"   />
-                    <HeaderButton  onClick={() => setActiveRightPopUp(NotificationsPopup)} icon="icon-bell"/>
-                    <HeaderButton  onClick={() => setActiveRightPopUp(MenuPopup)} icon="icon-user"/>
-                    {activeRightPopUp ? <RightPopUp Popup={activeRightPopUp} clearPopup={() => setActiveRightPopUp(null)} /> : null}
+                    <HeaderButton  onClick={this.setRightHeaderPopupCreate} text="Create" icon="icon-plus"   />
+                    <HeaderButton  onClick={this.setRightHeaderPopupNotifications} icon="icon-bell"/>
+                    <HeaderButton  onClick={this.setRightHeaderPopupMenu} icon="icon-user"/>
+                    {activeRightPopUp ? <RightPopUp Popup={activeRightPopUp} clearPopup={this.clearRightPopup} /> : null}
                 </HeaderButtonGroup>
              </HeaderContainer>
         )
