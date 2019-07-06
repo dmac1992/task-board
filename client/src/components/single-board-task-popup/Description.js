@@ -21,8 +21,8 @@ const Title = styled.h3`
 `;
 
 
-const DescriptionTextArea = styled.textarea`
-    background: transparent;
+const DescriptionTextarea = styled.textarea`
+    background: white;
     width: 100%;
     border: none;
     padding: 5px;
@@ -30,6 +30,10 @@ const DescriptionTextArea = styled.textarea`
         background: white;
     }
 `
+
+const DescriptionParagraph = styled.p`
+    padding: 5px;
+`;
 
 
 const EditButton = styled.button`
@@ -55,47 +59,31 @@ const CloseEditIcon = styled.span`
     cursor: pointer;
 `;
 
-
-
 class Description extends PureComponent {
 
     constructor(props) {
         super(props);
         this.textareaRef = React.createRef();
+        this.paragraphRef = React.createRef();
     }
 
     state = {
-        textareaFocused: false,
+        DescriptionFormShowing: false,
         description: '',
     }
 
-    componentDidMount() {
-        document.addEventListener('click', this.clickingOutsideUnfocus);
-    }
+    showDescriptionForm = () => { 
+        this.setState({DescriptionFormShowing: true}, () => this.textareaRef.current.focus()) 
+    };
 
-    componentWillUnmount() {
-        document.removeEventListener('click', this.clickingOutsideUnfocus);
-    }
+    hideDescriptionForm = () => { this.setState({DescriptionFormShowing: false}) };
 
-    clickingOutsideUnfocus = (e) => {
-        if(e.target !== this.textareaRef.current)
-            this.setState({textareaFocused: false});
-    }
+    textareaChangeHandler = (e) => this.setState({description: e.target.value}) 
 
-    textareaFocused = () => { this.setState({textareaFocused: true}) };
-    unfocusTextarea = () => { this.setState({textareaFocused: false}) };
-
-    TextareaFocusedOnlyContent = () => {
-        if ( this.state.textareaFocused ) {
-            return (
-                <FocusedTextAreaSection>
-                    <SaveButton>Save</SaveButton>
-                    <CloseEditIcon className='icon-times' />
-                </FocusedTextAreaSection>
-            );
-        } else {
-            return null;
-        }
+    renderParagraphContent = () => {
+        return this.state.description
+            ? this.state.description
+            : 'Enter a description for task here'
     }
 
     render() {
@@ -103,12 +91,23 @@ class Description extends PureComponent {
             <Container>
                 <Header>
                     <Title>Description</Title>
-                    <EditButton>Edit</EditButton>
+                    {!this.state.DescriptionFormShowing ? <EditButton onClick={this.showDescriptionForm}>Edit</EditButton> : null}
                     <SectionIcon className='icon-align-left'></SectionIcon>
                 </Header>
-                <DescriptionTextArea ref={this.textareaRef} rows='10' onFocus={this.textareaFocused}>
-                </DescriptionTextArea>
-                {this.TextareaFocusedOnlyContent()}
+                {
+                    this.state.DescriptionFormShowing ? (
+                        <>
+                            <DescriptionTextarea ref={this.textareaRef} onFocus={this.textareaFocused} onChange={this.textareaChangeHandler} onBlur={this.hideDescriptionForm}>
+                            </DescriptionTextarea>
+                            <FocusedTextAreaSection>
+                                <SaveButton>Save</SaveButton>
+                                <CloseEditIcon className='icon-times' onClick={this.hideDescriptionForm}/>
+                            </FocusedTextAreaSection>
+                        </>
+                    ) : (
+                        <DescriptionParagraph ref={this.paragraphRef} onClick={this.showDescriptionForm}>{this.renderParagraphContent()}</DescriptionParagraph>
+                    )
+                }
             </Container>
         )
     }

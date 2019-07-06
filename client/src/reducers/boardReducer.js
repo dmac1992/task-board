@@ -23,8 +23,6 @@ const testState = [
         name: 'board 3',
         timestamp: DateTime.local()
     },
-
-    
 ]
 
 export default ( state = testState, action ) => {

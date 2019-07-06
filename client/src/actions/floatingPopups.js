@@ -15,12 +15,13 @@ export const setFloatingPopup = (popup, anchorRef, argumentsAsProps = null) => {
     }
 }
 
-export const setFloatingPopupInplace = (popup) => {
+export const setFloatingPopupInplace = (popup, argumentsAsProps = null) => {
 
     return {
         type: FLOATINGPOPUP.SET_FLOATING_POPUP_INPLACE,
         payload: {
-            popup
+            popup,
+            argumentsAsProps
         }
     }
    

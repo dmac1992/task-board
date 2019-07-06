@@ -45,7 +45,6 @@ class SingleBoard extends PureComponent {
         MenuOpen: false
     }
 
-
     toggleMenu = () => {
         let SlideMenu = document.querySelector('#board-slide-menu');
         if (this.state.MenuOpen) {
@@ -84,6 +83,7 @@ class SingleBoard extends PureComponent {
     renderSprintBoards = () => {
         return this.props.sprints
             .filter((sprint) => sprint.boardID === Number(this.props.match.params.id))
+            .sort((a, b) => a.boardPosition - b.boardPosition)
             .map((sprint) => <SprintContainer key={sprint.id} sprintID={sprint.id} /> )
     }
 

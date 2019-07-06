@@ -34,7 +34,8 @@ export const FLOATINGPOPUP = {
 export const SPRINTS = {
     CREATE_SPRINT: 'create_sprint',
     DELETE_SPRINT: 'delete_sprint',
-    REORDER_SPRINT: 'reorder_sprint'
+    REORDER_SPRINT: 'reorder_sprint',
+    CLONE_SPRINT: 'CLONE_SPRINT'
 }
 
 export const TASKS = {

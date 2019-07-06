@@ -1,5 +1,7 @@
 import React , {PureComponent} from 'react'
 import styled from 'styled-components'
+import { DateTime } from 'luxon';
+
 
 import ActivityUserDPPopup from 'components/floated-popup-system/single-board-task-popup/ActivityUserDPPopup';
 
@@ -36,7 +38,7 @@ const Username = styled.span`
 `;
 
 const DatePosted = styled.span`
-    font-size: 8px;
+    font-size: 12px;
 `;
 
 const Comment = styled.p`
@@ -66,40 +68,89 @@ const Delete = styled.span`
     cursor: pointer;
 `;
 
+const EditTextArea = styled.textarea`
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+`;
+const EditFormBottomPanel = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const SaveButton = styled.button`
+    padding: 5px;
+    color: white;
+    background-color: green;
+    margin-left: 5px;
+`;
+const CloseEditFormIcon = styled.span`
+    font-size: 18px;
+`;
+
 
 class ActivityComment extends PureComponent {
-
-
+    
     constructor(props) {
         super(props);
         this.DPRef = React.createRef();
+        this.state = {
+            editingComment: false,
+            Comment: props.comment.comment
+        }
     }
 
     spawnActivityUserPopup = () => {
         this.props.setFloatingPopup(ActivityUserDPPopup, this.DPRef, { user: this.props.user });
     }
 
+    openEditForm = () => this.setState({editingComment: true});
+    closeEditForm = () => this.setState({editingComment: false});
+        
+    deleteComment = () => {
+        this.props.deleteComment(this.props.comment.id);
+    }
+
+    renderEditForm = () => {
+        return (
+            <>
+                <EditTextArea />
+                <EditFormBottomPanel>
+                    <SaveButton>Save</SaveButton>
+                    <CloseEditFormIcon className='icon-times' onClick={this.closeEditForm} />
+                </EditFormBottomPanel>
+            </>
+        )
+    }
+
+    renderComment = () => {
+        const { comment  } = this.props;
+        return (
+            <>
+                <Comment>{comment.comment}</Comment>
+                <BottomButtons>
+                <EmoticonsLink className='icon-smile-o' />
+                <TextBreakDash>-</TextBreakDash>
+                <Edit onClick={this.openEditForm}>Edit</Edit>
+                <TextBreakDash>-</TextBreakDash>
+                <Delete onClick={this.deleteComment}>Delete</Delete>
+                </BottomButtons>
+            </>
+        )
+    }
+
     render() {
-       const {comment, user} = this.props;
-       return (
+        const {user, comment} = this.props;
+        return (
             <Container>
                 <DP onClick={this.spawnActivityUserPopup} ref={this.DPRef}>{user.initial}</DP>
                 <NameDateContainer>
-                    <Username>username</Username>
-                    <DatePosted>17th may 2000</DatePosted>
+                    <Username>{user.username}</Username>
+                    <DatePosted>{comment.timestamp.toLocaleString(DateTime.DATETIME_MED)}</DatePosted>
                 </NameDateContainer>
-                <Comment>{comment.comment}</Comment>
-                <BottomButtons>
-                    <EmoticonsLink className='icon-smile-o' />
-                    <TextBreakDash>-</TextBreakDash>
-                    <Edit>Edit</Edit>
-                    <TextBreakDash>-</TextBreakDash>
-                    <Delete>Delete</Delete>
-                </BottomButtons>
+                {  this.state.editingComment ? this.renderEditForm() : this.renderComment() }
             </Container>
-       )
+        )
     }
-  
 }
 
 export default ActivityComment

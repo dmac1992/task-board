@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
+import { deleteComment } from 'actions/comments';
 
 import ActivityComment from './ActivityComment';
 import ActivityItem from './ActivityItem';
@@ -27,10 +28,6 @@ const Title = styled.h3`
     margin-right: 5px;
 `;
 
-// const ShowActivitiesButton = styled.button`
-//     margin-riht
-// `
-
 const ActivityList = styled.ul``;
 
 const IncludeActivitiesButton = styled.button`
@@ -52,21 +49,22 @@ class Activity extends React.Component  {
 
     
     renderCommentsAndActivities = () => {
-        const { comments, activities, users } = this.props;
+        const { comments, activities, users, setFloatingPopup, deleteComment } = this.props;
         let sortedCommentsAndActivities = _.orderBy([ ...comments, ...activities], ['timestamp']);
         return sortedCommentsAndActivities.map((item) => {
             //item objects have comment property
             if (item.comment) {
-                return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} setFloatingPopup={this.props.setFloatingPopup}  />
+                return <ActivityComment comment={item} key={`taskpopup_activity_comment_${item.id}`} user={users[item.userID]} setFloatingPopup={setFloatingPopup} deleteComment={deleteComment}
+                 />
             } else {
-                return <ActivityItem activity={item} key={`taskpopup_activity_statement_${item.id}`} user={users[item.userID]} setFloatingPopup={this.props.setFloatingPopup}/>
+                return <ActivityItem activity={item} key={`taskpopup_activity_statement_${item.id}`} user={users[item.userID]} setFloatingPopup={setFloatingPopup}/>
             }
         })
     }
 
     renderCommentsOnly = () => {
-        const { comments, users } = this.props;
-        return comments.map((comment) => <ActivityComment comment={comment} key={`taskpopup_activity_comment_${comment.id}`} user={users[comment.userID]} />)
+        const { comments, users, deleteComment } = this.props;
+        return comments.map((comment) => <ActivityComment comment={comment} key={`taskpopup_activity_comment_${comment.id}`} user={users[comment.userID]} setFloatingPopup={this.props.setFloatingPopup} deleteComment={deleteComment}/>)
     }
 
     renderActivity = () => {
@@ -116,4 +114,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, { setFloatingPopup })(Activity)
+export default connect(mapStateToProps, { setFloatingPopup, deleteComment })(Activity)

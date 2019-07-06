@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
+import ChangeNameAndBioFloatingPopup from 'components/floated-popup-system/single-board-task-popup/ChangeNameAndBioFloatingPopup';
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -46,15 +48,21 @@ const EditProfileLink = styled.span`
 `;
 
 export class ActivityUserDPPopup extends Component {
+
+    openEditNameAndBioPopup = () => {
+        const { setFloatingPopupInplace, user} = this.props;
+        setFloatingPopupInplace(ChangeNameAndBioFloatingPopup, { user: user })
+    }
+
     render() {
-        const {coords, clearFloatingPopup, user} = this.props; 
+        const {coords, clearFloatingPopup, user } = this.props; 
         return (
             <Container style={coords}>
                 <ClearPopupIcon className='icon-times' onClick={clearFloatingPopup} />
                 <DP>{user.initial}</DP>
                 <FullName>{user.fullname}</FullName>
                 <Username>@{user.username}</Username>
-                <EditProfileLink>Edit profile info</EditProfileLink>
+                <EditProfileLink onClick={this.openEditNameAndBioPopup}>Edit profile info</EditProfileLink>
             </Container>
         )
     }

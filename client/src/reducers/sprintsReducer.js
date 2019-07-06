@@ -1,41 +1,48 @@
 import { SPRINTS } from '../actions/types';
 import { DateTime } from 'luxon';
+import _ from 'lodash';
 
 const testState = [
     {
         boardID: 0,
         id: 1,
-        name: 'sprint with id 1, board id 0',
+        boardPosition: 0,
+        name: 'board position 0',
         timestamp: DateTime.local()
     },
     {
         boardID: 0,
         id: 2,
-        name: 'sprint with id 2, board id 0',
+        boardPosition: 1,
+        name: 'board position 1',
         timestamp: DateTime.local()
     },
     {
         boardID: 0,
         id: 3,
-        name: 'sprint with id 3, board id 0',
+        boardPosition: 2,
+        name: 'board position 2',
         timestamp: DateTime.local()
     },
     {
         boardID: 1,
         id: 4,
-        name: 'sprint with id 4, board id 0',
+        boardPosition: 0,
+        name: 'board position 0',
         timestamp: DateTime.local()
     },
     {
         boardID: 1,
         id: 5,
-        name: 'sprint with id 5, board id 0',
+        boardPosition: 1,
+        name: 'board position 1',
         timestamp: DateTime.local()
     },
     {
         boardID: 1,
         id: 6,
-        name: 'sprint with id 6, board id 0',
+        boardPosition: 2,
+        name: 'board position 2',
         timestamp: DateTime.local()
     },
 ]
@@ -48,6 +55,12 @@ export default (state = testState, action) => {
             return action.payload;
         case SPRINTS.DELETE_SPRINT:
             return action.payload;
+        case SPRINTS.CLONE_SPRINT:
+            //TODO - PROBLEM, deep cloning the sprint object but comments activities etc all point are shared by parent and child sprint. need to deep clone all. Do this somewhere else.
+            const { id } = _.maxBy(state, 'id');
+            const newSprint = _.cloneDeep(state.find((sprint) => sprint.id === action.payload));
+            newSprint.id = id + 1;
+            return [ ...state, newSprint ];
         default:
             return state;
     }

@@ -1,7 +1,6 @@
 import { COMMENT } from 'actions/types';
 import { DateTime } from 'luxon'; 
 
-
 let testData = [
     {
         id: 0,
@@ -50,7 +49,7 @@ export default(state = testData, action) => {
         case COMMENT.CREATE_COMMENT:
             return action.payload;
         case COMMENT.DELETE_COMMENT:
-            return action.payload;
+            return state.filter((comment) => comment.id !== action.payload);
         case COMMENT.EDIT_COMMENT:
             return action.payload;
         default: 

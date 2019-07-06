@@ -30,7 +30,6 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
     
         determineCoords = () => {
 
-            
             const domRect = this.state.anchorRef.current.getBoundingClientRect();
             const {x, y} = domRect;
             const refElementHeight = domRect.height;

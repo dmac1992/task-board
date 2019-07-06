@@ -2,8 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+
 import SprintTask from './SprintTask';
 import AddCardForm from './AddCardForm';
+
+import SprintActionsFloatingPopup from 'components/floated-popup-system/single-board-page/SprintActionsFloatingPopup';
+import { setFloatingPopup } from 'actions/floatingPopups';
 
 
 const SprintColumn = styled.div`
@@ -58,10 +62,13 @@ const Plus = styled.span`
 
 
 class SprintContainer extends React.PureComponent {
-
-
-    state = {
-        addCardFormOpen: false
+   
+    constructor(props) {
+        super(props);
+        this. state = {
+            addCardFormOpen: false
+        }
+        this.sprintMenuRef = React.createRef();
     }
 
     componentDidMount() {
@@ -93,17 +100,22 @@ class SprintContainer extends React.PureComponent {
     renderTasks = () => {
         return this.props.tasks
             .filter((task) => task.sprintID === this.props.sprintID)
+            .sort((a, b) =>  a.sprintPosition - b.sprintPosition )
             .map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
     }
 
+    sprintOptionsPopup = () => {
+        this.props.setFloatingPopup(SprintActionsFloatingPopup, this.sprintMenuRef, { sprintID: this.props.sprintID } );
+    }
+
     render() {
-        const { sprint , tasks } = this.props;
+        const { sprint  } = this.props;
         return (
             <SprintColumn>
                  <Container>
                     <SprintHeadingContainer>
                         <Heading>{sprint.name}</Heading>
-                        <OpenMenuIcon className='icon-dot-3'></OpenMenuIcon>
+                        <OpenMenuIcon className='icon-dot-3' onClick={this.sprintOptionsPopup} ref={this.sprintMenuRef}></OpenMenuIcon>
                     </SprintHeadingContainer>
                     {this.renderTasks()}
                     {!this.state.addCardFormOpen ? this.renderOpenAddCard() : this.renderAddCardForm()}
@@ -121,4 +133,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, null)(SprintContainer);
+export default connect(mapStateToProps, {setFloatingPopup})(SprintContainer);
