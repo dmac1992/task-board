@@ -22,6 +22,7 @@ class FloatedPopupPortal extends React.Component {
         }
         if (FloatingPopup) {
             FloatingPopup = floatingPopupPositioningHOC(FloatingPopup, this.props.floatingPopup.anchorRef, this.clearFloatingPopup);
+          
             return (
                 ReactDOM.createPortal(<FloatingPopup  />, document.querySelector('#floating-portal'))
             );

@@ -66,9 +66,7 @@ class SprintTask extends Component {
     state = {
         hovered: false
     }
-    componentDidMount() {
-        console.log(this.props.task.sprintPosition);
-    }
+   
 
     createTaskModal = () => 
     {

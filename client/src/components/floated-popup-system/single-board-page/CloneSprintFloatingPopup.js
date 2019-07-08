@@ -4,8 +4,17 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import uniqid from 'uniqid';
 
+
 //action handlers
-import { cloneSprint } from 'actions/sprints';
+import { cloneSprint } from 'actions/sprints'; // - needs implementatoin
+
+import { createSprint } from 'actions/sprints';
+import { createTasks } from 'actions/tasks';
+import { createComments } from 'actions/comments';
+import { createActivities } from 'actions/activities';
+import  { createChecklists } from 'actions/checklist'; 
+import { createChecklistItems } from 'actions/checklistItem';
+
 
 const Container = styled.div`
     padding: 5px;
@@ -57,99 +66,72 @@ export class CloneSprintFloatingPopup extends Component {
 
     cloneSprint = () => {
 
-        const newSprintID = uniqid();
-        const clonedSprint = this.getClonedSprint(newSprintID);
-        const clonedTasks = this.getClonedTasks(newSprintID);
-        const clonedComments = this.getClonedComments(clonedTasks);
-        const clonedActivities = this.getClonedActivities(clonedTasks);
-        const clonedChecklist = this.getClonedChecklists(clonedTasks);
-        const clonedChecklistItems = this.getClonedChecklistItems(clonedChecklist);
-        debugger;
-      
+        let clonedComments = [], clonedActivities = [], clonedTasks = [], clonedChecklists = [], clonedChecklistItems = [];
+        let clonedSprint;
+     
+        const { sprintID, sprints, comments, activities, tasks, checklists, checklistItems} = this.props;
+        clonedSprint = _.cloneDeep(sprints.find(sprint => sprint.id === sprintID));
+        clonedSprint.id = uniqid();
+                       
+        
+        tasks.forEach(task => {
+            if ( task.sprintID === sprintID ) {
+                let newTask = _.cloneDeep(task);
+                newTask.ID = uniqid();
+                newTask.sprintID = clonedSprint.id;
+                clonedTasks.push(newTask);
+
+                comments.forEach(comment => {
+                    if (comment.taskID === task.ID) {
+                        let newComment = _.cloneDeep(comment);
+                        newComment.taskID = newTask.ID;
+                        newComment.id = uniqid();
+                        clonedComments.push(newComment);
+                    }
+                })
+
+                activities.forEach(activity => {
+                    if (activity.taskID === task.ID) {
+                        let newActivity = _.cloneDeep(activity);
+                        newActivity.taskID = newTask.ID;
+                        newActivity.id = uniqid();
+                        clonedActivities.push(newActivity);
+                    }
+                })
+
+                checklists.forEach(checklist => {
+                    if (checklist.taskID === task.ID) {
+                        let newChecklist = _.cloneDeep(checklist);
+                        newChecklist.taskID = newTask.ID;
+                        newChecklist.id = uniqid();
+                        clonedChecklists.push(newChecklist);
+
+                        checklistItems.forEach(checklistItem => {
+                            if (checklistItem.checklistID === checklist.id) {
+                                let newChecklistItem = _.cloneDeep(checklistItem);
+                                newChecklistItem.checklistID = newChecklist.id;
+                                newChecklistItem.id = uniqid();
+                                clonedChecklistItems.push(newChecklistItem);
+                            }
+                        })
+                    }
+                })
+            }
+           
+        })       
+       
+        //call action handlers
+        const { createSprint, createTasks, createComments, createActivities, createChecklists, createChecklistItems } = this.props;
+
+        //TODO - wrap this up into one action creator? is this causing multiple renders??
+        createChecklistItems(clonedChecklistItems);
+        createChecklists(clonedChecklists);
+        createActivities(clonedActivities);
+        createComments(clonedComments);
+        createTasks(clonedTasks);
+        createSprint(clonedSprint);
             
     }
-
-    getClonedSprint = (newSprintID) => {
-        const { sprints, sprintID } = this.props;
-        const newSprint = _.cloneDeep(sprints.find(sprint => sprint.id === sprintID));
-        newSprint.id = newSprintID;
-        if (this.state.sprintName)
-            newSprint.name = this.state.sprintName;
-        return newSprint;
-    }
-
-    //the fuck goes here.
-    getClonedTasks = (newSprintID) => {
-        const { sprintID, tasks } = this.props;
-        let clonedTasks = [];
-         tasks
-            .filter(task => task.sprintID === sprintID )
-            .forEach(task => {
-                let newTask = _.cloneDeep(task);
-                newTask.sprintID = newSprintID;
-                newTask.ID = uniqid();
-                clonedTasks.push(newTask);
-            })
-        return clonedTasks;
-    }
-
-    getClonedComments = (clonedTasks) => {
-        const { comments } = this.props;
-
-        let newComments = [];
-        comments.forEach((comment) => {
-            if (clonedTasks.find(task => task.ID === comment.taskID)) {
-                let clonedComment = _.cloneDeep(comment);
-                clonedComment.id = uniqid();
-                newComments.push(clonedComment);
-            }
-        })
-
-        return newComments;
-    }
-
-    getClonedActivities = (clonedTasks) => {
-        const { activities } = this.props;
-
-        let newActivities = [];
-        activities.forEach((activity) => {
-            if (clonedTasks.find(task => task.ID === activity.taskID)) {
-                let clonedActivity = _.cloneDeep(activity);
-                clonedActivity.id = uniqid();
-                newActivities.push(clonedActivity);
-            }
-        })
-        return newActivities;
-    }
-
-    getClonedChecklists = (clonedTasks) => {
-        const { checklists } = this.props;
-        let newChecklists = [];
-        checklists.forEach((checklist) => {
-            if (clonedTasks.find(task => task.ID === checklist.taskID)) {
-                let clonedChecklist = _.cloneDeep(checklist);
-                clonedChecklist.id = uniqid();
-                newChecklists.push(clonedChecklist);
-            }
-        })
-        return newChecklists;
-    }
-
-    getClonedChecklistItems = (clonedChecklists) => {
-        const { checklistItems } = this.props;
-        let newChecklistItems = [];
-        checklistItems.forEach((checklistItem) => {
-            if (clonedChecklists.find(checklist => checklist.id === checklistItem.taskID)) {
-                let clonedChecklistItem = _.cloneDeep(checklistItem);
-                clonedChecklistItem.id = uniqid();
-                newChecklistItems.push(clonedChecklistItem);
-            }
-        })
-        return newChecklistItems;
-    }
-
-
-
     
     
     render() {
@@ -176,4 +158,13 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {cloneSprint})(CloneSprintFloatingPopup)
+const mapDispatchToProps = {
+    createSprint,
+    createTasks,
+    createComments,
+    createActivities,
+    createChecklists,
+    createChecklistItems
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CloneSprintFloatingPopup)

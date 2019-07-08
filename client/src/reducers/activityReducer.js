@@ -66,6 +66,8 @@ export default (state = testData, action) => {
     switch ( action.type ) {
         case ACTIVITY.RECORD_ACTIVITY:
             return action.payload;
+        case ACTIVITY.CREATE_ACTIVITIES:
+            return [...state, ...action.payload];
         default:
             return state;
     }

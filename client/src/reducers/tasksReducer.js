@@ -1,12 +1,12 @@
-import { TASKS } from '../actions/types';
-
+import { TASK } from '../actions/types';
+import { DateTime } from 'luxon';
 
 const testState = [
     {
         ID: 0,
-        name: 'task id pos 7',
+        name: 'abvcx',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 1, 12)  ,
         sprintID: 1,
         boardID: 0,
         userID: 0,
@@ -15,9 +15,9 @@ const testState = [
     },
     {
         ID: 1,
-        name: 'task id 1 pos 6',
+        name: 'sdfsdf',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 2, 12)  ,
         sprintID: 1,
         boardID: 0,
         userID: 0,
@@ -26,9 +26,9 @@ const testState = [
     },
     {
         ID: 2,
-        name: 'task id 2 pos 5',
+        name: 'cvbcvb',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 3, 12),
         sprintID: 1,
         boardID: 0,
         userID: 0,
@@ -37,9 +37,9 @@ const testState = [
     },
     {
         ID: 3,
-        name: 'task id 3 pos 4',
+        name: 'tryutyu',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 4, 12),
         sprintID: 2,
         boardID: 0,
         userID: 0,
@@ -48,9 +48,9 @@ const testState = [
     },
     {
         ID: 4,
-        name: 'task id 4 pos 3',
+        name: 'sdfsdf',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 5, 12)  ,
         sprintID: 2,
         boardID: 0,
         userID: 0,
@@ -59,9 +59,9 @@ const testState = [
     },
     {
         ID: 5,
-        name: 'task id 5 pos 2',
+        name: 'iopiopio',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 6, 12),
         sprintID: 2,
         boardID: 0,
         userID: 0,
@@ -70,9 +70,9 @@ const testState = [
     },
     {
         ID: 6,
-        name: 'task id 6 pos 1',
+        name: 'vbnvbn',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 7, 12),
         sprintID: 1,
         boardID: 0,
         userID: 0,
@@ -81,9 +81,9 @@ const testState = [
     },
     {
         ID: 7,
-        name: 'task id 7 pos 0',
+        name: 'zxcvzxczx',
         description: 'task description',
-        created: new Date() ,
+        created: DateTime.utc(2017, 8, 12),  
         sprintID: 2,
         boardID: 0,
         userID: 0,
@@ -94,10 +94,22 @@ const testState = [
 
 export default (state = testState, action) => {
     switch (action.type) {
-        case TASKS.CREATE_TASK:
+        case TASK.CREATE_TASK:
             return action.payload;
-        case TASKS.DELETE_TASK:
+        case TASK.DELETE_TASK:
             return action.payload;
+        case TASK.CREATE_TASKS:
+            return [...state, ...action.payload];
+        case TASK.UPDATE_TASKS: 
+            let updatedTasks = action.payload;
+            let newState = [...state];
+            updatedTasks.forEach(updatedTask => {
+                newState.forEach((task, index) => {
+                    if ( task.ID === updatedTask.ID)
+                        Object.assign(newState[index], updatedTask)
+                })
+            })
+            return newState;
         default:
             return state
     }

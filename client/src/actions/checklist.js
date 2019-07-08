@@ -6,3 +6,12 @@ export const deleteChecklist = (checklistID) => {
         payload: checklistID
     }
 }
+
+export const createChecklist = () => { }
+
+export const createChecklists = (newChecklists) => { 
+    return {
+        type: CHECKLIST.CREATE_CHECKLISTS,
+        payload: newChecklists
+    }
+}

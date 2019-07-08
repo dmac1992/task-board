@@ -52,6 +52,8 @@ export default(state = testData, action) => {
             return state.filter((comment) => comment.id !== action.payload);
         case COMMENT.EDIT_COMMENT:
             return action.payload;
+        case COMMENT.CREATE_COMMENTS:
+            return [...state, ...action.payload];
         default: 
             return state;
     }

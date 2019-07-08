@@ -11,6 +11,8 @@ import commentsReducer from './commentsReducer';
 import activityReducer from './activityReducer';
 import usersReducer from './usersReducer'
 import currentTaskPopupReducer from './currentTaskPopupReducer';
+import watchedSprintsReducer from './watchedSprintsReducer';
+import watchedTasksReducer from './watchedTasksReducer';
 
 //TODO - refactor 'currentTaskPopup' key to 'currentTaskPopupID'
 export default combineReducers({
@@ -25,7 +27,8 @@ export default combineReducers({
     comments: commentsReducer,
     activities: activityReducer,
     users: usersReducer,
-    currentTaskPopup: currentTaskPopupReducer
-    
+    currentTaskPopup: currentTaskPopupReducer,
+    watchedSprints: watchedSprintsReducer,
+    watchedTasks: watchedTasksReducer
 })
 

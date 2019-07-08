@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import { CHECKLIST_ITEM } from 'actions/types';
 import { DateTime } from 'luxon'; 
+import { CHECKLIST } from '../actions/types';
 
 
 
@@ -50,6 +51,8 @@ export default(state = testData, action) => {
             return [...state, action.payload];
         case CHECKLIST_ITEM.DELETE_CHECKLIST_ITEM:
             return state.filter((item) => item.id !== action.payload);
+        case CHECKLIST_ITEM.CREATE_CHECKLIST_ITEMS:
+            return [...state, ...action.payload];
         default: 
             return state;
     }

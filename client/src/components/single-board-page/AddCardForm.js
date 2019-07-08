@@ -41,12 +41,11 @@ const OpenMenuIcon = styled.span`
     cursor: pointer;
 `;
 
-
 export class AddCardForm extends Component {
     render() {
         return (
             <Container>
-                <TitleBox rows='5' placeholder='task title...'></TitleBox>
+                <TitleBox rows='5' placeholder='task title...' ref={this.props.addCardFormInputRef}></TitleBox>
                 <BottomMenuContainer>
                     <AddCardButton>Add Card</AddCardButton>
                     <CloseFormIcon className='icon-times' onClick={this.props.closeForm}></CloseFormIcon>

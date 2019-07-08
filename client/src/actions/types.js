@@ -35,12 +35,15 @@ export const SPRINTS = {
     CREATE_SPRINT: 'create_sprint',
     DELETE_SPRINT: 'delete_sprint',
     REORDER_SPRINT: 'reorder_sprint',
-    CLONE_SPRINT: 'CLONE_SPRINT'
+    UPDATE_SPRINTS: 'update_sprints'
 }
 
-export const TASKS = {
+export const TASK = {
     CREATE_TASK: 'create_task',
-    DELETE_TASK: 'delete_task'
+    CREATE_TASKS: 'create_tasks',
+    DELETE_TASK: 'delete_task',
+    UPDATE_TASKS: 'update_tasks'
+    
 }
 
 export const BOARDS = {
@@ -51,23 +54,27 @@ export const BOARDS = {
 
 export const CHECKLIST = {
     CREATE_CHECKLIST: 'create_checklist',
+    CREATE_CHECKLISTS: 'create_checklists',
     DELETE_CHECKLIST: 'delete_checklist' 
 }
 
 export const CHECKLIST_ITEM = {
     TOGGLE_CHECKLIST_ITEM: 'toggle_checklist_item',
     CREATE_CHECKLIST_ITEM: 'create_checklist_item',
+    CREATE_CHECKLIST_ITEMS: 'create_checklist_items',
     DELETE_CHECKLIST_ITEM: 'delete_checklist_item'
 }
 
 export const COMMENT = {
     CREATE_COMMENT: 'create_comment',
+    CREATE_COMMENTS: 'create_comments',
     DELETE_COMMENT: 'delete_comment',
     EDIT_COMMENT: 'edit_comment'
 }
 
 export const ACTIVITY = {
-    RECORD_ACTIVITY: 'record_activity'
+    CREATE_ACTIVITY: 'create_activity',
+    CREATE_ACTIVITIES: 'create_activities'
 }
 
 export const USER = {
@@ -78,4 +85,18 @@ export const USER = {
 export const CURRENT_TASK_POPUP = {
     SET_ID: 'set_id'
 }
+
+export const WATCHED_SPRINTS = {
+    WATCH_SPRINT: 'watch_sprint',
+    UNWATCH_SPRINT: 'unwatch_sprint'
+}
+
+export const WATCHED_TASKS = {
+    WATCH_TASK: 'watch_task',
+    UNWATCH_TASK: 'unwatch_task',
+}
+
+
+
+
 

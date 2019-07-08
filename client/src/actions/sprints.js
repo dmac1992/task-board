@@ -1,11 +1,13 @@
 import { SPRINTS } from 'actions/types';
 
-// export const createSprint = () => {
-//     return {
-//         type: SPRINTS.CREATE_SPRINT,
-//         payload: sprintID
-//     }
-// }
+export const createSprint = (newSprint) => {
+    return {
+        type: SPRINTS.CREATE_SPRINT,
+        payload: newSprint
+    }
+}
+
+
 export const cloneSprint = (sprintID) => {
 
     return {
@@ -13,6 +15,13 @@ export const cloneSprint = (sprintID) => {
         payload: sprintID
     }
 
+}
+
+export const updateSprints = (updatedSprints) => {
+    return {
+        type: SPRINTS.UPDATE_SPRINTS,
+        payload: updatedSprints
+    }
 }
 
 // export const deleteSprint = () => {

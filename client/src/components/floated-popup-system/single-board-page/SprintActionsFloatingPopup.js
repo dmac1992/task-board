@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import CloneSprintFloatingPopup from 'components/floated-popup-system/single-board-page/CloneSprintFloatingPopup';
+import ReorderSprintsFloatingPopup from 'components/floated-popup-system/single-board-page/ReorderSprintsFloatingPopup';
+import SortSprintTaskOrderFloatingPopup from 'components/floated-popup-system/single-board-page/SortSprintTaskOrderFloatingPopup';
+
+
 //Move List Popup
 //Sort By Popup
 //Move All Cards in List Popup
@@ -10,6 +14,8 @@ import CloneSprintFloatingPopup from 'components/floated-popup-system/single-boa
 //Archive List Popup
 
 //action handlers
+import { watchSprint, unwatchSprint } from 'actions/watchedSprints';
+
 
 const Container = styled.div`
     padding: 5px;
@@ -59,10 +65,10 @@ export class SprintActionsFloatingPopup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sprint: this.props.sprints.find((sprint) => sprint.id === this.props.sprintID)
+            sprint: this.props.sprints.find((sprint) => sprint.id === this.props.sprintID),
+            sprintWatched: this.props.watchedSprints.includes(this.props.sprintID)
         }
     }
-
 
     addCard = () => {}
     
@@ -70,26 +76,48 @@ export class SprintActionsFloatingPopup extends Component {
         this.props.setFloatingPopupInplace(CloneSprintFloatingPopup, { sprintID: this.props.sprintID });
     }
     
-    moveList = () => {}
+    moveListFloatingPopup = () => {
+        this.props.setFloatingPopupInplace(ReorderSprintsFloatingPopup, { sprintID: this.props.sprintID });
+    }
+
+    sortSprintTasksFloatingPopup = () => {
+        this.props.setFloatingPopupInplace(SortSprintTaskOrderFloatingPopup, { sprintID: this.props.sprintID});
+    }
+    
+
     watchList = () => {}
     moveAllListCards = () => {}
     archiveAllListCards = () => {}
     archiveList = () => {}
 
+    renderTickIfWatched = () => {
+        if ( this.state.sprintWatched) return (  <span className='icon-check' /> )
+    }
+
+    toggleWatched = () => {
+        const { unwatchSprint, watchSprint, sprintID, clearFloatingPopup } = this.props;
+        if ( this.state.sprintWatched ) {
+            unwatchSprint(sprintID);
+        } else {
+            watchSprint(sprintID);
+        }
+        clearFloatingPopup();
+    }
+    
 
     render() {
-        const { coords, clearFloatingPopup} = this.props;
+        const { coords, clearFloatingPopup, addCardHandler} = this.props;
         return (
             <Container style={coords}>
                 <Title>Sprint Actions</Title>
                 <CloseIcon className='icon-times' onClick={clearFloatingPopup} />
                 <Menu>
-                    <ListItem>Add Card...</ListItem>
+                    <ListItem onClick={addCardHandler}>Add Card...</ListItem>
                     <ListItem onClick={this.copyListFloatingPopup}>Copy list...</ListItem>
-                    <ListItem>Move list...</ListItem>
-                    <ListItem>Watch</ListItem>
+                    <ListItem onClick={this.moveListFloatingPopup}>Move list...</ListItem>
+                    <ListItem onClick={this.toggleWatched}>Watch{this.renderTickIfWatched()}</ListItem>
                     <MenuDivider />
-                    <ListItem>Sort By...</ListItem>
+                    <ListItem onClick={this.sortSprintTasksFloatingPopup}>Sort By...</ListItem>
                     <MenuDivider />
                     <ListItem>Move All Cards in this list...</ListItem>
                     <ListItem>Archive All Cards in this list</ListItem>
@@ -100,14 +128,13 @@ export class SprintActionsFloatingPopup extends Component {
         )
 
     }
-
-
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        sprints: state.sprints
+        sprints: state.sprints,
+        watchedSprints: state.watchedSprints
     }
 }
 
-export default connect(mapStateToProps, {})(SprintActionsFloatingPopup);
+export default connect(mapStateToProps, {watchSprint, unwatchSprint})(SprintActionsFloatingPopup);

@@ -52,15 +52,19 @@ const testState = [
 export default (state = testState, action) => {
     switch(action.type) {
         case SPRINTS.CREATE_SPRINT:
-            return action.payload;
+            return [ ...state, action.payload];
         case SPRINTS.DELETE_SPRINT:
             return action.payload;
-        case SPRINTS.CLONE_SPRINT:
-            //TODO - PROBLEM, deep cloning the sprint object but comments activities etc all point are shared by parent and child sprint. need to deep clone all. Do this somewhere else.
-            const { id } = _.maxBy(state, 'id');
-            const newSprint = _.cloneDeep(state.find((sprint) => sprint.id === action.payload));
-            newSprint.id = id + 1;
-            return [ ...state, newSprint ];
+        case SPRINTS.UPDATE_SPRINTS:
+            let updatedSprints = action.payload;
+            let newState = [...state];
+            updatedSprints.forEach(updatedSprint => {
+                newState.forEach((sprint, index) => {
+                    if ( sprint.id === updatedSprint.id )
+                        Object.assign(newState[index], updatedSprint);
+                })
+            })
+            return newState;
         default:
             return state;
     }

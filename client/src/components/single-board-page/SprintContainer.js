@@ -48,6 +48,11 @@ const OpenMenuIcon = styled.span`
     }
 `;
 
+const WatchingIcon = styled.span` 
+    margin-left: auto;
+`
+
+
 const AddAnotherCardSection = styled.div`
     height: 30px;
     line-height: 30px;
@@ -61,6 +66,7 @@ const Plus = styled.span`
 `;
 
 
+
 class SprintContainer extends React.PureComponent {
    
     constructor(props) {
@@ -69,6 +75,7 @@ class SprintContainer extends React.PureComponent {
             addCardFormOpen: false
         }
         this.sprintMenuRef = React.createRef();
+        this.addCardFormInputRef = React.createRef();
     }
 
     componentDidMount() {
@@ -76,7 +83,7 @@ class SprintContainer extends React.PureComponent {
 
     renderAddCardForm = () => {
         return (
-            <AddCardForm closeForm={this.closeForm}/>
+            <AddCardForm inputRefcloseForm={this.closeForm} addCardFormInputRef={this.addCardFormInputRef} closeForm={this.closeForm}/>
         )
     }
 
@@ -104,17 +111,27 @@ class SprintContainer extends React.PureComponent {
             .map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
     }
 
+    sprintOptionsAddCardHandler = () => {
+        //close floating popup
+        this.props.setFloatingPopup(null, null);
+        //set state to open form
+        this.setState({ addCardFormOpen: true }, () => this.addCardFormInputRef.current.focus() )
+
+        //focus input
+    }
+
     sprintOptionsPopup = () => {
-        this.props.setFloatingPopup(SprintActionsFloatingPopup, this.sprintMenuRef, { sprintID: this.props.sprintID } );
+        this.props.setFloatingPopup(SprintActionsFloatingPopup, this.sprintMenuRef, { sprintID: this.props.sprintID, addCardHandler: this.sprintOptionsAddCardHandler } );
     }
 
     render() {
-        const { sprint  } = this.props;
+        const { sprint, watchedSprints, sprintID } = this.props;
         return (
             <SprintColumn>
                  <Container>
                     <SprintHeadingContainer>
                         <Heading>{sprint.name}</Heading>
+                        {watchedSprints.includes(sprintID) ? <WatchingIcon className='icon-eye' /> : null}
                         <OpenMenuIcon className='icon-dot-3' onClick={this.sprintOptionsPopup} ref={this.sprintMenuRef}></OpenMenuIcon>
                     </SprintHeadingContainer>
                     {this.renderTasks()}
@@ -129,7 +146,8 @@ class SprintContainer extends React.PureComponent {
 const mapStateToProps = (state, ownProps) => {
     return {
         sprint: state.sprints.find((sprint) => sprint.id === ownProps.sprintID ),
-        tasks: state.tasks
+        tasks: state.tasks,
+        watchedSprints: state.watchedSprints
     }
 }
 
