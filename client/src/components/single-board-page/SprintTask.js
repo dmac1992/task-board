@@ -90,6 +90,61 @@ class SprintTask extends Component {
         display: 'none'
     }
 
+    renderWatchingIcon = () => {
+        if (this.props.watchedTasks.includes(this.props.task.ID))
+            return ( <span className='icon-eye' />)
+    }
+
+    renderDescriptionIcon = () => {
+        if ( this.props.task.description ) {
+            return ( <span className='icon-align-left'/> );
+        }
+    } 
+
+    renderComments = () => {
+        let count = this.props.comments.reduce((acc, comment) => {
+            if ( comment.taskID === this.props.task.ID ) {
+                acc = acc + 1;
+            }
+            return acc;
+        }, 0)
+        if ( count ) {
+            return (
+                <span>
+                    <span className='icon-bubble' />{count}
+                </span>
+            )
+        }
+    }
+
+    renderChecklistCount = () => {
+        const { checklists, checklistItems, task} = this.props;
+        let itemCount = 0;
+        let checkedCount = 0;
+        checklists.forEach(checklist => {
+            if ( checklist.taskID === task.ID) {
+                checklistItems.forEach(checklistItem => {
+                    if (checklistItem.checklistID === checklist.id  ) {
+                        itemCount++;
+                        if ( checklistItem.checked )
+                            checkedCount++;
+                    }
+                })
+               
+            }
+        })
+        if ( itemCount ) {
+            return (
+                <span>
+                    <span className='icon-check-square-o' />
+                    <span>{`${checkedCount}/${itemCount}`}</span>
+                </span>
+            )
+        }
+
+    }
+
+    //we want task name, watched list, all checklists pertaining to task, does description exist, comment count bubble.
     render() {
         const { task } = this.props;
         return (
@@ -99,9 +154,10 @@ class SprintTask extends Component {
                     <EditIcon className='icon-pencil' style={!this.state.hovered ? this.hideElement : null}  />
                 </TopHalf>
                 <BottomHalf>
-                    <WatchingIcon className='icon-eye' />
-                    <ChecklistIcon className='icon-check-square-o' />
-                    <ChecklistFraction>2/5</ChecklistFraction>
+                    {this.renderWatchingIcon()}
+                    {this.renderDescriptionIcon()}
+                    {this.renderComments()}
+                    {this.renderChecklistCount()}
                     <UserIconContainer>
                         <UserIcon>M</UserIcon>
                     </UserIconContainer>
@@ -114,7 +170,11 @@ class SprintTask extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        task: state.tasks.find((task) =>  task.ID === ownProps.taskID )
+        task: state.tasks.find((task) =>  task.ID === ownProps.taskID ),
+        watchedTasks: state.watchedTasks,
+        comments: state.comments,
+        checklists: state.checklists,
+        checklistItems: state.checklistItem
     }
 }
 

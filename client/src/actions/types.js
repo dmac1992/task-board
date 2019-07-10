@@ -42,7 +42,8 @@ export const TASK = {
     CREATE_TASK: 'create_task',
     CREATE_TASKS: 'create_tasks',
     DELETE_TASK: 'delete_task',
-    UPDATE_TASKS: 'update_tasks'
+    UPDATE_TASKS: 'update_tasks',
+    UPDATE_DESCRIPTION: 'update_task_description'
     
 }
 
@@ -62,7 +63,9 @@ export const CHECKLIST_ITEM = {
     TOGGLE_CHECKLIST_ITEM: 'toggle_checklist_item',
     CREATE_CHECKLIST_ITEM: 'create_checklist_item',
     CREATE_CHECKLIST_ITEMS: 'create_checklist_items',
-    DELETE_CHECKLIST_ITEM: 'delete_checklist_item'
+    DELETE_CHECKLIST_ITEM: 'delete_checklist_item',
+    CHECK_CHECKLIST_ITEM: 'check_checklist_item',
+    UNCHECK_CHECKLIST_ITEM: 'uncheck_checklist_item'
 }
 
 export const COMMENT = {
@@ -95,6 +98,9 @@ export const WATCHED_TASKS = {
     WATCH_TASK: 'watch_task',
     UNWATCH_TASK: 'unwatch_task',
 }
+
+export const SET_USER_ID = 'set_user_id';
+
 
 
 

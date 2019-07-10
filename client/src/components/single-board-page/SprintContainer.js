@@ -83,7 +83,7 @@ class SprintContainer extends React.PureComponent {
 
     renderAddCardForm = () => {
         return (
-            <AddCardForm inputRefcloseForm={this.closeForm} addCardFormInputRef={this.addCardFormInputRef} closeForm={this.closeForm}/>
+            <AddCardForm inputRefcloseForm={this.closeForm} addCardFormInputRef={this.addCardFormInputRef} closeForm={this.closeForm} sprint={this.props.sprint}/>
         )
     }
 

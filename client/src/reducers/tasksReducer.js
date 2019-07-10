@@ -95,7 +95,7 @@ const testState = [
 export default (state = testState, action) => {
     switch (action.type) {
         case TASK.CREATE_TASK:
-            return action.payload;
+            return [...state, action.payload]
         case TASK.DELETE_TASK:
             return action.payload;
         case TASK.CREATE_TASKS:

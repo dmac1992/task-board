@@ -51,8 +51,6 @@ const HeaderButtonGroup = styled.div`
     }
 `;
 
-
-
 class Header extends React.PureComponent {
 
     constructor() {

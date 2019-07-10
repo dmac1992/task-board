@@ -1,6 +1,6 @@
 import { WATCHED_TASKS } from 'actions/types';
 
-const testState = []
+const testState = [0, 1]
 
 export default ( state = testState, action ) => {
     switch( action.type ) {

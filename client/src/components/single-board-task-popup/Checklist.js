@@ -92,16 +92,12 @@ const CloseAddItemForm = styled.span`
 `;
 
 
-
+//TODO - whole component is flawed. should derive everything from the redux store state.
 export class Checklist extends Component {
 
     constructor(props) {
         super(props); 
         this.state = {
-            numberOfCheckboxes: this.props.checklistItems.length,
-            checkboxesCheckedCount: this.props.checklistItems.reduce((acc, item) => {
-                return item.checked ? acc + 1 : acc
-            }, 0),
             addItemFormInput: '',
             addItemFormOpen: false
         };
@@ -129,57 +125,47 @@ export class Checklist extends Component {
 
     addChecklistItem = () => {
         if ( this.state.addItemFormInput ) {
-            this.setState({numberOfCheckboxes: this.state.numberOfCheckboxes + 1})
             this.props.addChecklistItem(this.props.checklist.id, this.state.addItemFormInput);
         }   
     }
 
     renderChecklistItems = () => {
-        return this.props.checklistItems.map((checklistItem, index) => {
+        return this.props.checklistItems.map((checklistItem) => {
             return (
                 <ChecklistItem 
-                    key={index} 
+                    key={`checklistItem_${checklistItem.checklistID}_${checklistItem.id}`} 
                     checklistItem={checklistItem} 
-                    addToCheckboxesCheckedCount={this.addToCheckboxesCheckedCount}
-                    subtractFromCheckboxesCheckedCount={this.subtractFromCheckboxesCheckedCount}
                     deleteChecklistItem={this.props.deleteChecklistItem}
-                    decrementTotalCheckboxCount={this.decrementTotalCheckboxCount}
+                    checked={checklistItem.checked}
                 />
             )
         })
-    }
-
-    addToCheckboxesCheckedCount = () => {
-        this.setState({checkboxesCheckedCount: this.state.checkboxesCheckedCount+1});
-    }
-
-    subtractFromCheckboxesCheckedCount = () => {
-        if ( this.state.checkboxesCheckedCount > 0 ) {
-            this.setState({checkboxesCheckedCount: this.state.checkboxesCheckedCount - 1})
-        }
     }
 
     //not working because state percentage being set to zero
     getProgressBarWidth = () => {
         //get width of progress bar
         const barWidth = this.progressBarRef.current.getBoundingClientRect().width;
-
         let fillBarWidth = 0;
-
         const progressBarPercentage = this.getProgressBarPercentage();
 
         //protect against divide by zero
         if ( progressBarPercentage ) {
              fillBarWidth = Math.round(barWidth / 100 * progressBarPercentage);
         } 
-        
         //calculate width of this
         return `${fillBarWidth}px`;
     }
 
     getProgressBarPercentage = () => {
-        const { numberOfCheckboxes, checkboxesCheckedCount } = this.state;
-        return Math.round(checkboxesCheckedCount / numberOfCheckboxes * 100);
+        let numberOfCheckboxes = 0;
+        let checkedCount = 0;
+        this.props.checklistItems.forEach(checklistItem => {
+            numberOfCheckboxes++;
+            if (checklistItem.checked)
+                checkedCount++;
+        })
+        return Math.round(checkedCount / numberOfCheckboxes * 100);
     }
 
     getProgressBarFillColor = () => {
@@ -204,12 +190,10 @@ export class Checklist extends Component {
         this.setState({addItemFormInput: e.target.value});
     }
 
+   
     openAddItemForm = () => {this.setState({addItemFormOpen: true})};
     closeAddItemForm = () => { this.setState({addItemFormOpen: false})}
 
-    decrementTotalCheckboxCount = () => {
-        this.setState({numberOfCheckboxes: this.state.numberOfCheckboxes - 1});
-    }
 
     renderAddItemSection = () => {
         if (this.state.addItemFormOpen) {
@@ -229,7 +213,6 @@ export class Checklist extends Component {
         }
     }
 
-
     render() {
         const { checklist } = this.props;
         return (
@@ -240,7 +223,7 @@ export class Checklist extends Component {
                     <DeleteButton onClick={this.openDeleteChecklistFloatingPopup} ref={this.deleteButtonRef}>Delete</DeleteButton>
                 </Header>
                 <ProgressBarContainer>
-                    <ProgressBarPercentage>{this.state.progressBarPercentage}%</ProgressBarPercentage>
+                    <ProgressBarPercentage>{this.getProgressBarPercentage()}%</ProgressBarPercentage>
                     <ProgressBar ref={this.progressBarRef}>
                         <ProgressBarFill ref={this.progressBarFillRef} />
                     </ProgressBar>
@@ -257,7 +240,7 @@ export class Checklist extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        checklistItems: state.checklistItem.filter(checklistItem => checklistItem.checklistID === ownProps.checklist.id)
+        checklistItems: state.checklistItem.filter(checklistItem => checklistItem.checklistID === ownProps.checklist.id),
     }
 }
 

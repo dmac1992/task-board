@@ -36,7 +36,8 @@ const HeaderIcon = styled.span`
 `;
 
 
-function Header({clearPopup, taskName}) {
+//TODO - why is task name passed in here
+const Header = React.memo(function Header({clearPopup, taskName}) {
     return (
         <Container>
             <TitleTextArea className=''/>
@@ -44,6 +45,6 @@ function Header({clearPopup, taskName}) {
             <HeaderIcon className='icon-clone'/>
         </Container>
     )
-}
+});
 
 export default Header

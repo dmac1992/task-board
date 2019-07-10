@@ -22,7 +22,6 @@ let testData = [
         checked: false,
         created: DateTime.local()
     },
-   
     {
         id: 2,
         checklistID: 1,
@@ -40,12 +39,35 @@ let testData = [
     },
 ];
 
-
-
 export default(state = testData, action) => {
     switch ( action.type ) {
-        case CHECKLIST_ITEM.TOGGLE_CHECKLIST_ITEM:
-            return action.payload;
+        // case CHECKLIST_ITEM.CHECK_CHECKLIST_ITEM:
+        //     return state.map(checklistItem => {
+        //         if (checklistItem.id === action.payload) {
+        //             checklistItem.checked = true;
+        //         }
+        //         return checklistItem;
+        //     });
+        case CHECKLIST_ITEM.CHECK_CHECKLIST_ITEM:
+            return state.map(checklistItem => {
+                if (checklistItem.id === action.payload) {
+                    return {
+                        ...checklistItem,
+                        checked: true,
+                    }
+                }
+                return checklistItem;
+            })
+        case CHECKLIST_ITEM.UNCHECK_CHECKLIST_ITEM:
+            return state.map(checklistItem => {
+                if (checklistItem.id === action.payload) {
+                    return {
+                        ...checklistItem,
+                        checked: false,
+                    }
+                }
+                return checklistItem;
+            });
         case CHECKLIST_ITEM.CREATE_CHECKLIST_ITEM:
             action.payload.id = _.maxBy(state, 'id').id + 1; //TODO - logic put in place for front end demo, until back end is implemented.
             return [...state, action.payload];

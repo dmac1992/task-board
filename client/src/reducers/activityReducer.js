@@ -62,6 +62,7 @@ let testData = [
     
 ]
 
+//TODO - reducer returnining different array but same object references.
 export default (state = testData, action) => {
     switch ( action.type ) {
         case ACTIVITY.RECORD_ACTIVITY:

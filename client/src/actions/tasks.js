@@ -7,14 +7,11 @@ export const createTask = (newTask) => {
     }
 }
 
-
 export const createTasks = (newTasks) => {
-
     return {
         type: TASK.CREATE_TASKS,
         payload: newTasks
     }
-
 }
 
 export const updateTasks = (updatedTasks) => {
@@ -24,16 +21,9 @@ export const updateTasks = (updatedTasks) => {
     }
 }
 
-// export const deleteSprint = () => {
-//     return {
-//         type: SPRINTS.DELETE_SPRINT,
-//         payload: sprintID
-//     }
-// }
-
-// export const reorderSprint = () => {
-//     return {
-//         type: SPRINTS.REORDER_SPRINT,
-//         payload: sprintID
-//     }
-// }
+export const updateTaskDescription = (description) => {
+    return {
+        type: TASK.UPDATE_DESCRIPTION,
+        payload: description
+    }
+}

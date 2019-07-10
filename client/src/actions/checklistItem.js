@@ -19,9 +19,27 @@ export const deleteChecklistItem = (checklistID) => {
     }
 }
 
+
 export const createChecklistItems = (newChecklistItems) => {
     return {
         type: CHECKLIST_ITEM.CREATE_CHECKLIST_ITEMS,
         payload: newChecklistItems
     }
 }
+
+
+export const checkChecklistItem = (checklistItemID) => {
+    return {
+        type: CHECKLIST_ITEM.CHECK_CHECKLIST_ITEM,
+        payload: checklistItemID
+    }
+}
+
+
+export const uncheckChecklistItem = (checklistItemID) => {
+    return {
+        type: CHECKLIST_ITEM.UNCHECK_CHECKLIST_ITEM,
+        payload: checklistItemID
+    }
+}
+

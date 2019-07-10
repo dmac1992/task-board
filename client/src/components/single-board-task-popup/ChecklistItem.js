@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux';
+
+import { checkChecklistItem, uncheckChecklistItem } from 'actions/checklistItem';
 
 const Container = styled.li`
     display: flex;
@@ -33,23 +36,9 @@ const DeleteItemIcon = styled.span`
 
 class ChecklistItem extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            checked: this.props.checklistItem.checked
-        }
-    }
-    
-    componentWillUnmount() {
-        if ( this.state.checked ) {
-            this.props.subtractFromCheckboxesCheckedCount();
-        } 
-        this.props.decrementTotalCheckboxCount();
-    }
-
 
     renderCheckbox = () => {
-        if ( this.state.checked ) {
+        if ( this.props.checklistItem.checked ) {
             return (
                 <Checkbox onClick={this.uncheckCheckbox}>
                     <Tick className='icon-check' />
@@ -60,14 +49,13 @@ class ChecklistItem extends Component {
         }
     } 
 
+    //TODO - working but parent component not renrendering ;
     checkCheckbox = () => {
-        this.setState({checked: true});
-        this.props.addToCheckboxesCheckedCount();
+        this.props.checkChecklistItem(this.props.checklistItem.id);
     }
 
     uncheckCheckbox = () => {
-        this.setState({checked: false});
-        this.props.subtractFromCheckboxesCheckedCount();
+        this.props.uncheckChecklistItem(this.props.checklistItem.id);
     }
 
     deleteCheckBox = () => {
@@ -76,7 +64,6 @@ class ChecklistItem extends Component {
 
     //TODO - the delete item icon needs to be converted to a popup. the popup offers delete functionality and the ability to convert the item to a task.
     render() {
-        
         return (
             <Container>
                 {this.renderCheckbox()}
@@ -87,4 +74,6 @@ class ChecklistItem extends Component {
     }
 }
 
-export default ChecklistItem
+
+
+export default connect(null, {checkChecklistItem, uncheckChecklistItem})(ChecklistItem);
