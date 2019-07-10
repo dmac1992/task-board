@@ -21,9 +21,12 @@ export const updateTasks = (updatedTasks) => {
     }
 }
 
-export const updateTaskDescription = (description) => {
+export const updateTaskDescription = (description, id) => {
     return {
         type: TASK.UPDATE_DESCRIPTION,
-        payload: description
+        payload: {
+            description,
+            id
+        }
     }
 }

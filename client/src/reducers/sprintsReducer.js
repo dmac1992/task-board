@@ -65,6 +65,17 @@ export default (state = testState, action) => {
                 })
             })
             return newState;
+        case SPRINTS.UPDATE_SPRINT_NAME:
+            debugger;
+            return state.map(sprint => {
+                if (sprint.id === action.payload.sprintID) {
+                    return {
+                        ...sprint,
+                        name: action.payload.newName
+                    }
+                }
+                return sprint
+            })
         default:
             return state;
     }

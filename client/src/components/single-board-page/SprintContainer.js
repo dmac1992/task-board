@@ -9,6 +9,9 @@ import AddCardForm from './AddCardForm';
 import SprintActionsFloatingPopup from 'components/floated-popup-system/single-board-page/SprintActionsFloatingPopup';
 import { setFloatingPopup } from 'actions/floatingPopups';
 
+import { updateSprintName } from 'actions/sprints'; 
+
+
 
 const SprintColumn = styled.div`
     min-width: 272px;
@@ -37,7 +40,16 @@ const SprintHeadingContainer = styled.div`
     line-height: 30px;
 `;
 
-const Heading = styled.h3`
+const Heading = styled.textarea`
+    flex-grow: 1;
+    background-color: transparent;
+    border-radius: 3px;
+    padding: 4px 8px;
+    border: none;
+    -webkit-appearance: none;
+    :focus {
+        background-color: white;
+    }
 `;
 const OpenMenuIcon = styled.span`
     display: inline-block;
@@ -71,8 +83,9 @@ class SprintContainer extends React.PureComponent {
    
     constructor(props) {
         super(props);
-        this. state = {
-            addCardFormOpen: false
+        this.state = {
+            addCardFormOpen: false,
+            sprintName: this.props.sprint.name
         }
         this.sprintMenuRef = React.createRef();
         this.addCardFormInputRef = React.createRef();
@@ -95,6 +108,13 @@ class SprintContainer extends React.PureComponent {
             </AddAnotherCardSection>
         )
     }
+
+    updateSprintName = () => {
+        debugger;
+        this.props.updateSprintName(this.state.sprintName, this.props.sprint.id);
+    }
+
+    sprintNameChangeHandler = (e) => { this.setState({sprintName: e.target.value})};
 
     openForm = () => {
         this.setState({addCardFormOpen: true})
@@ -130,7 +150,7 @@ class SprintContainer extends React.PureComponent {
             <SprintColumn>
                  <Container>
                     <SprintHeadingContainer>
-                        <Heading>{sprint.name}</Heading>
+                        <Heading value={this.state.sprintName} onBlur={this.updateSprintName} onChange={this.sprintNameChangeHandler}/>
                         {watchedSprints.includes(sprintID) ? <WatchingIcon className='icon-eye' /> : null}
                         <OpenMenuIcon className='icon-dot-3' onClick={this.sprintOptionsPopup} ref={this.sprintMenuRef}></OpenMenuIcon>
                     </SprintHeadingContainer>
@@ -151,4 +171,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, {setFloatingPopup})(SprintContainer);
+export default connect(mapStateToProps, {setFloatingPopup, updateSprintName})(SprintContainer);

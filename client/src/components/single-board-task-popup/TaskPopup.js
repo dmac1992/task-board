@@ -11,8 +11,7 @@ import AddComment from './AddComment';
 import SideMenu from './SideMenu';
 import Checklist from './Checklist';
 import Activity from './Activity';
-import ActivityComment from './ActivityComment';
-import ActivityItem from './ActivityItem';
+
 
 const Container = styled.div`
     width: 800px;
@@ -62,7 +61,7 @@ class TaskPopup extends React.Component {
                 <Header clearPopup={this.clearPopup} />
                 <ColumnsContainer>
                     <LeftHandSide>
-                        <Description />
+                        <Description taskID={this.props.task.ID} description={this.props.task.description} />
                         {this.renderCheckLists()}
                         <AddComment />
                         <Activity renderTaskComments={this.renderTaskComments}/>

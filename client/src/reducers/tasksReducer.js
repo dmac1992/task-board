@@ -110,6 +110,16 @@ export default (state = testState, action) => {
                 })
             })
             return newState;
+        case TASK.UPDATE_DESCRIPTION:
+            return state.map(task => {
+                if ( task.ID === action.payload.id) {
+                    return {
+                        ...task,
+                        description: action.payload.description
+                    }
+                }
+                return task;
+            })
         default:
             return state
     }

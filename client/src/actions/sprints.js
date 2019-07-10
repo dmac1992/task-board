@@ -24,6 +24,17 @@ export const updateSprints = (updatedSprints) => {
     }
 }
 
+export const updateSprintName = (newName, sprintID) => {
+    debugger;
+    return {
+        type: SPRINTS.UPDATE_SPRINT_NAME,
+        payload: {
+            newName,
+            sprintID
+        }
+    }
+}
+
 // export const deleteSprint = () => {
 //     return {
 //         type: SPRINTS.DELETE_SPRINT,

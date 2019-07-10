@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+import { updateTaskDescription } from 'actions/tasks';
+
 
 const Container = styled.div`
     position: relative;
@@ -69,14 +73,19 @@ class Description extends PureComponent {
 
     state = {
         DescriptionFormShowing: false,
-        description: '',
+        description: this.props.description,
     }
+  
 
     showDescriptionForm = () => { 
         this.setState({DescriptionFormShowing: true}, () => this.textareaRef.current.focus()) 
     };
 
-    hideDescriptionForm = () => { this.setState({DescriptionFormShowing: false}) };
+    hideDescriptionForm = () => { 
+        this.setState({DescriptionFormShowing: false}, () => {
+            this.props.updateTaskDescription(this.state.description, this.props.taskID);
+        })
+     };
 
     textareaChangeHandler = (e) => this.setState({description: e.target.value}) 
 
@@ -97,10 +106,10 @@ class Description extends PureComponent {
                 {
                     this.state.DescriptionFormShowing ? (
                         <>
-                            <DescriptionTextarea ref={this.textareaRef} onFocus={this.textareaFocused} onChange={this.textareaChangeHandler} onBlur={this.hideDescriptionForm}>
+                            <DescriptionTextarea ref={this.textareaRef} onFocus={this.textareaFocused} onChange={this.textareaChangeHandler} onBlur={this.hideDescriptionForm} value={this.state.description}>
                             </DescriptionTextarea>
                             <FocusedTextAreaSection>
-                                <SaveButton>Save</SaveButton>
+                                <SaveButton >Save</SaveButton>
                                 <CloseEditIcon className='icon-times' onClick={this.hideDescriptionForm}/>
                             </FocusedTextAreaSection>
                         </>
@@ -114,4 +123,4 @@ class Description extends PureComponent {
   
 }
 
-export default Description
+export default connect(null, { updateTaskDescription })(Description);

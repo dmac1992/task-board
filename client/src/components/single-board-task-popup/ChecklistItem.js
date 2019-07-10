@@ -36,7 +36,6 @@ const DeleteItemIcon = styled.span`
 
 class ChecklistItem extends Component {
 
-
     renderCheckbox = () => {
         if ( this.props.checklistItem.checked ) {
             return (
@@ -73,7 +72,6 @@ class ChecklistItem extends Component {
         )
     }
 }
-
 
 
 export default connect(null, {checkChecklistItem, uncheckChecklistItem})(ChecklistItem);

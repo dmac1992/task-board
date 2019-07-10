@@ -35,7 +35,8 @@ export const SPRINTS = {
     CREATE_SPRINT: 'create_sprint',
     DELETE_SPRINT: 'delete_sprint',
     REORDER_SPRINT: 'reorder_sprint',
-    UPDATE_SPRINTS: 'update_sprints'
+    UPDATE_SPRINTS: 'update_sprints',
+    UPDATE_SPRINT_NAME: 'update_sprint_name'
 }
 
 export const TASK = {
