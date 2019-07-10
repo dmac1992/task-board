@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import CloneSprintFloatingPopup from 'components/floated-popup-system/single-board-page/CloneSprintFloatingPopup';
 import ReorderSprintsFloatingPopup from 'components/floated-popup-system/single-board-page/ReorderSprintsFloatingPopup';
 import SortSprintTaskOrderFloatingPopup from 'components/floated-popup-system/single-board-page/SortSprintTaskOrderFloatingPopup';
+import MoveAllCardsInSprint from 'components/floated-popup-system/single-board-page/MoveAllCardsInSprint';
 
 
 //Move List Popup
@@ -86,7 +87,10 @@ export class SprintActionsFloatingPopup extends Component {
     
 
     watchList = () => {}
-    moveAllListCards = () => {}
+
+    moveAllListCards = () => {
+        this.props.setFloatingPopupInplace(MoveAllCardsInSprint, {  sprintID: this.props.sprintID, boardID: this.state.sprint.boardID  });
+    }
     archiveAllListCards = () => {}
     archiveList = () => {}
 
@@ -119,7 +123,7 @@ export class SprintActionsFloatingPopup extends Component {
                     <MenuDivider />
                     <ListItem onClick={this.sortSprintTasksFloatingPopup}>Sort By...</ListItem>
                     <MenuDivider />
-                    <ListItem>Move All Cards in this list...</ListItem>
+                    <ListItem onClick={this.moveAllListCards}>Move All Cards in this list...</ListItem>
                     <ListItem>Archive All Cards in this list</ListItem>
                     <MenuDivider />
                     <ListItem></ListItem>

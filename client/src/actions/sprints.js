@@ -7,14 +7,12 @@ export const createSprint = (newSprint) => {
     }
 }
 
-
 export const cloneSprint = (sprintID) => {
 
     return {
         type: SPRINTS.CLONE_SPRINT,
         payload: sprintID
     }
-
 }
 
 export const updateSprints = (updatedSprints) => {
@@ -25,7 +23,6 @@ export const updateSprints = (updatedSprints) => {
 }
 
 export const updateSprintName = (newName, sprintID) => {
-    debugger;
     return {
         type: SPRINTS.UPDATE_SPRINT_NAME,
         payload: {

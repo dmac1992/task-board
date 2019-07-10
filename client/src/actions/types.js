@@ -36,7 +36,8 @@ export const SPRINTS = {
     DELETE_SPRINT: 'delete_sprint',
     REORDER_SPRINT: 'reorder_sprint',
     UPDATE_SPRINTS: 'update_sprints',
-    UPDATE_SPRINT_NAME: 'update_sprint_name'
+    UPDATE_SPRINT_NAME: 'update_sprint_name',
+    
 }
 
 export const TASK = {
@@ -44,8 +45,8 @@ export const TASK = {
     CREATE_TASKS: 'create_tasks',
     DELETE_TASK: 'delete_task',
     UPDATE_TASKS: 'update_tasks',
-    UPDATE_DESCRIPTION: 'update_task_description'
-    
+    UPDATE_DESCRIPTION: 'update_task_description',
+    MOVE_SPRINT_TASKS_TO_NEWSPRINT: 'move_sprint_tasks_to_newsprint'
 }
 
 export const BOARDS = {

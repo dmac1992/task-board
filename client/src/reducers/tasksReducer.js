@@ -120,6 +120,16 @@ export default (state = testState, action) => {
                 }
                 return task;
             })
+        case TASK.MOVE_SPRINT_TASKS_TO_NEWSPRINT:
+            return state.map(task => {
+                if (task.sprintID === action.payload.sprintID) {
+                    return {
+                        ...task,
+                        sprintID: action.payload.newSprintID
+                    }
+                }
+                return task;
+            })
         default:
             return state
     }

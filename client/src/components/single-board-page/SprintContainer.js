@@ -77,8 +77,6 @@ const Plus = styled.span`
     margin-right: 5px;
 `;
 
-
-
 class SprintContainer extends React.PureComponent {
    
     constructor(props) {
@@ -89,9 +87,6 @@ class SprintContainer extends React.PureComponent {
         }
         this.sprintMenuRef = React.createRef();
         this.addCardFormInputRef = React.createRef();
-    }
-
-    componentDidMount() {
     }
 
     renderAddCardForm = () => {
@@ -110,7 +105,6 @@ class SprintContainer extends React.PureComponent {
     }
 
     updateSprintName = () => {
-        debugger;
         this.props.updateSprintName(this.state.sprintName, this.props.sprint.id);
     }
 

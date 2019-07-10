@@ -30,3 +30,13 @@ export const updateTaskDescription = (description, id) => {
         }
     }
 }
+
+export const moveSprintTasksToNewSprint = (sprintID, newSprintID) => {
+    return {
+        type: TASK.MOVE_SPRINT_TASKS_TO_NEWSPRINT,
+        payload: {
+            sprintID,
+            newSprintID
+        }
+    }
+}

@@ -46,8 +46,6 @@ const testState = [
         timestamp: DateTime.local()
     },
 ]
-    
-
 
 export default (state = testState, action) => {
     switch(action.type) {
@@ -66,7 +64,6 @@ export default (state = testState, action) => {
             })
             return newState;
         case SPRINTS.UPDATE_SPRINT_NAME:
-            debugger;
             return state.map(sprint => {
                 if (sprint.id === action.payload.sprintID) {
                     return {
