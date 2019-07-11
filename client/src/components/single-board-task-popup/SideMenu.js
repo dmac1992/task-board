@@ -11,12 +11,15 @@ import { deleteChecklistsItems } from 'actions/checklistItem';
 import { deleteTaskActivities } from 'actions/activities';
 
 
+
+
 //import floating popups to pass into action handler
 import AddMembersFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddMembersFloatingPopup';
 import DueDateFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DueDateFloatingPopup';
 import AddLabelsFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddLabelsFloatingPopup'; 
 import AddChecklistFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddChecklistFloatingPopup';
 import MoveTaskFloatingPopup from 'components/floated-popup-system/single-board-task-popup/MoveTaskFloatingPopup';
+import DeleteTaskFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DeleteTaskFloatingPopup';
 
 const Container = styled.div`
 `;
@@ -64,6 +67,7 @@ class SideMenu extends React.Component {
 
         this.moveButtonRef = React.createRef();
         this.copyButtonRef = React.createRef();
+        this.deleteButtonRef = React.createRef();
     
     }
 
@@ -99,6 +103,10 @@ class SideMenu extends React.Component {
          this.props.unarchiveTask(this.props.currentTask.ID);
      }
 
+     renderDeleteCardPopup = () => {
+         this.props.setFloatingPopup(DeleteTaskFloatingPopup, this.deleteButtonRef, { deleteCard: this.deleteTask})
+     }
+
      //TODO - this code is loaded everytime user logs in, does it really require clean up???
      deleteTask = () => {
         this.props.clearPopup();
@@ -132,7 +140,7 @@ class SideMenu extends React.Component {
     renderDeleteButton = () => {
         if ( this.props.currentTask.archived ) {
             return (
-                <DeleteButton onClick={this.deleteTask}>
+                <DeleteButton onClick={this.renderDeleteCardPopup} ref={this.deleteButtonRef}>
                     <span className='icon-minus' />
                     <span>Delete</span>
                 </DeleteButton>

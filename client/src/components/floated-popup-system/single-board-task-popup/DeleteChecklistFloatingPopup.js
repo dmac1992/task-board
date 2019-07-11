@@ -24,7 +24,9 @@ const CloseIcon = styled.span`
     right: 10px;
 `;
 
-const Warning = styled.p``;
+const Warning = styled.p`
+   
+`;
 
 const DeleteButton = styled.button`
     padding-top: 8px;
