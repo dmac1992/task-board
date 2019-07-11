@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
-import  { toggleWatchTask } from 'actions/tasks';
+import  { toggleWatchTask, archiveTask , unarchiveTask} from 'actions/tasks';
+
 
 //import floating popups to pass into action handler
 import AddMembersFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddMembersFloatingPopup';
@@ -76,8 +77,33 @@ class SideMenu extends React.Component {
     toggleWatchTask = () => {
         this.props.toggleWatchTask(this.props.currentTask.ID);
     }
-    archiveCard = () => { }
+    archiveTask = () => {
+        this.props.archiveTask(this.props.currentTask.ID);
+     }
+     unarchiveTask = () => {
+         this.props.unarchiveTask(this.props.currentTask.ID);
+     }
+
     renderSharePopup = () => { }
+
+
+    renderArchiveButton = () => {
+        if ( this.props.currentTask.archived ) {
+            return (
+               <Button onClick={this.unarchiveTask}>
+                    <span className='icon-circle' />
+                    <span>Send to board</span>
+               </Button>
+            )
+        } else {
+            return (
+                <Button onClick={this.archiveTask}>
+                    <span className='icon-archive' />
+                    <span>Archive</span>
+                </Button>
+            )
+        }
+    }
     
 
     render() {
@@ -117,10 +143,7 @@ class SideMenu extends React.Component {
                         <span className='icon-eye' />
                         <span>Watch</span>
                     </Button>
-                    <Button>
-                        <span className='icon-archive' />
-                        <span>Archive</span>
-                    </Button>
+                    {this.renderArchiveButton()}
                     <Button>
                         <span className='icon-share' />
                         <span>Share</span>
@@ -132,4 +155,4 @@ class SideMenu extends React.Component {
     
 }
 
-export default connect(null, { setFloatingPopup, toggleWatchTask })(SideMenu);
+export default connect(null, { setFloatingPopup, toggleWatchTask, archiveTask , unarchiveTask})(SideMenu);

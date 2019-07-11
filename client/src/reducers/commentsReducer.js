@@ -47,7 +47,7 @@ let testData = [
 export default(state = testData, action) => {
     switch ( action.type ) {
         case COMMENT.CREATE_COMMENT:
-            return action.payload;
+            return [...state, action.payload];
         case COMMENT.DELETE_COMMENT:
             return state.filter((comment) => comment.id !== action.payload);
         case COMMENT.EDIT_COMMENT:

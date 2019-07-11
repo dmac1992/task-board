@@ -163,6 +163,13 @@ export default (state = testState, action) => {
                 }
                 return task;
             })
+        case TASK.UNARCHIVE_TASK:
+            return state.map(task => {
+                if (task.ID === action.payload) {
+                    return { ...task, archived: false }
+                }
+                return task;
+            })
         case TASK.MOVE_TASK:
             return state.map(task => {
                 if (task.ID === action.payload.taskID) {

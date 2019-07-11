@@ -51,6 +51,7 @@ export const TASK = {
     UPDATE_NAME: 'update_task_name',
     MOVE_SPRINT_TASKS_TO_NEWSPRINT: 'move_sprint_tasks_to_newsprint',
     ARCHIVE_TASK: 'archive_task',
+    UNARCHIVE_TASK: 'unarchive_task',
     MOVE_TASK: 'move_task',
     TOGGLE_WATCH_TASK: 'toggle_watch_task'
 }

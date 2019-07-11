@@ -59,7 +59,7 @@ class TaskPopup extends React.Component {
                     <LeftHandSide>
                         <Description taskID={this.props.task.ID} description={this.props.task.description} />
                         {this.renderCheckLists()}
-                        <AddComment />
+                        <AddComment task={this.props.task} userId={this.props.userId}/>
                         <Activity renderTaskComments={this.renderTaskComments}/>
                     </LeftHandSide>
                     <RightHandSide>
@@ -80,6 +80,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         task: state.tasks.find((task) => taskID === task.ID),
         checklists: state.checklists.filter((checklist) => taskID === checklist.taskID),
+        userId: state.userId
     }
 }
 

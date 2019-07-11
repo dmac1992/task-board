@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
+import uniqid from 'uniqid';
+
+import { createComment } from 'actions/comments';
 
 const Container = styled.div``;
 const Header = styled.div`
@@ -50,10 +55,23 @@ const activeButton = {
 export class AddComment extends Component {
 
     state = {
-        comment: 'sdf'
+        comment: ''
     }
 
-   
+    createComment = () => {
+        if (this.state.comment.length) {
+            const comment = {};
+            comment.id = uniqid();
+            comment.userID = this.props.userId;
+            comment.taskID = this.props.task.ID;
+            comment.comment = this.state.comment;
+            comment.timestamp = DateTime.local()
+            comment.lastEdited = null;
+            this.props.createComment(comment);
+        }
+    }
+
+    commentChangeHandler = (e) => { this.setState({comment: e.target.value}) } 
 
     render() {
         return (
@@ -64,12 +82,14 @@ export class AddComment extends Component {
                 </Header>
                 <TextareaSection>
                     <UserTag>D</UserTag>
-                    <CommentTextarea placeholder='Write a comment...' rows='6'></CommentTextarea>
-                    <SaveButton style={this.state.comment.length ? activeButton : inactiveButton}>Save</SaveButton>
+                    <CommentTextarea onChange={this.commentChangeHandler} placeholder='Write a comment...' rows='6' value={this.state.comment} ></CommentTextarea>
+                    <SaveButton onClick={this.createComment} style={this.state.comment.length ? activeButton : inactiveButton}>Save</SaveButton>
                 </TextareaSection>
             </Container>
         )
     }
 }
 
-export default AddComment
+
+
+export default connect(null, {createComment})(AddComment);

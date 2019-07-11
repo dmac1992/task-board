@@ -58,6 +58,13 @@ export const archiveTask = (taskID) => {
     }
 }
 
+export const unarchiveTask = (taskID) => {
+    return {
+        type: TASK.UNARCHIVE_TASK,
+        payload: taskID
+    }
+}
+
 export const moveTask = (taskID, targetSprintID, targetBoardID) => {
     return {
         type: TASK.MOVE_TASK,

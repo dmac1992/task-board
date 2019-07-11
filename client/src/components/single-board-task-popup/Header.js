@@ -9,6 +9,19 @@ const Container = styled.div`
     margin-bottom: 10px;
 `;
 
+const ArchivedWarningContainer = styled.div`
+    height: 50px;
+`
+const ArchivedSpan = styled.span`
+    line-height: 50px;
+    font-size: 14px;
+`;
+
+const ArchivedIcon = styled.span`
+    margin-right: 10px;
+    font-size: 18px;
+`;
+
 const TitleTextArea = styled.textarea`
     height: 33px;
     background: transparent;
@@ -78,10 +91,22 @@ class Header extends React.Component {
             return <WatchedIcon className='icon-eye' />
     }
 
+    renderArchivedWarning = () => {
+        if ( this.props.task.archived ) {
+            return (
+                <ArchivedWarningContainer>
+                    <ArchivedIcon className='icon-archive' />
+                    <ArchivedSpan>This task is archived.</ArchivedSpan>
+                </ArchivedWarningContainer>
+            )
+        }
+    }
+
 
     render() {
         return (
             <Container>
+                {this.renderArchivedWarning()}
                 <TitleTextArea className='' onChange={this.taskNameHandler} onBlur={this.updateTaskName} value={this.state.cardName}/>
                 <CloseIcon className='icon-times' onClick={this.props.clearPopup}/>
                 <HeaderIcon className='icon-clone'/>
