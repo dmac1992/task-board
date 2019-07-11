@@ -69,6 +69,8 @@ export default (state = testData, action) => {
             return action.payload;
         case ACTIVITY.CREATE_ACTIVITIES:
             return [...state, ...action.payload];
+        case ACTIVITY.DELETE_TASK_ACTIVITIES:
+            return state.filter(activity => activity.taskID !== action.payload)
         default:
             return state;
     }

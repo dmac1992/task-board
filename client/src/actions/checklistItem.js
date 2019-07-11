@@ -12,9 +12,17 @@ export const addChecklistItem = (checklistID, name) => {
     }
 }
 
+
 export const deleteChecklistItem = (checklistID) => {
     return {
         type: CHECKLIST_ITEM.DELETE_CHECKLIST_ITEM,
+        payload: checklistID
+    }
+}
+
+export const deleteChecklistsItems = (checklistID) => {
+    return {
+        type: CHECKLIST_ITEM.DELETE_CHECKLISTS_ITEMS,
         payload: checklistID
     }
 }

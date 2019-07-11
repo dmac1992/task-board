@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
-import  { toggleWatchTask, archiveTask , unarchiveTask} from 'actions/tasks';
+import  { toggleWatchTask, archiveTask , unarchiveTask, deleteTask} from 'actions/tasks';
+import { setCurrentTaskPopupID } from 'actions/currentTaskPopup';
+import { deleteTaskComments } from 'actions/comments';
+import { deleteTaskChecklists } from 'actions/checklist';
+import { deleteChecklistsItems } from 'actions/checklistItem';
+import { deleteTaskActivities } from 'actions/activities';
 
 
 //import floating popups to pass into action handler
@@ -38,6 +43,15 @@ const Button = styled.li`
         background-color: #dfe1e6;
     }
 `;
+
+const DeleteButton = styled(Button)`
+    background-color: #cf513d;
+    color: white;
+    :hover {
+        color: white;
+        background-color: #eb5a46;
+    }
+`
 
 class SideMenu extends React.Component {
 
@@ -74,6 +88,7 @@ class SideMenu extends React.Component {
     }
     
     renderCopyCardPopup = () => {}
+
     toggleWatchTask = () => {
         this.props.toggleWatchTask(this.props.currentTask.ID);
     }
@@ -84,8 +99,17 @@ class SideMenu extends React.Component {
          this.props.unarchiveTask(this.props.currentTask.ID);
      }
 
-    renderSharePopup = () => { }
+     //TODO - this code is loaded everytime user logs in, does it really require clean up???
+     deleteTask = () => {
+        this.props.clearPopup();
+        this.props.deleteTask(this.props.currentTask.ID);
+        this.props.deleteTaskChecklists(this.props.currentTask.ID);
+        this.props.deleteTaskActivities(this.props.currentTask.ID);
+        this.props.deleteTaskComments(this.props.currentTask.ID);
+        
+     }
 
+    renderSharePopup = () => { }
 
     renderArchiveButton = () => {
         if ( this.props.currentTask.archived ) {
@@ -104,8 +128,18 @@ class SideMenu extends React.Component {
             )
         }
     }
-    
 
+    renderDeleteButton = () => {
+        if ( this.props.currentTask.archived ) {
+            return (
+                <DeleteButton onClick={this.deleteTask}>
+                    <span className='icon-minus' />
+                    <span>Delete</span>
+                </DeleteButton>
+            )
+        }
+    }
+    
     render() {
       
         return (
@@ -144,6 +178,7 @@ class SideMenu extends React.Component {
                         <span>Watch</span>
                     </Button>
                     {this.renderArchiveButton()}
+                    {this.renderDeleteButton()}
                     <Button>
                         <span className='icon-share' />
                         <span>Share</span>
@@ -155,4 +190,17 @@ class SideMenu extends React.Component {
     
 }
 
-export default connect(null, { setFloatingPopup, toggleWatchTask, archiveTask , unarchiveTask})(SideMenu);
+const mapDispatchToProps = {
+    setFloatingPopup,
+    toggleWatchTask,
+    archiveTask,
+    unarchiveTask,
+    setCurrentTaskPopupID,
+    deleteTask,
+    deleteTaskComments,
+    deleteTaskChecklists,
+    deleteChecklistsItems,
+    deleteTaskActivities
+}
+
+export default connect(null, mapDispatchToProps)(SideMenu);

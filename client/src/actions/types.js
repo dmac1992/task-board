@@ -65,7 +65,8 @@ export const BOARDS = {
 export const CHECKLIST = {
     CREATE_CHECKLIST: 'create_checklist',
     CREATE_CHECKLISTS: 'create_checklists',
-    DELETE_CHECKLIST: 'delete_checklist' 
+    DELETE_CHECKLIST: 'delete_checklist',
+    DELETE_TASK_CHECKLISTS: 'delete_task_checklists'
 }
 
 export const CHECKLIST_ITEM = {
@@ -73,6 +74,7 @@ export const CHECKLIST_ITEM = {
     CREATE_CHECKLIST_ITEM: 'create_checklist_item',
     CREATE_CHECKLIST_ITEMS: 'create_checklist_items',
     DELETE_CHECKLIST_ITEM: 'delete_checklist_item',
+    DELETE_CHECKLISTS_ITEMS: 'delete_checklists_items',
     CHECK_CHECKLIST_ITEM: 'check_checklist_item',
     UNCHECK_CHECKLIST_ITEM: 'uncheck_checklist_item'
 }
@@ -81,12 +83,14 @@ export const COMMENT = {
     CREATE_COMMENT: 'create_comment',
     CREATE_COMMENTS: 'create_comments',
     DELETE_COMMENT: 'delete_comment',
+    DELETE_TASK_COMMENTS: 'delete_tasks_comments',
     EDIT_COMMENT: 'edit_comment'
 }
 
 export const ACTIVITY = {
     CREATE_ACTIVITY: 'create_activity',
-    CREATE_ACTIVITIES: 'create_activities'
+    CREATE_ACTIVITIES: 'create_activities',
+    DELETE_TASK_ACTIVITIES: 'delete_task_activities'
 }
 
 export const USER = {

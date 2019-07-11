@@ -4,8 +4,6 @@ import { CHECKLIST_ITEM } from 'actions/types';
 import { DateTime } from 'luxon'; 
 import { CHECKLIST } from '../actions/types';
 
-
-
 let testData = [
     {
         id: 0,
@@ -72,7 +70,9 @@ export default(state = testData, action) => {
             action.payload.id = _.maxBy(state, 'id').id + 1; //TODO - logic put in place for front end demo, until back end is implemented.
             return [...state, action.payload];
         case CHECKLIST_ITEM.DELETE_CHECKLIST_ITEM:
-            return state.filter((item) => item.id !== action.payload);
+            return state.filter(item => item.id !== action.payload);
+        case CHECKLIST_ITEM.DELETE_CHECKLISTS_ITEMS:
+            return state.filter(item => item.checklistID !== action.payload)
         case CHECKLIST_ITEM.CREATE_CHECKLIST_ITEMS:
             return [...state, ...action.payload];
         default: 

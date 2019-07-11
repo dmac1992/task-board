@@ -7,6 +7,13 @@ export const deleteComment = (id) => {
     }
 }
 
+export const deleteTaskComments = (taskID) => {
+    return {
+        type: COMMENT.DELETE_TASK_COMMENTS,
+        payload: taskID
+    }
+}
+
 export const createComment = (comment) => {
     return {
         type: COMMENT.CREATE_COMMENT,

@@ -120,7 +120,7 @@ class SprintContainer extends React.PureComponent {
 
     renderTasks = () => {
         return this.props.tasks
-            .filter((task) => task.sprintID === this.props.sprintID)
+            .filter((task) => task.sprintID === this.props.sprintID && task.archived === false)
             .sort((a, b) =>  a.sprintPosition - b.sprintPosition )
             .map((task) => <SprintTask key={task.ID} taskID={task.ID} /> );
     }

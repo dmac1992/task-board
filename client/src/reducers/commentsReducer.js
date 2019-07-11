@@ -50,6 +50,8 @@ export default(state = testData, action) => {
             return [...state, action.payload];
         case COMMENT.DELETE_COMMENT:
             return state.filter((comment) => comment.id !== action.payload);
+        case COMMENT.DELETE_TASK_COMMENTS:
+            return state.filter(comment => comment.taskID !== action.payload);
         case COMMENT.EDIT_COMMENT:
             return action.payload;
         case COMMENT.CREATE_COMMENTS:

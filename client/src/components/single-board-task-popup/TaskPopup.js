@@ -6,6 +6,7 @@ import { setActiveModal } from 'actions/modal';
 import { setFloatingPopup } from 'actions/floatingPopups';
 
 
+
 import Header from './Header';
 import Description from './Description';
 import AddComment from './AddComment';
@@ -39,8 +40,6 @@ const RightHandSide = styled.div`
 
 class TaskPopup extends React.Component {
 
- 
-
     clearPopup = () => {
         this.props.setActiveModal(null);
         this.props.setFloatingPopup(null, null);
@@ -49,7 +48,6 @@ class TaskPopup extends React.Component {
     renderCheckLists = () => {
         return this.props.checklists.map((checklist) => <Checklist key={`checklist_${checklist.id}`} checklist={checklist} />)
     }
-
    
     render() {
         return (
@@ -63,7 +61,7 @@ class TaskPopup extends React.Component {
                         <Activity renderTaskComments={this.renderTaskComments}/>
                     </LeftHandSide>
                     <RightHandSide>
-                        <SideMenu  currentTask={this.props.task} />
+                        <SideMenu  currentTask={this.props.task} clearPopup={this.clearPopup} />
                     </RightHandSide>
                 </ColumnsContainer>
             </Container>

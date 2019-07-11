@@ -113,7 +113,7 @@ export default (state = testState, action) => {
         case TASK.CREATE_TASK:
             return [...state, action.payload]
         case TASK.DELETE_TASK:
-            return action.payload;
+            return state.filter(task => task.ID !== action.payload);
         case TASK.CREATE_TASKS:
             return [...state, ...action.payload];
         case TASK.UPDATE_TASKS: 

@@ -8,9 +8,17 @@ export const createTask = (newTask) => {
 }
 
 export const createTasks = (newTasks) => {
+    //needs to call action creator to delete all tasks, checklists and checklist items.
     return {
         type: TASK.CREATE_TASKS,
         payload: newTasks
+    }
+}
+
+export const deleteTask = (taskID) => {
+    return {
+        type: TASK.DELETE_TASK,
+        payload: taskID
     }
 }
 

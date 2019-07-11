@@ -42,15 +42,13 @@ const SaveButton = styled.button`
     padding: 10px;
 `;
 
-
-
 const inactiveButton = {
     backgroundColor: '#ebecf0'
 }
+
 const activeButton = {
     backgroundColor: 'green'
 }
-
 
 export class AddComment extends Component {
 
@@ -70,7 +68,7 @@ export class AddComment extends Component {
             this.props.createComment(comment);
         }
     }
-
+    
     commentChangeHandler = (e) => { this.setState({comment: e.target.value}) } 
 
     render() {
@@ -89,7 +87,5 @@ export class AddComment extends Component {
         )
     }
 }
-
-
 
 export default connect(null, {createComment})(AddComment);

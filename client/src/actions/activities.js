@@ -8,3 +8,10 @@ export const createActivities = (newActivities) => {
         payload: newActivities
     }
 };
+
+export const deleteTaskActivities = (taskID) => {
+    return {
+        type: ACTIVITY.DELETE_TASK_ACTIVITIES,
+        payload: taskID
+    }
+}

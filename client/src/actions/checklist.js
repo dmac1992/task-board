@@ -7,6 +7,13 @@ export const deleteChecklist = (checklistID) => {
     }
 }
 
+export const deleteTaskChecklists = (taskID) => {
+    return {
+        type: CHECKLIST.DELETE_TASK_CHECKLISTS,
+        payload: taskID
+    }
+}
+
 export const createChecklist = () => { }
 
 export const createChecklists = (newChecklists) => { 

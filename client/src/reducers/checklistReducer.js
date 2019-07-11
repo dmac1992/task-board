@@ -35,6 +35,8 @@ export default(state = testData, action) => {
             return action.payload;
         case CHECKLIST.DELETE_CHECKLIST:
             return state.filter(({id}) => id !== action.payload);
+        case CHECKLIST.DELETE_TASK_CHECKLISTS:
+            return state.filter(checklist => checklist.taskID !== action.payload);
         case CHECKLIST.CREATE_CHECKLISTS:
             return [...state, ...action.payload];
         default: 
