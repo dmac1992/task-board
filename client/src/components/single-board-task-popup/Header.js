@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { updateTaskName } from 'actions/tasks';
 
 const Container = styled.div`
     position: relative;
+    margin-bottom: 10px;
 `;
 
 const TitleTextArea = styled.textarea`
@@ -35,16 +38,58 @@ const HeaderIcon = styled.span`
     top: -10px;
 `;
 
+const FromListTitle = styled.span`
+    padding: 3px;
+    display: block;
+`;
+
+const FromListSpan = styled.span`
+    padding: 3px;
+    display: block;
+`
+
 
 //TODO - why is task name passed in here
-const Header = React.memo(function Header({clearPopup, taskName}) {
-    return (
-        <Container>
-            <TitleTextArea className=''/>
-            <CloseIcon className='icon-times' onClick={clearPopup}/>
-            <HeaderIcon className='icon-clone'/>
-        </Container>
-    )
-});
 
-export default Header
+
+class Header extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardName: this.props.task.name
+        }
+    }
+
+    taskNameHandler = (e) => {
+        this.setState({ cardName: e.target.value });
+    }
+
+    updateTaskName = (e) => {
+        this.props.updateTaskName(this.state.cardName, this.props.task.ID);
+    }
+
+ 
+
+
+    render() {
+        return (
+            <Container>
+                <TitleTextArea className='' onChange={this.taskNameHandler} onBlur={this.updateTaskName} value={this.state.cardName}/>
+                <CloseIcon className='icon-times' onClick={this.props.clearPopup}/>
+                <HeaderIcon className='icon-clone'/>
+                <FromListTitle>In List:</FromListTitle>
+                <FromListSpan>{this.props.sprintName}</FromListSpan>
+            </Container>
+        )
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        sprintName: state.sprints.find(sprint => sprint.id === ownProps.task.sprintID).name
+    }
+}
+
+
+export default connect(mapStateToProps, { updateTaskName })(Header);

@@ -102,7 +102,6 @@ export class MoveTaskFloatingPopup extends React.Component {
     moveTask = () => {
         const { currentTask } = this.props;
         const { board, sprint } = this.state;
-        debugger;
         if ( !sprint ) {
             return;
         }

@@ -46,6 +46,7 @@ export const TASK = {
     DELETE_TASK: 'delete_task',
     UPDATE_TASKS: 'update_tasks',
     UPDATE_DESCRIPTION: 'update_task_description',
+    UPDATE_NAME: 'update_task_name',
     MOVE_SPRINT_TASKS_TO_NEWSPRINT: 'move_sprint_tasks_to_newsprint',
     ARCHIVE_TASK: 'archive_task',
     MOVE_TASK: 'move_task'

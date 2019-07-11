@@ -128,6 +128,16 @@ export default (state = testState, action) => {
                 }
                 return task;
             })
+        case TASK.UPDATE_NAME:
+            return state.map(task => {
+                if (task.ID === action.payload.id) {
+                    return {
+                        ...task,
+                        name: action.payload.name
+                    }
+                }
+                return task;
+            })
         case TASK.MOVE_SPRINT_TASKS_TO_NEWSPRINT:
             return state.map(task => {
                 if (task.sprintID === action.payload.sprintID) {

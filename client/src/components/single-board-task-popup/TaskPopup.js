@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setActiveModal } from 'actions/modal';
 import { setFloatingPopup } from 'actions/floatingPopups';
 
+
 import Header from './Header';
 import Description from './Description';
 import AddComment from './AddComment';
@@ -38,9 +39,7 @@ const RightHandSide = styled.div`
 
 class TaskPopup extends React.Component {
 
-    state = {
-
-    }
+ 
 
     clearPopup = () => {
         this.props.setActiveModal(null);
@@ -51,10 +50,11 @@ class TaskPopup extends React.Component {
         return this.props.checklists.map((checklist) => <Checklist key={`checklist_${checklist.id}`} checklist={checklist} />)
     }
 
+   
     render() {
         return (
             <Container className='task-popup-active'>
-                <Header clearPopup={this.clearPopup} />
+                <Header clearPopup={this.clearPopup} task={this.props.task} />
                 <ColumnsContainer>
                     <LeftHandSide>
                         <Description taskID={this.props.task.ID} description={this.props.task.description} />

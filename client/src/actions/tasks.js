@@ -31,6 +31,16 @@ export const updateTaskDescription = (description, id) => {
     }
 }
 
+export const updateTaskName = (name, id) => {
+    return {
+        type: TASK.UPDATE_NAME,
+        payload: {
+            name, 
+            id
+        }
+    }
+}
+
 export const moveSprintTasksToNewSprint = (sprintID, newSprintID) => {
     return {
         type: TASK.MOVE_SPRINT_TASKS_TO_NEWSPRINT,
@@ -58,3 +68,5 @@ export const moveTask = (taskID, targetSprintID, targetBoardID) => {
         }
     }
 }
+
+
