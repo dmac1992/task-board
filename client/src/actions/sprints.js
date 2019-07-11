@@ -32,6 +32,27 @@ export const updateSprintName = (newName, sprintID) => {
     }
 }
 
+export const toggleWatchSprint = (sprintID) => {
+    return {
+        type: SPRINTS.TOGGLE_WATCH_SPRINT,
+        payload: sprintID
+    }
+}
+
+export const watchSprint = (sprintID) => {
+    return {
+        type: SPRINTS.WATCH_SPRINT,
+        payload: sprintID
+    }
+}
+
+export const unwatchSprint = (sprintID) => {
+    return {
+        type: SPRINTS.UNWATCH_SPRINT,
+        payload: sprintID
+    }
+}
+
 // export const deleteSprint = () => {
 //     return {
 //         type: SPRINTS.DELETE_SPRINT,

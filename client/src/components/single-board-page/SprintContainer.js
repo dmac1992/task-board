@@ -138,14 +138,14 @@ class SprintContainer extends React.PureComponent {
         this.props.setFloatingPopup(SprintActionsFloatingPopup, this.sprintMenuRef, { sprintID: this.props.sprintID, addCardHandler: this.sprintOptionsAddCardHandler } );
     }
 
+ 
     render() {
-        const { sprint, watchedSprints, sprintID } = this.props;
         return (
             <SprintColumn>
                  <Container>
                     <SprintHeadingContainer>
                         <Heading value={this.state.sprintName} onBlur={this.updateSprintName} onChange={this.sprintNameChangeHandler}/>
-                        {watchedSprints.includes(sprintID) ? <WatchingIcon className='icon-eye' /> : null}
+                        {this.props.sprint.watched ? <WatchingIcon className='icon-eye' /> : null}
                         <OpenMenuIcon className='icon-dot-3' onClick={this.sprintOptionsPopup} ref={this.sprintMenuRef}></OpenMenuIcon>
                     </SprintHeadingContainer>
                     {this.renderTasks()}
@@ -161,7 +161,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         sprint: state.sprints.find((sprint) => sprint.id === ownProps.sprintID ),
         tasks: state.tasks,
-        watchedSprints: state.watchedSprints
+        sprints: state.sprints
     }
 }
 

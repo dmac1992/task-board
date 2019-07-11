@@ -12,7 +12,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 7,
-        archived: false
+        archived: false,
+        watched: true
     },
     {
         ID: 1,
@@ -24,7 +25,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 6,
-        archived: false
+        archived: false,
+        watched: false
     },
     {
         ID: 2,
@@ -36,7 +38,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 5,
-        archived: false
+        archived: false,
+        watched: false
     },
     {
         ID: 3,
@@ -48,7 +51,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 4,
-        archived: false
+        archived: false,
+        watched: false
     },
     {
         ID: 4,
@@ -60,7 +64,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 3,
-        archived: false
+        archived: false,
+        watched: false
     },
     {
         ID: 5,
@@ -72,7 +77,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 2,
-        archived: false
+        archived: false,
+        watched: false
     },
     {
         ID: 6,
@@ -84,7 +90,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 1,
-        archived: false
+        archived:  false,
+        watched: true
     },
     {
         ID: 7,
@@ -96,7 +103,8 @@ const testState = [
         userID: 0,
         checklistID: null,
         sprintPosition: 0,
-        archived: false
+        archived: false,
+        watched: false
     },
 ]
 
@@ -162,6 +170,17 @@ export default (state = testState, action) => {
                         ...task,
                         sprintID: action.payload.targetSprintID,
                         boardID: action.payload.targetBoardID
+                    }
+                }
+                return task;
+            })
+        case TASK.TOGGLE_WATCH_TASK:
+            return state.map(task => {
+                if (task.ID === action.payload) {
+                    debugger;
+                    return {
+                        ...task,
+                        watched: !task.watched
                     }
                 }
                 return task;

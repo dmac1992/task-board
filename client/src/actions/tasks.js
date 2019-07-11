@@ -69,4 +69,13 @@ export const moveTask = (taskID, targetSprintID, targetBoardID) => {
     }
 }
 
+export const toggleWatchTask = (taskID) => {
+    return {
+        type: TASK.TOGGLE_WATCH_TASK,
+        payload: taskID
+    }
+}
+
+
+
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+
 import { updateTaskName } from 'actions/tasks';
 
 const Container = styled.div`
@@ -47,7 +48,10 @@ const FromListSpan = styled.span`
     padding: 3px;
     display: block;
 `
-
+const WatchedIcon = styled.span`
+    display: block
+    padding: 3px;
+`;
 
 //TODO - why is task name passed in here
 
@@ -69,7 +73,10 @@ class Header extends React.Component {
         this.props.updateTaskName(this.state.cardName, this.props.task.ID);
     }
 
- 
+    renderWatchedIcon = () => {
+        if (this.props.task.watched)
+            return <WatchedIcon className='icon-eye' />
+    }
 
 
     render() {
@@ -80,6 +87,7 @@ class Header extends React.Component {
                 <HeaderIcon className='icon-clone'/>
                 <FromListTitle>In List:</FromListTitle>
                 <FromListSpan>{this.props.sprintName}</FromListSpan>
+                {this.renderWatchedIcon()}
             </Container>
         )
     }
@@ -87,7 +95,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        sprintName: state.sprints.find(sprint => sprint.id === ownProps.task.sprintID).name
+        sprintName: state.sprints.find(sprint => sprint.id === ownProps.task.sprintID).name,
     }
 }
 

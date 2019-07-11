@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
+import  { toggleWatchTask } from 'actions/tasks';
 
 //import floating popups to pass into action handler
 import AddMembersFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddMembersFloatingPopup';
@@ -72,7 +73,9 @@ class SideMenu extends React.Component {
     }
     
     renderCopyCardPopup = () => {}
-    watchCard = () => {}
+    toggleWatchTask = () => {
+        this.props.toggleWatchTask(this.props.currentTask.ID);
+    }
     archiveCard = () => { }
     renderSharePopup = () => { }
     
@@ -110,7 +113,7 @@ class SideMenu extends React.Component {
                         <span className='icon-page-multiple'/>
                         <span>Copy</span>
                     </Button>
-                    <Button>
+                    <Button onClick={this.toggleWatchTask}>
                         <span className='icon-eye' />
                         <span>Watch</span>
                     </Button>
@@ -129,4 +132,4 @@ class SideMenu extends React.Component {
     
 }
 
-export default connect(null, { setFloatingPopup })(SideMenu);
+export default connect(null, { setFloatingPopup, toggleWatchTask })(SideMenu);

@@ -15,7 +15,7 @@ import MoveAllCardsInSprint from 'components/floated-popup-system/single-board-p
 //Archive List Popup
 
 //action handlers
-import { watchSprint, unwatchSprint } from 'actions/watchedSprints';
+import { watchSprint, unwatchSprint } from 'actions/sprints';
 
 
 const Container = styled.div`
@@ -67,7 +67,6 @@ export class SprintActionsFloatingPopup extends Component {
         super(props);
         this.state = {
             sprint: this.props.sprints.find((sprint) => sprint.id === this.props.sprintID),
-            sprintWatched: this.props.watchedSprints.includes(this.props.sprintID)
         }
     }
 
@@ -95,7 +94,7 @@ export class SprintActionsFloatingPopup extends Component {
     archiveList = () => {}
 
     renderTickIfWatched = () => {
-        if ( this.state.sprintWatched) return (  <span className='icon-check' /> )
+        if ( this.state.sprint.watched) return (  <span className='icon-check' /> )
     }
 
     toggleWatched = () => {
@@ -137,7 +136,6 @@ export class SprintActionsFloatingPopup extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         sprints: state.sprints,
-        watchedSprints: state.watchedSprints
     }
 }
 

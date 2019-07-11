@@ -37,6 +37,8 @@ export const SPRINTS = {
     REORDER_SPRINT: 'reorder_sprint',
     UPDATE_SPRINTS: 'update_sprints',
     UPDATE_SPRINT_NAME: 'update_sprint_name',
+    WATCH_SPRINT: 'watch_sprint',
+    UNWATCH_SPRINT: 'unwatch_sprint'
     
 }
 
@@ -49,7 +51,8 @@ export const TASK = {
     UPDATE_NAME: 'update_task_name',
     MOVE_SPRINT_TASKS_TO_NEWSPRINT: 'move_sprint_tasks_to_newsprint',
     ARCHIVE_TASK: 'archive_task',
-    MOVE_TASK: 'move_task'
+    MOVE_TASK: 'move_task',
+    TOGGLE_WATCH_TASK: 'toggle_watch_task'
 }
 
 export const BOARDS = {

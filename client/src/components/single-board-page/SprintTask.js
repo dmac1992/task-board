@@ -91,7 +91,7 @@ class SprintTask extends Component {
     }
 
     renderWatchingIcon = () => {
-        if (this.props.watchedTasks.includes(this.props.task.ID))
+        if (this.props.tasks.find(task => task.ID === this.props.task.ID).watched)
             return ( <span className='icon-eye' />)
     }
 
@@ -171,7 +171,7 @@ class SprintTask extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         task: state.tasks.find((task) =>  task.ID === ownProps.taskID ),
-        watchedTasks: state.watchedTasks,
+        tasks: state.tasks,
         comments: state.comments,
         checklists: state.checklists,
         checklistItems: state.checklistItem
