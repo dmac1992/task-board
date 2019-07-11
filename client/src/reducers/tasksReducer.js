@@ -177,7 +177,6 @@ export default (state = testState, action) => {
         case TASK.TOGGLE_WATCH_TASK:
             return state.map(task => {
                 if (task.ID === action.payload) {
-                    debugger;
                     return {
                         ...task,
                         watched: !task.watched
