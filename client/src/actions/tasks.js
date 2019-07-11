@@ -40,3 +40,21 @@ export const moveSprintTasksToNewSprint = (sprintID, newSprintID) => {
         }
     }
 }
+
+export const archiveTask = (taskID) => {
+    return {
+        type: TASK.ARCHIVE_TASK,
+        payload: taskID
+    }
+}
+
+export const moveTask = (taskID, targetSprintID, targetBoardID) => {
+    return {
+        type: TASK.MOVE_TASK,
+        payload: {
+            taskID,
+            targetSprintID,
+            targetBoardID
+        }
+    }
+}

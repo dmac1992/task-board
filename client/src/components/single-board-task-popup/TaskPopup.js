@@ -46,11 +46,7 @@ class TaskPopup extends React.Component {
         this.props.setActiveModal(null);
         this.props.setFloatingPopup(null, null);
     }
-
-    MenuFloatingPopup = (popup, ref) => {
-        this.props.setFloatingPopup(popup, ref);
-    }
-
+   
     renderCheckLists = () => {
         return this.props.checklists.map((checklist) => <Checklist key={`checklist_${checklist.id}`} checklist={checklist} />)
     }
@@ -67,13 +63,12 @@ class TaskPopup extends React.Component {
                         <Activity renderTaskComments={this.renderTaskComments}/>
                     </LeftHandSide>
                     <RightHandSide>
-                        <SideMenu MenuFloatingPopup={this.MenuFloatingPopup} />
+                        <SideMenu  currentTask={this.props.task} />
                     </RightHandSide>
                 </ColumnsContainer>
             </Container>
         );
     }
-
 }
 
 //TODO - remove the date sorting functions back end functionality is implemented.
@@ -85,8 +80,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         task: state.tasks.find((task) => taskID === task.ID),
         checklists: state.checklists.filter((checklist) => taskID === checklist.taskID),
-        
     }
 }
+
 
 export default connect(mapStateToProps, {setActiveModal, setFloatingPopup })(TaskPopup);

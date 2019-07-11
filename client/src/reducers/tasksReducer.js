@@ -11,7 +11,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 7
+        sprintPosition: 7,
+        archived: false
     },
     {
         ID: 1,
@@ -22,7 +23,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 6
+        sprintPosition: 6,
+        archived: false
     },
     {
         ID: 2,
@@ -33,7 +35,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 5
+        sprintPosition: 5,
+        archived: false
     },
     {
         ID: 3,
@@ -44,7 +47,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 4
+        sprintPosition: 4,
+        archived: false
     },
     {
         ID: 4,
@@ -55,7 +59,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 3
+        sprintPosition: 3,
+        archived: false
     },
     {
         ID: 5,
@@ -66,7 +71,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 2
+        sprintPosition: 2,
+        archived: false
     },
     {
         ID: 6,
@@ -77,7 +83,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 1
+        sprintPosition: 1,
+        archived: false
     },
     {
         ID: 7,
@@ -88,7 +95,8 @@ const testState = [
         boardID: 0,
         userID: 0,
         checklistID: null,
-        sprintPosition: 0
+        sprintPosition: 0,
+        archived: false
     },
 ]
 
@@ -126,6 +134,24 @@ export default (state = testState, action) => {
                     return {
                         ...task,
                         sprintID: action.payload.newSprintID
+                    }
+                }
+                return task;
+            })
+        case TASK.ARCHIVE_TASK:
+            return state.map(task => {
+                if (task.ID === action.payload) {
+                    return { ...task, archived: true }
+                }
+                return task;
+            })
+        case TASK.MOVE_TASK:
+            return state.map(task => {
+                if (task.ID === action.payload.taskID) {
+                    return {
+                        ...task,
+                        sprintID: action.payload.targetSprintID,
+                        boardID: action.payload.targetBoardID
                     }
                 }
                 return task;

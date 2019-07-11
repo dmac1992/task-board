@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+import { setFloatingPopup } from 'actions/floatingPopups';
 
 //import floating popups to pass into action handler
 import AddMembersFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddMembersFloatingPopup';
 import DueDateFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DueDateFloatingPopup';
 import AddLabelsFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddLabelsFloatingPopup'; 
 import AddChecklistFloatingPopup from 'components/floated-popup-system/single-board-task-popup/AddChecklistFloatingPopup';
+import MoveTaskFloatingPopup from 'components/floated-popup-system/single-board-task-popup/MoveTaskFloatingPopup';
 
 const Container = styled.div`
 `;
@@ -14,11 +18,11 @@ const MenuHeader = styled.span`
     display: block;
     margin-bottom: 5px;
 `;
-const AddMenu = styled.ul`
+const Menu = styled.ul`
     display: flex;
     flex-direction: column;
 `;
-const AddButton = styled.li`
+const Button = styled.li`
     padding: 6px 12px;
     background-color: #ebecf0;
     cursor: pointer;
@@ -37,56 +41,92 @@ class SideMenu extends React.Component {
 
     constructor() {
         super();
-        this.addButtonRef = React.createRef();
+        this.ButtonRef = React.createRef();
         this.addLabelsRef = React.createRef();
         this.addChecklistRef = React.createRef();
         this.addDuedateRef = React.createRef();
+
+        this.moveButtonRef = React.createRef();
+        this.copyButtonRef = React.createRef();
+    
     }
 
     renderAddUsersPopup = () => {
-        this.props.MenuFloatingPopup(AddMembersFloatingPopup, this.addButtonRef);
+        this.props.setFloatingPopup(AddMembersFloatingPopup, this.ButtonRef);
     }
 
     renderAddLabelsPopup = () => {
-        this.props.MenuFloatingPopup(AddLabelsFloatingPopup, this.addLabelsRef);
+        this.props.setFloatingPopup(AddLabelsFloatingPopup, this.addLabelsRef);
     }
 
     renderAddChecklistPopup = () => {
-        this.props.MenuFloatingPopup(AddChecklistFloatingPopup, this.addChecklistRef);
+        this.props.setFloatingPopup(AddChecklistFloatingPopup, this.addChecklistRef);
     }
 
     renderAddDueDatePopup = () => {
-        this.props.MenuFloatingPopup(DueDateFloatingPopup, this.addDuedateRef)
+        this.props.setFloatingPopup(DueDateFloatingPopup, this.addDuedateRef)
     }
+
+    renderMoveCardPopup = () => {
+        this.props.setFloatingPopup(MoveTaskFloatingPopup, this.moveButtonRef, { currentTask: this.props.currentTask })
+    }
+    
+    renderCopyCardPopup = () => {}
+    watchCard = () => {}
+    archiveCard = () => { }
+    renderSharePopup = () => { }
+    
 
     render() {
       
         return (
             <Container>
                 <MenuHeader>ADD TO CARD</MenuHeader>
-                <AddMenu>
-                    <AddButton ref={this.addButtonRef} onClick={this.renderAddUsersPopup}>
+                <Menu>
+                    <Button ref={this.ButtonRef} onClick={this.renderAddUsersPopup}>
                         <span className='icon-user' /> 
                         <span>Members</span>
-                    </AddButton>
-                    <AddButton ref={this.addLabelsRef} onClick={this.renderAddLabelsPopup}>
+                    </Button>
+                    <Button ref={this.addLabelsRef} onClick={this.renderAddLabelsPopup}>
                         <span className='icon-tag' /> 
                         <span>Labels</span>
-                    </AddButton>
-                    <AddButton ref={this.addChecklistRef} onClick={this.renderAddChecklistPopup}>
+                    </Button>
+                    <Button ref={this.addChecklistRef} onClick={this.renderAddChecklistPopup}>
                         <span className='icon-check-square-o' /> 
                         <span>Checklist</span>
-                    </AddButton>
-                    <AddButton ref={this.addDuedateRef} onClick={this.renderAddDueDatePopup}>
+                    </Button>
+                    <Button ref={this.addDuedateRef} onClick={this.renderAddDueDatePopup}>
                         <span className='icon-clock-o' /> 
                         <span>Due Date</span>
-                    </AddButton>
-                </AddMenu>
-                
+                    </Button>
+                </Menu>
+                <Menu>
+                    {/*TODO - get icon to replace right arrow html code*/}
+                    <Button ref={this.moveButtonRef} onClick={this.renderMoveCardPopup}>
+                        <span>&#8594;</span>
+                        <span>Move</span>
+                    </Button>
+                    <Button>
+                        <span className='icon-page-multiple'/>
+                        <span>Copy</span>
+                    </Button>
+                    <Button>
+                        <span className='icon-eye' />
+                        <span>Watch</span>
+                    </Button>
+                    <Button>
+                        <span className='icon-archive' />
+                        <span>Archive</span>
+                    </Button>
+                    <Button>
+                        <span className='icon-share' />
+                        <span>Share</span>
+                    </Button>
+                </Menu>
             </Container>
         )
     }
     
 }
 
-export default SideMenu
+export default connect(null, { setFloatingPopup })(SideMenu);
