@@ -165,8 +165,8 @@ class SprintTask extends Component {
             </Container>
         )
     }
-
 }
+
 
 const mapStateToProps = (state, ownProps) => {
     return {

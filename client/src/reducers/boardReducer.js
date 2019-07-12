@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 const testState = [
     {
         id: 0,
+        adminUserID: 2,
         accessibilityLevel: 'private',
         teamID: 0,
         name: 'board 1',
@@ -11,15 +12,17 @@ const testState = [
     },
     {
         id: 1,
+        adminUserID: 1,
         accessibilityLevel: 'private',
-        teamID: 0,
+        teamID: null,
         name: 'board 2',
         timestamp: DateTime.local()
     },
     {
         id: 2,
+        adminUserID: 0,
         accessibilityLevel: 'public',
-        teamID: 0,
+        teamID: null,
         name: 'board 3',
         timestamp: DateTime.local()
     },

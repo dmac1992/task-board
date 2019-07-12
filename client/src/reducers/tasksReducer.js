@@ -106,6 +106,21 @@ const testState = [
         archived: false,
         watched: false
     },
+    {
+        ID: 8,
+        name: 'zxczxc',
+        description: 'task description',
+        created: DateTime.utc(2017, 8, 12),  
+        sprintID: 5,
+        boardID: 1,
+        userID: 0,
+        checklistID: null,
+        sprintPosition: 0,
+        archived: false,
+        watched: false
+    },
+    
+    
 ]
 
 export default (state = testState, action) => {

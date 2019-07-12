@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 // import "./home-feed.scss";
 
 import HomeFeedItem from './HomeFeedItem';
@@ -34,26 +35,40 @@ const ShowMoreButton = styled.div`
     }
 `;
 
-const HomeFeed = ( ) => {
-  //needs to fetch all up next items and render them as HomeFeedItems
- 
-    return (
-      <HomeFeedContainer>
-        <HomeFeedTitleContainer>
-          <CheckIcon className="icon-check"></CheckIcon>
-          <span>UP NEXT</span>
-        </HomeFeedTitleContainer>
-        <HomeFeedItem />
-        <HomeFeedItem />
-        <HomeFeedItem />
-        <HomeFeedItem />
-        <HomeFeedItem />
-        <ShowMoreButton>
-            <span>Show more</span>
-        </ShowMoreButton>
-      </HomeFeedContainer>
-    )
+class HomeFeed extends React.Component {
+
+    state = {
+
+    }
+
+    renderHomeFeedItems = () => {
+      return this.props.comments
+        .sort((a, b) => a > b)
+        .slice(0,6)
+        .map(comment => <HomeFeedItem comment={comment} ></HomeFeedItem>)
+    }
+
+    render() {
+      return (
+        <HomeFeedContainer>
+          <HomeFeedTitleContainer>
+            <CheckIcon className="icon-check"></CheckIcon>
+            <span>UP NEXT</span>
+          </HomeFeedTitleContainer>
+         {this.renderHomeFeedItems()}
+          <ShowMoreButton>
+              <span>Show more</span>
+          </ShowMoreButton>
+        </HomeFeedContainer>
+      )
+    }
+    
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    comments: state.comments
+  }
+}
 
-export default HomeFeed
+export default connect(mapStateToProps, null)(HomeFeed)

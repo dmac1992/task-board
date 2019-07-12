@@ -12,7 +12,7 @@ let testData = [
     },
     {
         id: 1,
-        taskID: 0,
+        taskID: 1,
         userID: 1,
         comment: 'Hi, this is my second comment',
         timestamp: DateTime.local(),
@@ -20,7 +20,7 @@ let testData = [
     },
     {
         id: 2,
-        taskID: 0,
+        taskID: 2,
         userID: 2,
         comment: 'Hi, this is my third comment',
         timestamp: DateTime.local(),
@@ -42,6 +42,23 @@ let testData = [
         timestamp: DateTime.local(),
         lastEdited: null
     },
+    {
+        id: 5,
+        taskID: 0,
+        userID: 1,
+        comment: 'Hi, this is my fifth comment',
+        timestamp: DateTime.local(),
+        lastEdited: null
+    },
+    {
+        id: 6,
+        taskID: 8,
+        userID: 1,
+        comment: 'Hi, this is my fifth comment',
+        timestamp: DateTime.local(),
+        lastEdited: null
+    },
+    
 ];
 
 export default(state = testData, action) => {

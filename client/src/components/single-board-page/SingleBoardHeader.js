@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 import BoardSlideMenuParent from './single-board-page-slide-menu/BoardSlideMenuParent';
-import { access } from 'fs';
 
 const Container = styled.div`
     display: flex;
@@ -39,6 +38,7 @@ const TeamTab = styled.div`
         background-color: rgba(0,0,0,.1);
     }
 `;
+
 const PrivacyTab = styled.div`
     display: flex;
     align-items: center;
@@ -48,8 +48,8 @@ const PrivacyTab = styled.div`
     :hover {
         background-color: rgba(0,0,0,.1);
     }
-    
 `;
+
 const BoardCollaboratorsTab = styled.div`
     display: flex;
     align-items: center;
@@ -112,13 +112,14 @@ function renderPrivacyIcon(accessibilityLevel)  {
     }
 }
 
+
 function SingleBoardHeader(props) {
     const { board } = props; 
     return (
         <Container>
             <HeadingTab>{board.name}</HeadingTab>
             <StarTab className='icon-star'></StarTab>
-            <TeamTab onClick={props.addTeamPopup}   ref={props.addTeamButtonRef}>
+            <TeamTab onClick={props.addTeamPopup}  ref={props.addTeamButtonRef}>
                 <span>Personal</span>
             </TeamTab>
             <PrivacyTab className='' ref={props.privacySettingsButtonRef} onClick={props.changePrivacySettings}>

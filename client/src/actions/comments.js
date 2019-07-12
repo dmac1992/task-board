@@ -14,6 +14,7 @@ export const deleteTaskComments = (taskID) => {
     }
 }
 
+//TODO - changed this to include taskID did it break anything
 export const createComment = (comment) => {
     return {
         type: COMMENT.CREATE_COMMENT,
