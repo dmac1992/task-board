@@ -15,17 +15,16 @@ const FeedTitleContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  .icon-clock-o {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-  }
 `;
 
-
+const FeedIcon = styled.span`
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+`
 
 
 const LinksItem = styled.span`
@@ -56,6 +55,9 @@ const LinksTitle = styled.span`
   margin-bottom: 10px;
 `;
 
+const FeedMenuItem = styled.span`
+`
+
 const UnstarredIcon = styled.span`
   color: #dfe1e6;
   transition: transform .2s;
@@ -76,11 +78,13 @@ const StarredIcon = styled.span`
 
 class HomeRecentlyViewedFeed extends React.Component {
 
-
     renderRecentlyViewedBoards = () => {
       const { boards, currentUser } = this.props;
       return boards 
-        .filter(board => currentUser.recentlyViewedBoards.includes(board.id))
+        .filter(board => ( 
+          currentUser.recentlyViewedBoards.includes(board.id) && 
+          !currentUser.starredBoards.includes(board.id)
+          ))
         .map(board => {
           return ( 
             <RecentlyViewedBoardItem 
@@ -94,19 +98,55 @@ class HomeRecentlyViewedFeed extends React.Component {
         })
     }
 
+    //TODO - double filter functions here , chop down to one
+    renderStarredBoards = () => {
+      const { boards, currentUser } = this.props;
+      
 
+      
+      return boards 
+        .filter(board => currentUser.starredBoards.includes(board.id))
+        .map(board => {
+          return ( 
+            <RecentlyViewedBoardItem 
+              key={board.id}
+              board={board}
+              currentUser={currentUser}
+              unstarBoard={this.props.unstarBoard}
+              starBoard={this.props.starBoard}
+            />
+          )
+        })
+    }
 
     render() {
-      const {createBoardModal} = this.props;
+      const {createBoardModal, currentUser} = this.props;
       return (
         <FeedContainer>
           <FeedTitleContainer>
-            <span className="icon-clock-o"></span>
+            <FeedIcon className="icon-clock-o"></FeedIcon>
             <span className="home-recently-title">RECENTLY VIEWED</span>
           </FeedTitleContainer>
           <ul className="home-recently-viewed-ul">
             {this.renderRecentlyViewedBoards()}
           </ul>
+
+          { currentUser.starredBoards.length  ?
+            (
+              <>
+                <FeedTitleContainer>
+                    <FeedIcon className="icon-star"></FeedIcon>
+                    <span className="home-recently-title">STARRED</span>
+                </FeedTitleContainer>
+                <ul className=''>
+                  {this.renderStarredBoards()}
+                </ul>
+              </>
+              )
+              :
+              null
+          }
+         
         
           <ul className="home-recently-viewed-links-ul">
             <LinksTitle>Links</LinksTitle>

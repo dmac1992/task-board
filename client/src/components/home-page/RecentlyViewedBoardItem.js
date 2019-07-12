@@ -51,16 +51,11 @@ export class RecentlyViewedBoardItem extends Component {
         this.starRef = React.createRef();
     }
 
-    mouseEnterItem = (e) => { this.setState({itemHovered: true})};
-    mouseLeaveItem = (e) => { this.setState({itemHovered: false})};
-    starMouseEnter = (e) => { this.setState({starHovered: true})};
+    mouseEnterItem = () => { this.setState({itemHovered: true})};
+    mouseLeaveItem = () => { this.setState({itemHovered: false})};
+    starMouseEnter = () => { this.setState({starHovered: true})};
     starMouseLeave = () => { this.setState({starHovered: false})};
 
-
-    componentDidUpdate() {
-        console.log(`item hovered: ${this.state.itemHovered}`);
-        console.log(`star hovered: ${this.state.starHovered}`);
-    }
    
     starBoard = (e) => {
         e.preventDefault();

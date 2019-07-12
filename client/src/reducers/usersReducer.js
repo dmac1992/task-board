@@ -1,5 +1,4 @@
 import { USER } from "../actions/types";
-import { Z_FILTERED } from "zlib";
 
 const testState = {
   '0': {
