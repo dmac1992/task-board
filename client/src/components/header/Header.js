@@ -115,7 +115,7 @@ class Header extends React.PureComponent {
             <HeaderContainer className="header-container" >
                 <HeaderButtonGroup>
                     <HeaderButton icon="icon-home"  onClick={this.navigateHome}></HeaderButton>
-                    <HeaderButton text="Boards" onClick={this.setLeftHeaderPopup} icon="icon-page-multiple" />
+                    <HeaderButton text="Boards" onClick={this.setLeftHeaderPopupBoardsPopup} icon="icon-page-multiple" />
                     <HeaderSearch />
                     {activeLeftPopUp ? <LeftPopUp Popup={activeLeftPopUp} clearPopup={this.clearLeftPopup} /> : null}
                 </HeaderButtonGroup>
