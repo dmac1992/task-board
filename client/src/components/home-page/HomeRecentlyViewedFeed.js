@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
-
+import { connect } from 'react-redux';
 // import "./home-recently-viewed-feed.scss";
+
+import RecentlyViewedBoardItem from 'components/home-page/RecentlyViewedBoardItem';
+
+import { unstarBoard, starBoard } from 'actions/users';
 
 const FeedContainer = styled.div`
   width: 300px;
@@ -21,37 +25,6 @@ const FeedTitleContainer = styled.div`
   }
 `;
 
-const BoardsListItem = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  transition: background-color .3s;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  cursor: pointer;
-  &:hover {
-      background-color: #DCDCDC;
-  }
-  .icon-star {
-      display: flex;
-      width: 32px;
-      height: 32px;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      align-self: flex-end;
-      margin-left: auto;
-  }
-
-`;
-
-const ItemColor = styled.span`
-  background-color: blue;
-  width: 32px;
-  height: 28px;
-  border-radius: 3px;
-  margin-right: 5px;
-`;
 
 
 
@@ -83,47 +56,81 @@ const LinksTitle = styled.span`
   margin-bottom: 10px;
 `;
 
+const UnstarredIcon = styled.span`
+  color: #dfe1e6;
+  transition: transform .2s;
+  display: inline-block;
+  :hover {
+    transform: scale(1.1);
+  }
+`;
 
-const HomeRecentlyViewedFeed = (props) =>  {
+const StarredIcon = styled.span`
+  color: #ffce00
+  transition: transform .2s;
+  display: inline-block;
+  :hover {
+    transform: scale(1.1);
+  }
+`;
 
-    return (
-      <FeedContainer>
-        <FeedTitleContainer>
-          <span className="icon-clock-o"></span>
-          <span className="home-recently-title">RECENTLY VIEWED</span>
-        </FeedTitleContainer>
-        <ul className="home-recently-viewed-ul">
+class HomeRecentlyViewedFeed extends React.Component {
 
-          <BoardsListItem>
-            <ItemColor />
-            <span className="home-recently-viewed-item-title">[2019 T1] SIT302</span>
-            <span className="icon-star"></span>
-          </BoardsListItem>
-          <BoardsListItem>
-            <ItemColor />
-            <span className="home-recently-viewed-item-title">[2019 T1] SIT302</span>
-            <span className="icon-star"></span>
-          </BoardsListItem>
-          <BoardsListItem>
-            <ItemColor/>
-            <span className="home-recently-viewed-item-title">[2019 T1] SIT302</span>
-            <span className="icon-star"></span>
-          </BoardsListItem>
 
-        </ul>
-      
-        <ul className="home-recently-viewed-links-ul">
-          <LinksTitle>Links</LinksTitle>
-          <LinksItem onClick={props.createBoardModal}>
-            <span className="home-recently-viewed-link-icon icon-plus"></span>
-            <span className="home-recently-viwed-link-text">Create a board</span>
-          </LinksItem>
-        </ul>
+    renderRecentlyViewedBoards = () => {
+      const { boards, currentUser } = this.props;
+      return boards 
+        .filter(board => currentUser.recentlyViewedBoards.includes(board.id))
+        .map(board => {
+          return ( 
+            <RecentlyViewedBoardItem 
+              key={board.id}
+              board={board}
+              currentUser={currentUser}
+              unstarBoard={this.props.unstarBoard}
+              starBoard={this.props.starBoard}
+            />
+          )
+        })
+    }
 
-      </FeedContainer>
-    )
-  
+
+
+    render() {
+      const {createBoardModal} = this.props;
+      return (
+        <FeedContainer>
+          <FeedTitleContainer>
+            <span className="icon-clock-o"></span>
+            <span className="home-recently-title">RECENTLY VIEWED</span>
+          </FeedTitleContainer>
+          <ul className="home-recently-viewed-ul">
+            {this.renderRecentlyViewedBoards()}
+          </ul>
+        
+          <ul className="home-recently-viewed-links-ul">
+            <LinksTitle>Links</LinksTitle>
+            <LinksItem onClick={createBoardModal}>
+              <span className="home-recently-viewed-link-icon icon-plus"></span>
+              <span className="home-recently-viwed-link-text">Create a board</span>
+            </LinksItem>
+          </ul>
+
+        </FeedContainer>
+      )
+    }
 }
 
 
-export default HomeRecentlyViewedFeed
+const mapStateToProps = (state) => {
+  return {
+    boards: state.boards,
+    currentUser: state.users[state.userId]
+  }
+}
+
+const mapDispatchToProps = {
+  unstarBoard,
+  starBoard
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeRecentlyViewedFeed)

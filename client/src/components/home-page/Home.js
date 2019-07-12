@@ -25,7 +25,7 @@ class Home extends Component {
       <HomePageContainer>
         <HomeMenu />
         <HomeFeed />
-        <HomeRecentlyViewedFeed createBoardModal={() => this.props.setActiveModal(CreateBoardModal)} />
+        <HomeRecentlyViewedFeed createBoardModal={() => this.props.setActiveModal(CreateBoardModal)} /> {/* TODO -- FIX THIS INLINE METHOD */}
       </HomePageContainer>
     )
   }
