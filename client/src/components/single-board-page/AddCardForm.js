@@ -30,6 +30,9 @@ const AddCardButton = styled.button`
     border-radius: 3px;
     color: white;
     margin-right: 5px;
+    :hover {
+        background-color: ${variables.greenButtonHoverColor}
+    }
 `;
 
 const CloseFormIcon = styled.span`

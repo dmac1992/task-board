@@ -114,7 +114,7 @@ class SingleBoard extends PureComponent {
                      />
                 <BoardsCanvas style={{backgroundColor: this.props.board.backgroundColor}}>
                     {this.renderSprintBoards()}
-                    <AddSprintColumn />
+                    <AddSprintColumn board={this.props.board}/>
                 </BoardsCanvas>
             </Container>
         )

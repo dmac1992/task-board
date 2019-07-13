@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { DateTime } from 'luxon';
+import uniqid from 'uniqid';
+import { connect } from 'react-redux';
+
 
 import variables from 'variables';
+
+import { createSprint } from 'actions/sprints';
 
 const Column = styled.div`
     min-width: 272px;
@@ -55,7 +61,8 @@ const CloseFormCross = styled.span`
 export class AddSprintColumn extends Component {
 
     state = {
-        formOpen: false
+        formOpen: false,
+        sprintNameInput: ''
     }
 
     openForm = () => {
@@ -78,19 +85,42 @@ export class AddSprintColumn extends Component {
         )
     }
 
+    sprintNameInputHandler = (e) => this.setState({sprintNameInput: e.target.value})
+
     renderAddSprintForm = () => {
 
         return (
             <Column>
                 <Container>
-                    <SprintNameInput />
+                    <SprintNameInput onChange={this.sprintNameInputHandler} value={this.state.sprintNameInput}/>
                     <AddSprintFormBottomHalf>
-                        <AddSprintButton>Add List</AddSprintButton>
+                        <AddSprintButton onClick={this.addSprint}>Add List</AddSprintButton>
                         <CloseFormCross className='icon-times' onClick={this.closeForm} />
                     </AddSprintFormBottomHalf>
                 </Container>
              </Column>
         )
+        
+    }
+    // boardID: 1,
+    // id: 6,
+    // boardPosition: 2,
+    // name: 'board position 2',
+    // timestamp: DateTime.local(),
+    // watched: false
+    addSprint = () => {
+        if ( this.state.sprintNameInput ) {
+            const { board , sprints} = this.props;
+            const newSprint = {
+                boardID: board.id,
+                id: uniqid(),
+                boardPosition: Math.max.apply(null, sprints.filter(sprint => sprint.boardID === board.id)) + 1,
+                name: this.state.sprintNameInput,
+                timestamp: DateTime.local(),
+                watched: false
+            }
+            this.props.createSprint(newSprint);
+        }
         
     }
 
@@ -102,4 +132,10 @@ export class AddSprintColumn extends Component {
     }
 }
 
-export default AddSprintColumn
+const mapStateToProps = (state, newProps) => {
+    return {
+        sprints: state.sprints
+    }
+}
+
+export default connect(mapStateToProps, { createSprint })(AddSprintColumn)
