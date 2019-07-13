@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import uniqid from 'uniqid';
 import { DateTime } from 'luxon'
 
+import variables from 'variables';
+
 
 import { createTask } from 'actions/tasks';
 
@@ -13,6 +15,7 @@ const TitleBox = styled.textarea`
     width: 100%;
     font-size: 18px;
     padding: 5px;
+    font-family: ${variables.primaryFont}
 `;
 const BottomMenuContainer = styled.div`
     line-height: 30px;
@@ -22,7 +25,7 @@ const BottomMenuContainer = styled.div`
 
 const AddCardButton = styled.button`
     height: 100%;
-    background-color: green;
+    background-color: ${variables.greenButtonColor}
     padding: 5px 10px;
     border-radius: 3px;
     color: white;

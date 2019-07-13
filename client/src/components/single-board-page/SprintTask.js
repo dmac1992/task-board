@@ -15,6 +15,7 @@ const Container = styled.div`
     border-radius: 3px;
     cursor: pointer;
     padding: 5px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
 `;
 
 const TopHalf = styled.div`
@@ -28,7 +29,6 @@ const Title = styled.span``;
 const EditIcon = styled.span`
 `;
 
-
 const BottomHalf = styled.div`
     display: flex;
     align-items: center;
@@ -36,14 +36,40 @@ const BottomHalf = styled.div`
 `;
 const WatchingIcon = styled.span`
     margin-right: 8px;
+    font-size: 14px;
+`;
+
+const ChatContainer = styled.div`
+    margin-right: 8px;
+`;
+const ChatCount = styled.span`
     font-size: 12px;
+    position: relative;
+    bottom: 2px;
+`;
+const ChatIcon = styled.span`
+    font-size: 14px;
+    margin-right: 2px;
+`
+
+const DescriptionIcon = styled.span`
+    margin-right: 8px;
+    font-size: 14px;
+`
+
+const ChecklistCountContainer = styled.div`
+    margin-right: 8px;
 `;
 const ChecklistIcon = styled.span`
     margin-right: 2px;
-    font-size: 12px;
+    font-size: 14px;
 `;
+
+
 const ChecklistFraction = styled.span`
     font-size: 12px;
+    position: relative;
+    bottom: 2px;
 `;
 
 const UserIconContainer = styled.div`
@@ -59,14 +85,11 @@ const UserIcon = styled.span`
     line-height: 28px;
 `;
 
-
-
 class SprintTask extends Component {
 
     state = {
         hovered: false
     }
-   
 
     createTaskModal = () => 
     {
@@ -92,12 +115,12 @@ class SprintTask extends Component {
 
     renderWatchingIcon = () => {
         if (this.props.tasks.find(task => task.ID === this.props.task.ID).watched)
-            return ( <span className='icon-eye' />)
+            return ( <WatchingIcon className='icon-eye' />)
     }
 
     renderDescriptionIcon = () => {
         if ( this.props.task.description ) {
-            return ( <span className='icon-align-left'/> );
+            return ( <DescriptionIcon className='icon-align-left'/> );
         }
     } 
 
@@ -110,9 +133,10 @@ class SprintTask extends Component {
         }, 0)
         if ( count ) {
             return (
-                <span>
-                    <span className='icon-bubble' />{count}
-                </span>
+                <ChatContainer>
+                    <ChatIcon className='icon-bubble' />
+                    <ChatCount>{count}</ChatCount>
+                </ChatContainer>
             )
         }
     }
@@ -135,10 +159,10 @@ class SprintTask extends Component {
         })
         if ( itemCount ) {
             return (
-                <span>
-                    <span className='icon-check-square-o' />
-                    <span>{`${checkedCount}/${itemCount}`}</span>
-                </span>
+                <ChecklistCountContainer>
+                    <ChecklistIcon className='icon-check-square-o' />
+                    <ChecklistFraction>{`${checkedCount}/${itemCount}`}</ChecklistFraction>
+                </ChecklistCountContainer>
             )
         }
 

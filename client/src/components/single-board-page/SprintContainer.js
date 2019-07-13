@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import variables from 'variables';
 
 import SprintTask from './SprintTask';
 import AddCardForm from './AddCardForm';
@@ -27,6 +28,7 @@ const Container = styled.div`
     border-radius: 3px;
     margin-right: 5px;
     overflow: auto;
+    font-family: ${variables.primaryFont}
 `;
 
 const SprintHeadingContainer = styled.div`
@@ -35,13 +37,17 @@ const SprintHeadingContainer = styled.div`
     width: 100%;
     height: 30px;
     line-height: 30px;
+    margin-bottom: 6px;
 `;
 
 const Heading = styled.textarea`
     flex-grow: 1;
     background-color: transparent;
+    font-family: ${variables.primaryFont};
+    font-weight: bold;
     border-radius: 3px;
     padding: 4px 8px;
+    margin-right: 5px;
     border: none;
     -webkit-appearance: none;
     :focus {
@@ -52,19 +58,24 @@ const OpenMenuIcon = styled.span`
     display: inline-block;
     padding: 3px 6px;
     cursor: pointer;
+    font-size: 14px;
     :hover {
         background-color: rgba(9,30,66,.13);
     }
 `;
 
 const WatchingIcon = styled.span` 
-    margin-left: auto;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
 `
 
 
 const AddAnotherCardSection = styled.div`
     height: 30px;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
     cursor: pointer;
     :hover {
         background-color: rgba(9,30,66,.13);
@@ -72,7 +83,11 @@ const AddAnotherCardSection = styled.div`
 `;
 const Plus = styled.span`
     margin-right: 5px;
+    position: relative;
+    top: 3px;
 `;
+
+const AddAnotherCardSpan = styled.span``;
 
 class SprintContainer extends React.PureComponent {
    
@@ -96,7 +111,7 @@ class SprintContainer extends React.PureComponent {
         return (
             <AddAnotherCardSection onClick={this.openForm}>
                 <Plus className='icon-plus'></Plus>
-                <span>Add another card</span>
+                <AddAnotherCardSpan>Add another card</AddAnotherCardSpan>
             </AddAnotherCardSection>
         )
     }

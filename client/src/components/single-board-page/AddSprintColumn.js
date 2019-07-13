@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 
+import variables from 'variables';
+
 const Column = styled.div`
     min-width: 272px;
     height: 100%;
@@ -12,14 +14,14 @@ const Container = styled.div`
     background-color: #dfe1e6;
     border-radius: 3px;
     padding: 5px;
+    font-family: ${variables.primaryFont}
 `
 
 const AddAnotherListButton = styled.div`
     border-radius: 3px;
     width: 100%;
     height: 40px;
-    background-color: #dfe1e6;
-    color: white;
+    color: black;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -38,10 +40,13 @@ const AddSprintFormBottomHalf = styled.div`
     margin-top: 5px;
 `;
 const AddSprintButton = styled.button`
-    background-color: green;
+    background-color: ${variables.greenButtonColor}
     color: white;
     padding: 10px 20px;
     margin-right: 5px;
+    :hover {
+        background-color: ${variables.greenButtonHoverColor}
+    }
 `;
 const CloseFormCross = styled.span`
     cursor: pointer;

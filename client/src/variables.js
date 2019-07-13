@@ -9,7 +9,10 @@ const variables = {
     
     lightGrayscale: '#f6f8fa',
 
-    hoverBackgroundTransitionSpeed: '0.3s'
+    hoverBackgroundTransitionSpeed: '0.3s',
+
+    greenButtonColor: '#5aac44;',
+    greenButtonHoverColor: '#61bd4f;'
     
 }
 
