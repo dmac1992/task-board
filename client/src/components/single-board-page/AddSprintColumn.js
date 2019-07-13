@@ -102,19 +102,14 @@ export class AddSprintColumn extends Component {
         )
         
     }
-    // boardID: 1,
-    // id: 6,
-    // boardPosition: 2,
-    // name: 'board position 2',
-    // timestamp: DateTime.local(),
-    // watched: false
+   
     addSprint = () => {
         if ( this.state.sprintNameInput ) {
             const { board , sprints} = this.props;
             const newSprint = {
                 boardID: board.id,
                 id: uniqid(),
-                boardPosition: Math.max.apply(null, sprints.filter(sprint => sprint.boardID === board.id)) + 1,
+                boardPosition: Math.max.apply(null, sprints.filter(sprint => sprint.boardID === board.id).map(sprint => sprint.boardPosition)) + 1,
                 name: this.state.sprintNameInput,
                 timestamp: DateTime.local(),
                 watched: false

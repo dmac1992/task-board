@@ -64,15 +64,17 @@ export class AddCardForm extends Component {
 
     createTask = () => {
 
+        const { tasks, sprint, userId } = this.props;
+
         const newTask = {
             ID: uniqid(),
             name: this.state.formInput,
             description: '',
             created: DateTime.local(),
-            sprintID: this.props.sprint.id,
-            boardID: this.props.sprint.boardID,
-            userID: this.props.userId,
-            sprintPosition: 0,
+            sprintID: sprint.id,
+            boardID: sprint.boardID,
+            userID: userId,
+            sprintPosition:  Math.max.apply(null, tasks.filter(task => task.sprintID === sprint.id).map(task => task.sprintPosition)) + 1,
             archived: false,
             watched: false
         }
@@ -97,7 +99,8 @@ export class AddCardForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userId: state.userId
+        userId: state.userId,
+        tasks: state.tasks
     }
 }
 
