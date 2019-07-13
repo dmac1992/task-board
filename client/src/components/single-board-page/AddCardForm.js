@@ -57,6 +57,7 @@ export class AddCardForm extends Component {
     }
 
     createTask = () => {
+
         const newTask = {
             ID: uniqid(),
             name: this.state.formInput,
@@ -65,7 +66,9 @@ export class AddCardForm extends Component {
             sprintID: this.props.sprint.id,
             boardID: this.props.sprint.boardID,
             userID: this.props.userId,
-            sprintPosition: 0
+            sprintPosition: 0,
+            archived: false,
+            watched: false
         }
 
         this.props.createTask(newTask);
@@ -86,7 +89,7 @@ export class AddCardForm extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         userId: state.userId
     }

@@ -5,7 +5,6 @@ const Column = styled.div`
     min-width: 272px;
     height: 100%;
     margin-left: 5px;
-    background-color: black;
 `;
 
 const Container = styled.div`

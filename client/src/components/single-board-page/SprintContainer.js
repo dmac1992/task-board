@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-
 import SprintTask from './SprintTask';
 import AddCardForm from './AddCardForm';
 
@@ -12,12 +11,10 @@ import { setFloatingPopup } from 'actions/floatingPopups';
 import { updateSprintName } from 'actions/sprints'; 
 
 
-
 const SprintColumn = styled.div`
     min-width: 272px;
     height: 100%;
     margin-left: 5px;
-    background-color: black;
 `
 
 const Container = styled.div`

@@ -25,7 +25,6 @@ const Container = styled.div`
 const BoardsCanvas = styled.div`
     position: relative;
     overflow-x: scroll;
-    background-color: purple;
     height: calc(100% - 34px);
     display: flex;
     padding-top: 3px;
@@ -105,7 +104,7 @@ class SingleBoard extends PureComponent {
                     setFloatingPopup={this.props.setFloatingPopup}
                     board={this.props.board}
                      />
-                <BoardsCanvas>
+                <BoardsCanvas style={{backgroundColor: this.props.board.backgroundColor}}>
                     {this.renderSprintBoards()}
                     <AddSprintColumn />
                 </BoardsCanvas>
