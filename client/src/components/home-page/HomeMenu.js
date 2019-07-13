@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import variables from 'variables';
 import HomeMenuPopup from './HomeMenuPopup';
 import CreateTeamPopup from 'components/popups/CreateTeamPopup';
 
@@ -9,6 +10,7 @@ import CreateTeamPopup from 'components/popups/CreateTeamPopup';
 
 const HomeMenuContainer = styled.div`
     width: 200px;
+    font-family: ${variables.primaryFont}
 `;
 
 const HomeMenuList = styled.ul`

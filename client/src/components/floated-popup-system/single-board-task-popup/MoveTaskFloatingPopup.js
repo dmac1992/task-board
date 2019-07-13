@@ -122,7 +122,7 @@ export class MoveTaskFloatingPopup extends React.Component {
         return (
             <Container style={coords}>
                 <CloseIcon className='icon-times' onClick={clearFloatingPopup} />
-                <Title>Members</Title>
+                <Title>Move Card</Title>
                 <InputContainer>
                     <InputTitle>Board</InputTitle>
                     <InputValue>{board.name}</InputValue>

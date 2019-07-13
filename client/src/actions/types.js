@@ -117,6 +117,11 @@ export const WATCHED_TASKS = {
 
 export const SET_USER_ID = 'set_user_id';
 
+export const TEAM = {
+    CREATE_TEAM: 'create_team',
+    DELETE_TEAM: 'delete_team'
+}
+
 
 
 

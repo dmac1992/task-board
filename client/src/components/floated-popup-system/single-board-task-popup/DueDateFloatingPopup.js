@@ -44,7 +44,7 @@ class DueDate extends React.Component {
         return (
             <Container style={this.props.coords}>
                 <CloseIcon className='icon-times' onClick={this.props.clearFloatingPopup} />
-                <Title>Members</Title>
+                <Title>Change due date</Title>
                 <DatePicker
                     shouldCloseOnSelect={false}
                     selected={this.state.startDate}

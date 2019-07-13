@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import uniqid from 'uniqid';
 import { DateTime } from 'luxon';
 
+import variables from 'variables';
 import { createComment } from 'actions/comments';
 
 
@@ -12,6 +13,7 @@ const Container = styled.div`
     margin-bottom: 10px;
     background-color: orange;
     box-shadow: 0 1px 3px 0 rgba(9,30,66,.13);
+    font-family: ${variables.primaryFont}
 `;
 
 const TopHalf = styled.div`
@@ -31,18 +33,37 @@ const TaskName = styled.span`
 
 const TaskDetailsContainer = styled.div`
     padding: 5px;
+    display: flex;
+    align-items: center;
 `;
 
 
 const DescriptionIcon = styled.span`
-    margin-right: 10px;
+    margin-right: 15px;
+    font-size: 14px;
+`;
+
+const CommentCountContainer = styled.div`
+    margin-right: 15px;
 `;
 const CommentsIcon = styled.span`
-    margin-right: 10px;
+    margin-right: 3px;
+    font-size: 14px;
+`;
+const CommentCount = styled.span`
+    position: relative;
+    bottom: 2px;
+    font-size: 12px;
 `;
 
-const ChecklistCountIcon = styled.span`
-
+const ChecklistCountContainer = styled.div``;
+const ChecklistIcon = styled.span`
+    font-size: 14px;
+`;
+const ChecklistRatio = styled.span`
+    font-size: 12px;
+    position: relative;
+    bottom: 2px;
 `;
 
 const CardOriginsContainer = styled.div``;
@@ -77,6 +98,7 @@ const UsernameTimeSection = styled.div`
     justify-content: space-between;
 `;
 const Username = styled.span`
+    font-weight: bold;
 `;
 const Time = styled.span``;
 const MenuIcon = styled.span`
@@ -86,13 +108,14 @@ const MenuIcon = styled.span`
     text-align: center;
     background-color: transparent;
     border-radius: 50%;
+    cursor: pointer;
     :hover {
         background-color: rgba(9,30,66,.13)
     }
 `;
 
 const Comment = styled.p`
-    padding: 3px;
+    padding: 6px;
 `;
 
 const ReplyButton = styled.button`
@@ -164,10 +187,10 @@ export class HomeFeedItem extends Component {
         })
         if ( itemCount ) {
             return (
-                <span>
-                    <span className='icon-check-square-o' />
-                    <span>{`${checkedCount}/${itemCount}`}</span>
-                </span>
+                <ChecklistCountContainer>
+                    <ChecklistIcon className='icon-check-square-o' />
+                    <ChecklistRatio>{`${checkedCount}/${itemCount}`}</ChecklistRatio>
+                </ChecklistCountContainer>
             )
         }
     }
@@ -181,9 +204,11 @@ export class HomeFeedItem extends Component {
         }, 0)
         if ( count ) {
             return (
-                <CommentsIcon>
-                    <span className='icon-bubble' />{count}
-                </CommentsIcon>
+                <CommentCountContainer>
+                    <CommentsIcon className='icon-bubble' />
+                    <CommentCount>{count}</CommentCount>
+                </CommentCountContainer>
+                
             )
         }
     }

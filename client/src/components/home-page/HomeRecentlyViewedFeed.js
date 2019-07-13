@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import "./home-recently-viewed-feed.scss";
+import variables from 'variables';
 
 import RecentlyViewedBoardItem from 'components/home-page/RecentlyViewedBoardItem';
 
@@ -9,6 +9,7 @@ import { unstarBoard, starBoard } from 'actions/users';
 
 const FeedContainer = styled.div`
   width: 300px;
+  font-family: ${variables.primaryFont}
 `;
 
 const FeedTitleContainer = styled.div`

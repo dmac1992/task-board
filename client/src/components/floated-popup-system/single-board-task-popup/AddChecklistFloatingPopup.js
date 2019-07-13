@@ -50,7 +50,7 @@ export class AddChecklist extends Component {
     render() {
         return (
             <Container style={this.props.coords}>
-                <Title>Members</Title>
+                <Title>Add Checklist</Title>
                 <CloseIcon className='icon-times' onClick={this.props.clearFloatingPopup} />
                 <Input ></Input>
                 <AddButton>Add</AddButton>

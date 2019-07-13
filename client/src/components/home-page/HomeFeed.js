@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import "./home-feed.scss";
+import variables from 'variables';
 
 import HomeFeedItem from './HomeFeedItem';
 
@@ -17,6 +17,9 @@ const HomeFeedTitleContainer = styled.div`
     margin-bottom: 20px;    
 `;
 
+const Title = styled.span`
+  font-family: ${variables.primaryFont}
+`
 const CheckIcon = styled.span`
     position: absolute;
     left: 0;
@@ -53,7 +56,7 @@ class HomeFeed extends React.Component {
         <HomeFeedContainer>
           <HomeFeedTitleContainer>
             <CheckIcon className="icon-check"></CheckIcon>
-            <span>UP NEXT</span>
+            <Title>UP NEXT</Title>
           </HomeFeedTitleContainer>
          {this.renderHomeFeedItems()}
           <ShowMoreButton>

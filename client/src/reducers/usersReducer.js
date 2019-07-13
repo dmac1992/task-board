@@ -3,8 +3,8 @@ import { USER } from "../actions/types";
 const testState = {
   '0': {
     id: 0,
-    username: 'username 0',
-    fullname: 'full name 0',
+    username: 'pitchgreat',
+    fullname: 'Daniel Ryan',
     initial: 'D',
     Bio: 'This is username id 0s BIO',
     recentlyViewedBoards: [ ],
@@ -12,8 +12,8 @@ const testState = {
   }, 
   '1': {
     id: 1,
-    username: 'username 1',
-    fullname: 'full name 1',
+    username: 'manicureworkbench',
+    fullname: 'Melissa James',
     initial: 'M',
     Bio: 'This is username id 1s BIO',
     recentlyViewedBoards: [ ],
@@ -21,9 +21,9 @@ const testState = {
   }, 
   '2': {
     id: 2,
-    username: 'username 2',
-    fullname: 'full name 2',
-    initial: 'C',
+    username: 'steevespooky 2',
+    fullname: 'Steve Brown',
+    initial: 'S',
     Bio: 'This is username id 2s BIO',
     recentlyViewedBoards: [0, 1],
     starredBoards: [0],
