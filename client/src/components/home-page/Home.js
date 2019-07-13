@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+
 import HomeMenu from './HomeMenu';
 import HomeFeed from './HomeFeed';
 import HomeRecentlyViewedFeed from './HomeRecentlyViewedFeed';
@@ -19,7 +20,7 @@ class Home extends Component {
   render() {
     return (
       <HomePageContainer>
-        <HomeMenu />
+        <HomeMenu location={this.props.location.pathname}/>
         <HomeFeed />
         <HomeRecentlyViewedFeed createBoardModal={() => this.props.setActiveModal(CreateBoardModal)} /> {/* TODO -- FIX THIS INLINE METHOD */}
       </HomePageContainer>
@@ -34,5 +35,6 @@ const mapStateToProps = (state, ownProps) => ({ ...state.home });
 const mapDispatchToProps = {
   setActiveModal
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

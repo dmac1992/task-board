@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import variables from 'variables';
 import HomeMenuPopup from './HomeMenuPopup';
@@ -24,9 +24,9 @@ const HomeMenuListItem = styled.li`
     margin-bottom: 3px;
     border-radius: 6px;
     cursor: pointer;
-    &:hover {
-        background-color: #BB342F;
-        color: #DDA448;
+    transition: background-color ${variables.hoverBackgroundTransitionSpeed};
+    :hover {
+        background-color: ${variables.lightGrayscale}
     }
 `;
 
@@ -38,9 +38,9 @@ const HomeMenuListItemLink = styled(Link)`
     border-radius: 6px;
     cursor: pointer;
     display: block;
-    &:hover {
-        background-color: #BB342F;
-        color: #DDA448;
+    transition: background-color ${variables.hoverBackgroundTransitionSpeed};
+    :hover {
+        background-color: ${variables.lightGrayscale}
     }
 `;
 
@@ -59,12 +59,21 @@ const HomeMenuTeamsTitle = styled.span`
 
 
 
-//will get passed home menu popup component
+//TODO -- get menu to stay highlighted here based on whether viewing the boards or home page
 class HomeMenu extends React.Component  {
   
     constructor() {
         super();
-            document.addEventListener("click", this.clickOutsideHeader, false);
+        document.addEventListener("click", this.clickOutsideHeader, false);
+        this.boardsPageLinkRef = React.createRef();
+        this.homePageLinkRef = React.createRef();
+    }
+
+      componentDidMount() {
+        
+      }
+
+      componentDidUpdate() {
       }
 
       componentWillUnmount() {
@@ -89,15 +98,21 @@ class HomeMenu extends React.Component  {
         this.setState({createTeamPopupShowing: null})
     }
 
+    activeLink = {
+        backgroundColor: variables.primaryColorLight
+    }
+
+    
+
     render() {
         return (
             <HomeMenuContainer id="home-menu">
               <HomeMenuList>
-                  <HomeMenuListItemLink to="/boards">
+                  <HomeMenuListItemLink to="/boards" ref={this.boardsPageLinkRef}>
                       <HomeMenuIcon className="icon-page-multiple home-menu-icon"></HomeMenuIcon>
                       <span>Boards</span>
                   </HomeMenuListItemLink>
-                  <HomeMenuListItemLink to="/">
+                  <HomeMenuListItemLink to="/" ref={this.homePageLinkRef}>
                       <HomeMenuIcon className="icon-home home-menu-icon"></HomeMenuIcon>
                       <span>Home</span>
                   </HomeMenuListItemLink>
@@ -115,4 +130,4 @@ class HomeMenu extends React.Component  {
     
 }
 
-export default HomeMenu;
+export default withRouter(HomeMenu);

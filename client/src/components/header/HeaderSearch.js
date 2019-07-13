@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import variables from 'variables';
 
-// import './HeaderSearch.scss';
 import { changeHeaderSearchInput } from 'actions/header'
 
 

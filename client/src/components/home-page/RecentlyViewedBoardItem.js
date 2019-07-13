@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import variables from 'variables';
 
 
 const BoardsListItem = styled(Link)`
   display: flex;
   align-items: center;
   padding: 5px;
-  transition: background-color .3s;
+  transition: background-color ${variables.hoverBackgroundTransitionSpeed};
   border-radius: 3px;
   margin-bottom: 3px;
   cursor: pointer;
@@ -80,7 +81,7 @@ export class RecentlyViewedBoardItem extends Component {
                 to={`/b/${board.id}`} 
                 onMouseEnter={this.mouseEnterItem} 
                 onMouseLeave={this.mouseLeaveItem} 
-                style={{backgroundColor: itemHovered === true && starHovered === false ? '#f6f8fa' : null}}>
+                style={{backgroundColor: itemHovered === true && starHovered === false ? variables.lightGrayscale : null}}>
                 <ItemColor style={{backgroundColor: board.backgroundColor}}/>
                 <span>{board.name}</span>
                 {currentUser.starredBoards.includes(board.id)

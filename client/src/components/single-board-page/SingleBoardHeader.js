@@ -1,30 +1,36 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import variables from 'variables';
+
 import BoardSlideMenuParent from './single-board-page-slide-menu/BoardSlideMenuParent';
 
 const Container = styled.div`
     display: flex;
     align-items: center;
-    padding: 2px; 5px;
-    background-color: #f97f59;
+    padding: 3px 5px;
+    background-color: transparent;
     position: relative;
-  
+    font-family: ${variables.primaryFont}
 `;
 
 const HeadingTab = styled.div`
     margin-right: 10px
     border-radius: 3px;
+    padding: 5px;
     :hover {
-        background-color: gray;
+        background-color: rgba(0,0,0,.1);
     }
+    cursor: default;
 `;
 const StarTab = styled.div`
     margin-right: 20px;
     cursor: pointer;
     padding: 5px;
+    position: relative;
+    top: 2px;
     :hover {
-        background-color: gray;
+        background-color: rgba(0,0,0,.1);
     }
 `;
 
@@ -64,29 +70,38 @@ const Collaborator = styled.span`
     text-align: center;
     line-height: 28px;
     cursor: pointer;
+    position: relative;
+    right: 2px;
+    :first-of-type {
+        right: 0;
+    }
 `;
 
-const InviteButton = styled.div`
+const InviteButton = styled.span`
     line-height: 30px;
     height: 30px;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: green;
     border-radius: 5px;
     cursor: pointer;
+    :hover {
+        background-color: rgba(0,0,0,.1);
+    }
 `;
 
-const OpenSlideMenuButton = styled.div`
+const OpenSlideMenuButton = styled.span`
     line-height: 30px;
     height: 30px;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: green;
     border-radius: 5px;
     cursor: pointer;
     margin-left: auto;
+    :hover {
+        background-color: rgba(0,0,0,.1);
+    }
 `;
 
 const MenuContainer = styled.div`
@@ -95,7 +110,9 @@ const MenuContainer = styled.div`
 `;
 
 const LockIcon = styled.span`
-    color: red;
+    position: relative;
+    top: 3px;
+    margin-right: 3px;
 `;
 
 const PublicIcon = styled.span`
@@ -118,7 +135,7 @@ function SingleBoardHeader(props) {
     return (
         <Container>
             <HeadingTab>{board.name}</HeadingTab>
-            <StarTab className='icon-star'></StarTab>
+            <StarTab className='icon-star' />
             <TeamTab onClick={props.addTeamPopup}  ref={props.addTeamButtonRef}>
                 <span>Personal</span>
             </TeamTab>
@@ -134,7 +151,7 @@ function SingleBoardHeader(props) {
             <InviteButton onClick={props.inviteToBoardPopup} ref={props.inviteToBoardButtonRef}>
                 Invite
             </InviteButton>
-            <OpenSlideMenuButton onClick={props.toggleMenu}>Show Menu</OpenSlideMenuButton>
+            <OpenSlideMenuButton onClick={props.toggleMenu}>Show Menu...</OpenSlideMenuButton>
             <MenuContainer>
                 <BoardSlideMenuParent toggleMenu={props.toggleMenu} setFloatingPopup={props.setFloatingPopup}/>
             </MenuContainer>

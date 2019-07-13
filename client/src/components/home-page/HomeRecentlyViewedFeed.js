@@ -34,8 +34,9 @@ const LinksItem = styled.span`
   margin-bottom: 5px;
   padding: 5px;
   cursor: pointer;
+  transition: background ${variables.hoverBackgroundTransitionSpeed}
   &:hover {
-      background-color: #DCDCDC;
+      background-color: ${variables.lightGrayscale}
   }
   .icon-plus {
       display: flex;
