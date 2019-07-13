@@ -32,6 +32,7 @@ const LinksItem = styled.span`
   align-items: center;
   margin-bottom: 5px;
   padding: 5px;
+  cursor: pointer;
   &:hover {
       background-color: #DCDCDC;
   }
@@ -42,7 +43,7 @@ const LinksItem = styled.span`
       align-items: center;
       justify-content: center;
       font-size: 15px;
-      background-color: grey;
+      background-color: rgba(9,30,66,.04);
       border-radius: 5px;
       margin-right: 5px;
   }

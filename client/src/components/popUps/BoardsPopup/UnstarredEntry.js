@@ -38,7 +38,7 @@ export class UnstarredBoardEntry extends Component {
     starBoard = (e) => {
         e.preventDefault(); 
         const { currentUser, board } = this.props;
-        this.props.unstarBoard(currentUser.id, board.id)
+        this.props.starBoard(currentUser.id, board.id)
     }
 
     

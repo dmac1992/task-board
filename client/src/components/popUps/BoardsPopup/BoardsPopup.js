@@ -84,9 +84,6 @@ const SearchCreateBoardLink = styled.p`
     }
 `;
 
-
-
-
 class BoardsPopup extends React.Component {
 
     state = {
@@ -136,6 +133,7 @@ class BoardsPopup extends React.Component {
                     return (
                         <RecentBoardEntry
                             to={`/b/${board.id}`}
+                            key={board.id}
                             board={board}
                             starBoard={starBoard}
                             removeRecentBoard={removeRecentBoard}
@@ -147,7 +145,7 @@ class BoardsPopup extends React.Component {
      }
 
      renderPersonalBoards = () => {
-         const { currentUser, boards } = this.props;
+         const { currentUser, boards, unstarBoard, starBoard } = this.props;
          return boards
             .filter(board => board.teamID === null)
             .map(board => {
@@ -202,7 +200,6 @@ class BoardsPopup extends React.Component {
     }
 
      renderSearchResults = () => {
-        const { starredBoardsOpen, recentBoardsOpen, personalBoardsOpen } = this.state;
         return (
             <Container>
                 <SearchInput onChange={this.handleSearchChange} value={this.state.searchValue}/>
@@ -276,7 +273,7 @@ class BoardsPopup extends React.Component {
 //needs to request the users starred / recent / personal boards. 
 
 //TODO apply last visited 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         boards: state.boards,
         currentUser: state.users[state.userId]

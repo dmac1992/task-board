@@ -45,7 +45,7 @@ class HomeFeed extends React.Component {
       return this.props.comments
         .sort((a, b) => a > b)
         .slice(0,6)
-        .map(comment => <HomeFeedItem comment={comment} ></HomeFeedItem>)
+        .map(comment => <HomeFeedItem comment={comment} key={comment.id} ></HomeFeedItem>)
     }
 
     render() {

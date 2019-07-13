@@ -21,6 +21,7 @@ export const unstarBoard = (userID, boardID) => {
 }
 
 export const removeRecentBoard = (userID, boardID) => {
+    
     return {
         type: USER.REMOVE_RECENT,
         payload: {
