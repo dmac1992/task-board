@@ -69,9 +69,7 @@ export class RecentlyViewedBoardItem extends Component {
         unstarBoard(currentUser.id, board.id);
     }
 
-    hoveredStyle = {
-        backgroundColor: '#DCDCD'
-    }
+   
 
     render() {
         const {  board, currentUser } = this.props;
@@ -83,7 +81,7 @@ export class RecentlyViewedBoardItem extends Component {
                 onMouseEnter={this.mouseEnterItem} 
                 onMouseLeave={this.mouseLeaveItem} 
                 style={{backgroundColor: itemHovered === true && starHovered === false ? '#f6f8fa' : null}}>
-                <ItemColor />
+                <ItemColor style={{backgroundColor: board.backgroundColor}}/>
                 <span>{board.name}</span>
                 {currentUser.starredBoards.includes(board.id)
                   ? (

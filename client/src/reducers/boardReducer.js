@@ -8,7 +8,9 @@ const testState = [
         accessibilityLevel: 'private',
         teamID: 0,
         name: 'board 1',
-        timestamp: DateTime.local()
+        timestamp: DateTime.local(),
+        backgroundColor: '#006633',
+        closed: false,
     },
     {
         id: 1,
@@ -16,7 +18,9 @@ const testState = [
         accessibilityLevel: 'private',
         teamID: null,
         name: 'board 2',
-        timestamp: DateTime.local()
+        timestamp: DateTime.local(),
+        backgroundColor: '#f95c5c',
+        close: false,
     },
     {
         id: 2,
@@ -24,7 +28,9 @@ const testState = [
         accessibilityLevel: 'public',
         teamID: null,
         name: 'board 3',
-        timestamp: DateTime.local()
+        timestamp: DateTime.local(),
+        backgroundColor: '#66dda5',
+        close: false,
     },
 ]
 

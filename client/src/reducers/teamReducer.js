@@ -8,6 +8,11 @@ const testState = [
         id: 1,
         name: 'team B',
         users: [ 0, 1 ]
+    },
+    {
+        id: 2,
+        name: 'team C',
+        users: [0]
     }
 ]
 

@@ -10,7 +10,7 @@ import LeftPopUp from './LeftPopUp';
 import RightPopUp from './RightPopUp';
 
 //popups
-import BoardsPopup from 'components/popups/BoardsPopup';
+import BoardsPopup from 'components/popups/BoardsPopup/BoardsPopup';
 import CreatePopup from 'components/popups/CreatePopup';
 import NotificationsPopup from 'components/popups/NotificationsPopup';
 import MenuPopup from 'components/popups/MenuPopup';

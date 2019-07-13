@@ -8,8 +8,7 @@ const testState = {
     initial: 'D',
     Bio: 'This is username id 0s BIO',
     recentlyViewedBoards: [ ],
-    starredBoards: []
-    
+    starredBoards: [],
   }, 
   '1': {
     id: 1,
@@ -18,7 +17,7 @@ const testState = {
     initial: 'M',
     Bio: 'This is username id 1s BIO',
     recentlyViewedBoards: [ ],
-    starredBoards: []
+    starredBoards: [],
   }, 
   '2': {
     id: 2,
@@ -27,10 +26,10 @@ const testState = {
     initial: 'C',
     Bio: 'This is username id 2s BIO',
     recentlyViewedBoards: [0, 1],
-    starredBoards: [0]
+    starredBoards: [0],
   }, 
 }
-
+//TODO - SEPERATE CURRENT USER FROM OTHERS EVENTUALLY, CURRENT USER REQUIRES A WEALTH OF DATA THAT GENERAL USERS CAN DO WITHOUT
 export default (state = testState, action) => {
     switch (action.type) {
       case USER.CHANGE_USERNAME:
@@ -55,7 +54,15 @@ export default (state = testState, action) => {
             starredBoards: state[userID].starredBoards.filter(id => id !== boardID)
           }
         }
-        return state;
+      case USER.REMOVE_RECENT:
+        var { userID, boardID } = action.payload;
+        return {
+          ...state,
+          [userID]: {
+            ...state[userID],
+            recentlyViewedBoards: state[userID].recentlyViewedBoards.filter(id => id !== boardID)
+          }
+        }
       default:
         return state
     }

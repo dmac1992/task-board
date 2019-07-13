@@ -97,7 +97,8 @@ export const USER = {
     CHANGE_USERNAME: 'change_username',
     CHANGE_FULLNAME: 'change_fullname',
     STAR_BOARD: 'user_star_board',
-    UNSTAR_BOARD: 'user_unstar_board'
+    UNSTAR_BOARD: 'user_unstar_board',
+    REMOVE_RECENT: 'user_remove_recent'
 }
 
 export const CURRENT_TASK_POPUP = {
