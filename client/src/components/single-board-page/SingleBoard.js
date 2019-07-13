@@ -44,6 +44,14 @@ class SingleBoard extends PureComponent {
         MenuOpen: false
     }
 
+    componentDidMount() {
+        document.body.style.backgroundColor = this.props.board.backgroundColor;
+    }
+
+    componentWillUnmount() {
+        document.body.style.backgroundColor = 'transparent';
+    }
+
     toggleMenu = () => {
         let SlideMenu = document.querySelector('#board-slide-menu');
         if (this.state.MenuOpen) {

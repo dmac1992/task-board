@@ -12,6 +12,7 @@ const Container = styled.div`
     box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
     background-color: #fff;
     z-index: 100;
+    padding-bottom: 10px;
 `;
 const Section = styled.div`
     margin-top: 5px;
@@ -22,7 +23,7 @@ const MenuLink = styled(Link)`
     padding-left: 10px;
     cursor: pointer;
     &:hover {
-        background-color: #8D6A9F;
+        background-color: rgba(9,30,66,.04);
     }
     display: block;
 `;

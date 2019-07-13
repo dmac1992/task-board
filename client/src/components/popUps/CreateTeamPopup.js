@@ -46,11 +46,11 @@ const SubmitButton = styled.button`
     margin-left: 8px;
     margin-bottom: 8px;
 `; 
+
 const DescriptionContainer = styled.div`
     padding: 8px;
     border-top: 1px solid #DCDCDC;
     width: 100%;
-    
     p:first-of-type {
         margin-bottom: 8px;
     }

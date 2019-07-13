@@ -30,8 +30,7 @@ const Section = styled.div`
     padding: 15px;
     cursor: pointer;
     &:hover {
-        background-color: #8D6A9F;
-    }
+        background-color: rgba(9,30,66,.04);
 `;
 
 const SectionTitle = styled.span`

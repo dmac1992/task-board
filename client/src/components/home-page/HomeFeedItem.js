@@ -11,7 +11,6 @@ import { createComment } from 'actions/comments';
 const Container = styled.div`
     border-radius: 3px;
     margin-bottom: 10px;
-    background-color: orange;
     box-shadow: 0 1px 3px 0 rgba(9,30,66,.13);
     font-family: ${variables.primaryFont}
 `;
@@ -66,7 +65,10 @@ const ChecklistRatio = styled.span`
     bottom: 2px;
 `;
 
-const CardOriginsContainer = styled.div``;
+//TODO - color here should dynamically change based on background color.
+const CardOriginsContainer = styled.div`
+    color: white;
+`;
 const TeamName = styled.span``;
 const BoardName = styled.span``;
 const SprintName = styled.span``;
@@ -275,9 +277,9 @@ export class HomeFeedItem extends Component {
     }
 
     render() {
-        const { task, comment, users } = this.props;
+        const { task, comment, users, board } = this.props;
         return (
-            <Container>
+            <Container style={{backgroundColor: board.backgroundColor}}>
                 <TopHalf>
                     <TaskDetailsCard>
                         <TaskName>{task.name}</TaskName>

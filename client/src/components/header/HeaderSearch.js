@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import variables from 'variables';
+
 // import './HeaderSearch.scss';
-import  { changeHeaderSearchInput } from 'actions/header'
+import { changeHeaderSearchInput } from 'actions/header'
 
 
 const HeaderSearchContainer = styled.div`
@@ -14,7 +16,7 @@ const HeaderSearchContainer = styled.div`
 const HeaderSearchInput = styled.input`
     height: 30px;
     border-radius: 6px;
-    background-color: #DDA448;
+    background-color: ${variables.primaryColor}
     transition: width .25s;
     width: 200px;
     &:focus {
@@ -30,6 +32,7 @@ const HeaderSearchInputIcon = styled.span`
     position: absolute;
     right: 15px;
     top: 7px;
+    color: white;
 `;
 
 const HeaderSearchSendIcon = styled.span`

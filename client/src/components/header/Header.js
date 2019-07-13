@@ -4,6 +4,8 @@ import { compose } from 'redux';
 import { withRouter } from "react-router";
 import styled from 'styled-components';
 
+import variables from 'variables';
+
 import HeaderButton from './HeaderButton';
 import HeaderSearch from './HeaderSearch';
 import LeftPopUp from './LeftPopUp';
@@ -22,13 +24,13 @@ import 'styles/icons.css';
 
 
 const HeaderContainer =  styled.div`
-    background-color: #BB342F;
+    background-color: ${variables.primaryColorDark};
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2.5px;
     height: 35px;
-
+    font-family: ${variables.primaryFont}
 `;
 //
 

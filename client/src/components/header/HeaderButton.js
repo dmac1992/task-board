@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// import './HeaderButton.scss';
+import variables from 'variables';
 import 'styles/icons.css';
 
 const Button = styled.a`
@@ -10,11 +10,12 @@ const Button = styled.a`
     border-radius: 6px;
     height: 30px;
     cursor: pointer;
-    background-color: #DDA448;
+    background-color: ${variables.primaryColor}
     min-width: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 `;
 
 const ButtonIcon = styled.span`
