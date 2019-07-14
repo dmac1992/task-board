@@ -1,5 +1,6 @@
 import React  from 'react'
 import { connect } from 'react-redux';
+import variables from 'variables';
 
 //actions
 import { setFloatingPopup } from 'actions/floatingPopups';
@@ -34,9 +35,11 @@ export function floatingPopupPositioningHOC (Popup, anchorRef, clearFloatingPopu
             const {x, y} = domRect;
             const refElementHeight = domRect.height;
         
+            //TODO - remove this makeshift solution (font application), probably better to apply fonts in global css file
             this.setState({coords: {
                 top: `${y + refElementHeight + window.scrollY}px`,
-                left: `${x}px`
+                left: `${x}px`,
+                fontFamily: variables.primaryFont
             }});
 
         }

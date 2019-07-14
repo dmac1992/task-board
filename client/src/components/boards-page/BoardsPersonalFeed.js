@@ -50,7 +50,6 @@ export class BoardsPersonalFeed extends Component {
                     )
                 }
                 else {
-                    
                     return (
                         <UnstarredBoardLink board={board} starBoard={starBoard} key={`personal_boards_unstarred_${board.id}`} userId={currentUser.id}/>
                     )

@@ -1,4 +1,4 @@
-import { BOARDS } from 'actions/types';
+import { BOARD } from 'actions/types';
 import { DateTime } from 'luxon';
 
 const testState = [
@@ -35,10 +35,10 @@ const testState = [
 ]
 
 export default ( state = testState, action ) => {
-    switch (action) {
-        case BOARDS.CREATE_BOARD:
+    switch (action.type) {
+        case BOARD.CREATE_BOARD:
             return [...state, action.payload]
-        case BOARDS.DELETE_BOARD:
+        case BOARD.DELETE_BOARD:
             return state.fitler(board => board.id !== action.payload)
         default: 
             return state;

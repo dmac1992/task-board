@@ -56,8 +56,7 @@ export const TASK = {
     TOGGLE_WATCH_TASK: 'toggle_watch_task'
 }
 
-export const BOARDS = {
-    LOAD_BOARD: 'load_board',
+export const BOARD = {
     CREATE_BOARD: 'create_board',
     DELETE_BOARD: 'delete_board',
 }
@@ -122,10 +121,6 @@ export const TEAM = {
     DELETE_TEAM: 'delete_team'
 }
 
-export const BOARD = {
-    CREATE_BOARD: 'create_board',
-    DELETE_BOARD: 'delete_board'
-}
 
 
 

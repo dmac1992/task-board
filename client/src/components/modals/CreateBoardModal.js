@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components';
+import uniqid from 'uniqid';
+import { DateTime } from 'luxon';
 
 import { setActiveModal } from "actions/modal";
 import { setFloatingPopup } from 'actions/floatingPopups';
 import { createBoard } from 'actions/boards';
 
-import variables from 'variables'
+import variables from 'variables';
 //floating popups
 import CreateBoardFloatingPrivacyMenu from 'components/floated-popup-system/modals/CreateBoardFloatingPrivacyMenu';
 
@@ -22,7 +24,6 @@ const TopHalf = styled.div`
 `;
 const ModalOptions = styled.div`
   height: 96px;
-  background-color: olivedrab;
   padding: 5px;
   flex-grow: 1;
   position: relative;
@@ -63,6 +64,10 @@ const  ColorsGrid = styled.ul`
 const GridColor = styled.li`
   background-color: lightcoral;
   border-radius: 3px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.9;
+  }
 `;
 
 const TeamsButton = styled.button`
@@ -71,12 +76,13 @@ const TeamsButton = styled.button`
   padding: 5px;
   border-radius: 3px;
   color: white;
+  font-family: ${variables.primaryFont};
   :hover {
     background: hsla(0,0%,100%,.15);
   }
   padding: 5px;
   span:first-of-type {
-    margin-right: 5px;
+    margin-right: 7.5px;
   }
 `;
 
@@ -86,6 +92,7 @@ const PrivacyLevelButton = styled.button`
   padding: 5px;
   border-radius: 3px;
   color: white;
+  font-family: ${variables.primaryFont};
   :hover {
     background: hsla(0,0%,100%,.15);
   }
@@ -96,6 +103,12 @@ const PrivacyLevelButton = styled.button`
   }
 `;
 
+const DownArrow = styled.span`
+  position: relative;
+  top: 2.2px;
+
+`
+
 const SubmitButton = styled.button`
   display: flex;
   align-items: center;
@@ -105,6 +118,7 @@ const SubmitButton = styled.button`
   background-color: $grayscale;
   padding: 7.5px 15px;
   cursor: not-allowed;
+
 `;
 
 export class CreateBoardModal extends Component {
@@ -114,13 +128,11 @@ export class CreateBoardModal extends Component {
     this.privacyButtonRef = React.createRef();
   }
 
-  
-
   state = {
     boardNameInput: '',
     team: '',
-    privacyLevel: '',
-    colorChosen: ''
+    privacyLevel: 'private',
+    colorChosen: '#AB9975',
   }
 
   clearModal = () =>  {
@@ -129,14 +141,14 @@ export class CreateBoardModal extends Component {
 
   enabledButtonStyles = {
     cursor: 'pointer',
-    backgroundColor: 'green',
-    color: 'white'
+    backgroundColor: '#5aac44',
+    color: 'white',
   }
 
   renderSubmitButton = () => {
     if ( this.state.boardNameInput.length > 0 ) {
       return (
-        <SubmitButton style={this.enabledButtonStyles}>Create Board</SubmitButton>
+        <SubmitButton style={this.enabledButtonStyles} onClick={this.createBoard}>Create Board</SubmitButton>
       )
     } else {
       return (
@@ -155,52 +167,78 @@ export class CreateBoardModal extends Component {
 
   privacyButtonHandler = (e) => {
     e.preventDefault();
-    this.props.setFloatingPopup(CreateBoardFloatingPrivacyMenu, this.privacyButtonRef);
+    this.props.setFloatingPopup(CreateBoardFloatingPrivacyMenu, this.privacyButtonRef, {
+      setToPrivate: this.setToPrivate,
+      setToPublic: this.setToPublic
+    });
   }
 
   renderColorOptions = () => {
     return variables.boardColorOptions.map(colorOption => {
       return (
-        <GridColor style={{backgroundColor: colorOption}} />
+        <GridColor style={{backgroundColor: colorOption}} onClick={this.clickColorOption}/>
       )
     })
   }
 
-  createBoard = () => {
-    const newBoard = {};
+  createBoard = (e) => {
+    e.preventDefault();
+    const newBoard = {
+      id: uniqid(),
+      adminUserID: this.props.userId,
+      accessibilityLevel: this.state.privacyLevel,
+      teamID: null,
+      name: this.state.boardNameInput,
+      timestamp: DateTime.local(),
+      backgroundColor: this.state.colorChosen
+    }
     this.props.createBoard(newBoard);
+    this.clearModal();
+  }
+
+  clickColorOption = (e) => {
+    this.setState({colorChosen: e.target.style.backgroundColor})
+  }
+
+  setToPrivate = () => this.setState({privacyLevel: 'private'});
+  
+  setToPublic = () => this.setState({privacyLevel: 'public'});
+
+  renderPrivacyLevelButton = () => {
+    if ( this.state.privacyLevel === 'private') {
+      return (
+        <PrivacyLevelButton ref={this.privacyButtonRef} onClick={this.privacyButtonHandler}>
+          <span className='icon-lock'></span>
+          <span>Private</span> 
+          <DownArrow>&#xfe40;</DownArrow>
+        </PrivacyLevelButton>
+      )
+    } else {
+      return (
+        <PrivacyLevelButton ref={this.privacyButtonRef} onClick={this.privacyButtonHandler}>
+            <span className='icon-world'></span>
+            <span>Public</span> 
+            <DownArrow>&#xfe40;</DownArrow>
+        </PrivacyLevelButton>
+      )
+    }
   }
   
   render() {
     return (
             <Form>
                 <TopHalf>
-                    <ModalOptions>
+                    <ModalOptions style={{backgroundColor: this.state.colorChosen}}>
                         <ClearModalIcon className="icon-times" onClick={this.clearModal}></ClearModalIcon>
                         <NameInput placeholder="Add board title" autocomplete='off' spellcheck='false' value={this.state.boardNameInput} onChange={this.updateInput}></NameInput>
+                        {/* TODO - implement this team selection functionality
                         <TeamsButton onClick={this.teamsButtonHandler} >
                           <span>No team</span>
-                          <span>&#xfe40;</span>
-                        </TeamsButton>
-                        <PrivacyLevelButton ref={this.privacyButtonRef} onClick={this.privacyButtonHandler}>
-                          <span className='icon-lock'></span>
-                          <span>Private</span>
-                          <span>&#xfe40;</span>
-                        </PrivacyLevelButton>
+                          <DownArrow>&#xfe40;</DownArrow>
+                        </TeamsButton> */}
+                        {this.renderPrivacyLevelButton()}
                     </ModalOptions>
                     <ColorsGrid>
-                      {/*
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-                        <GridColor className="create-board-modal-color"></GridColor>
-
-                      */}
                       {this.renderColorOptions()}
                     </ColorsGrid>
                 </TopHalf>
@@ -211,7 +249,7 @@ export class CreateBoardModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  
+  userId: state.userId
 })
 
 const mapDispatchToProps = {

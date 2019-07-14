@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import variables from 'variables';
 
 const Container = styled.ul`
     background-color: white;
@@ -12,8 +13,8 @@ const CloseIcon = styled.span`
     position: absolute;
     top: 5px;
     right: 5px;
+    cursor: pointer;
 `;
-
 
 const PrivacyOption = styled.li`
     padding: 10px 20px;
@@ -23,7 +24,6 @@ const PrivacyOption = styled.li`
         > * {
             color: white;
         }
-        
     }
 `;
 const PrivacyOptionTopHalf = styled.div`
@@ -31,13 +31,19 @@ const PrivacyOptionTopHalf = styled.div`
 `;
 
 const IconPrivate = styled.span`
-    margin-right: 5px;
+    margin-right: 7px;
     color: red;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
 `;
 
 const IconPublic = styled.span`
-    margin-right: 5px;
+    margin-right: 7px;
     color: green;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
 `;
 const Title = styled.span``;
 
@@ -49,21 +55,31 @@ const Description = styled.p`
 
 export class CreateBoardFloatingPrivacyMenu extends Component {
 
+    setPublicAndExit = () => {
+        this.props.setToPublic();
+        this.props.clearFloatingPopup();
+    }   
+
+    setPrivateAndClose = () => {
+        this.props.setToPrivate();
+        this.props.clearFloatingPopup();
+    }
+
     render() {
 
         return (
             <Container style={this.props.coords} >
                 <CloseIcon className='icon-times' onClick={this.props.clearFloatingPopup} />
-                <PrivacyOption>
+                <PrivacyOption onClick={this.setPrivateAndClose}>
                     <PrivacyOptionTopHalf>
-                        <IconPrivate className='icon-lock' />
+                        <IconPrivate className='icon-lock' style={{color: variables.redLockColor}} />
                         <Title>Private</Title>
                     </PrivacyOptionTopHalf>
-                    <Description>Only board members can see and edith this board</Description>
+                    <Description>Only board members can see and edit this board</Description>
                 </PrivacyOption>
-                <PrivacyOption>
+                <PrivacyOption onClick={this.setPublicAndExit}>
                     <PrivacyOptionTopHalf>
-                        <IconPublic className='icon-world' />
+                        <IconPublic className='icon-world' style={{color: variables.greenPlanetColor}}/>
                         <Title>Public</Title>
                     </PrivacyOptionTopHalf>
                     <Description>Anyone on internet can see this board. Only board members can edit</Description>

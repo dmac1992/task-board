@@ -14,9 +14,9 @@ const variables = {
     greenButtonColor: '#5aac44;',
     greenButtonHoverColor: '#61bd4f;',
 
-    boardColorOptions: ['#AB9975', '#BECACA', '#CB8582', '#F34924', '#900C3F', '#DAF7A6', '#FFC300', '#933D9E', '##7BD592']
-
-    
+    boardColorOptions: ['#AB9975', '#BECACA', '#CB8582', '#F34924', '#900C3F', '#61A147', '#FFC300', '#933D9E', '#7BD592'],
+    redLockColor: '#eb5a46',
+    greenPlanetColor: '#61bd4f'
     
 }
 
