@@ -12,7 +12,11 @@ const variables = {
     hoverBackgroundTransitionSpeed: '0.3s',
 
     greenButtonColor: '#5aac44;',
-    greenButtonHoverColor: '#61bd4f;'
+    greenButtonHoverColor: '#61bd4f;',
+
+    boardColorOptions: ['#AB9975', '#BECACA', '#CB8582', '#F34924', '#900C3F', '#DAF7A6', '#FFC300', '#933D9E', '##7BD592']
+
+    
     
 }
 

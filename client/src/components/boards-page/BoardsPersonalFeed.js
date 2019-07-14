@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
+import variables from 'variables';
 import { starBoard, unstarBoard } from 'actions/users'
 
 import StarredBoardLink from './StarredBoardLink';
@@ -15,6 +15,8 @@ const TitleSection = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    font-family: ${variables.primaryFont};
+    font-weight: bold;
     span:first-child {
         margin-right: 5px;
     }

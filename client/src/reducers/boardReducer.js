@@ -36,12 +36,10 @@ const testState = [
 
 export default ( state = testState, action ) => {
     switch (action) {
-        case BOARDS.LOAD_BOARD:
-            return action.payload;
         case BOARDS.CREATE_BOARD:
-            return action.payload;
+            return [...state, action.payload]
         case BOARDS.DELETE_BOARD:
-            return action.payload;
+            return state.fitler(board => board.id !== action.payload)
         default: 
             return state;
     }

@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import { setActiveModal } from "actions/modal";
 import { setFloatingPopup } from 'actions/floatingPopups';
+import { createBoard } from 'actions/boards';
 
+import variables from 'variables'
 //floating popups
 import CreateBoardFloatingPrivacyMenu from 'components/floated-popup-system/modals/CreateBoardFloatingPrivacyMenu';
 
@@ -112,10 +114,13 @@ export class CreateBoardModal extends Component {
     this.privacyButtonRef = React.createRef();
   }
 
+  
+
   state = {
     boardNameInput: '',
     team: '',
-    privacyLevel: ''
+    privacyLevel: '',
+    colorChosen: ''
   }
 
   clearModal = () =>  {
@@ -152,6 +157,19 @@ export class CreateBoardModal extends Component {
     e.preventDefault();
     this.props.setFloatingPopup(CreateBoardFloatingPrivacyMenu, this.privacyButtonRef);
   }
+
+  renderColorOptions = () => {
+    return variables.boardColorOptions.map(colorOption => {
+      return (
+        <GridColor style={{backgroundColor: colorOption}} />
+      )
+    })
+  }
+
+  createBoard = () => {
+    const newBoard = {};
+    this.props.createBoard(newBoard);
+  }
   
   render() {
     return (
@@ -171,6 +189,7 @@ export class CreateBoardModal extends Component {
                         </PrivacyLevelButton>
                     </ModalOptions>
                     <ColorsGrid>
+                      {/*
                         <GridColor className="create-board-modal-color"></GridColor>
                         <GridColor className="create-board-modal-color"></GridColor>
                         <GridColor className="create-board-modal-color"></GridColor>
@@ -180,6 +199,9 @@ export class CreateBoardModal extends Component {
                         <GridColor className="create-board-modal-color"></GridColor>
                         <GridColor className="create-board-modal-color"></GridColor>
                         <GridColor className="create-board-modal-color"></GridColor>
+
+                      */}
+                      {this.renderColorOptions()}
                     </ColorsGrid>
                 </TopHalf>
                {this.renderSubmitButton()}
@@ -194,7 +216,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     setActiveModal,
-    setFloatingPopup
+    setFloatingPopup,
+    createBoard
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBoardModal)

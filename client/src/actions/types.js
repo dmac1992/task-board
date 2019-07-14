@@ -122,6 +122,11 @@ export const TEAM = {
     DELETE_TEAM: 'delete_team'
 }
 
+export const BOARD = {
+    CREATE_BOARD: 'create_board',
+    DELETE_BOARD: 'delete_board'
+}
+
 
 
 

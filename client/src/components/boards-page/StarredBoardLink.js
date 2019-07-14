@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import variables from 'variables';
 
 const Container = styled(Link)`
     height: 100px;
@@ -24,6 +25,8 @@ const Title = styled.span`
     position: relative;
     z-index: 2;
     color: white;
+    font-family: ${variables.primaryFont};
+    font-weight: bold;
 `;
 
 const BottomIconsContainer = styled.div`
