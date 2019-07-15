@@ -22,18 +22,21 @@ const ArchivedIcon = styled.span`
     font-size: 18px;
 `;
 
-const TitleTextArea = styled.textarea`
+const TitleTextArea = styled.input`
     height: 33px;
     background: transparent;
     font-size: 20px;
     width: 100%;
     line-height: 33px;
     border: none;
+    :focus {
+        background-color: white;
+    }
     
 `;
 const CloseIcon = styled.span`
     position: absolute;
-    right: -40px;
+    right: -10px;
     top: -10px;
     line-height: 36px;
     height: 32px;

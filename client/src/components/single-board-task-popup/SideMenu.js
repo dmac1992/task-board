@@ -22,6 +22,8 @@ import MoveTaskFloatingPopup from 'components/floated-popup-system/single-board-
 import DeleteTaskFloatingPopup from 'components/floated-popup-system/single-board-task-popup/DeleteTaskFloatingPopup';
 
 const Container = styled.div`
+    position: relative;
+    margin-left: 10px;
 `;
 const MenuHeader = styled.span`
     color: #6b778c;

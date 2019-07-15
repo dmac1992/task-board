@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import variables from 'variables';
 
 import { setActiveModal } from 'actions/modal';
 import { setFloatingPopup } from 'actions/floatingPopups';
@@ -21,8 +22,9 @@ const Container = styled.div`
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
-    padding: 20px 60px;
+    padding: 20px 30px 20px 60px;
     border-radius: 5px;
+    font-family: ${variables.primaryFont}
 `;
 
 const ColumnsContainer = styled.div`

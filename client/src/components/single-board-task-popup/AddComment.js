@@ -3,20 +3,24 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
 import uniqid from 'uniqid';
+import variables from 'variables';
+
 
 import { createComment } from 'actions/comments';
 
-const Container = styled.div``;
+const Container = styled.div`
+`;
 const Header = styled.div`
     position: relative;
     margin-bottom: 5px;
 `;
 const Title = styled.h3`
+    font-size: ${variables.taskPopupSectionHeaderFontSize}
 
 `;
 const SectionIcon = styled.span`
     position: absolute;
-    top: 6px;
+    top: 2px;
     left: -30px;
 `;
 

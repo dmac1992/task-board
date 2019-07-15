@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import variables from 'variables';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
 import { deleteChecklist } from 'actions/checklist';
@@ -31,6 +32,7 @@ const Header = styled.div`
 const Title = styled.h3`
     display: inline-block;
     margin-right: 5px;
+    font-size: ${variables.taskPopupSectionHeaderFontSize};
 `;
 
 const DeleteButton = styled.button`

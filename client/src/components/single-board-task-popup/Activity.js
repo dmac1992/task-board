@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import variables from 'variables';
 
 import { setFloatingPopup } from 'actions/floatingPopups';
 import { deleteComment } from 'actions/comments';
@@ -26,6 +27,7 @@ const Header = styled.div`
 const Title = styled.h3`
     display: inline-block;
     margin-right: 5px;
+    font-size: ${variables.taskPopupSectionHeaderFontSize};
 `;
 
 const ActivityList = styled.ul``;

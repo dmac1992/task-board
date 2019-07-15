@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
+import variables from 'variables';
 import { updateTaskDescription } from 'actions/tasks';
 
 
@@ -22,10 +22,12 @@ const Header = styled.div`
 const Title = styled.h3`
     display: inline-block;
     margin-right: 5px;
+    font-size: ${variables.taskPopupSectionHeaderFontSize};
 `;
 
 
 const DescriptionTextarea = styled.textarea`
+    font-family: ${variables.primaryFont};
     background: white;
     width: 100%;
     border: none;
@@ -49,18 +51,25 @@ const EditButton = styled.button`
 `;
 
 const FocusedTextAreaSection = styled.div`
+    display: flex;
+    align-items: center;
 `;
 
 const SaveButton = styled.button`
-    background-color: green;
+    background-color: ${variables.greenButtonColor};
     margin-right: 5px;
     padding: 7px 10px;
     color: white;
     border-radius: 3px;
+    :hover {
+        background-color: ${variables.greenButtonHoverColor}
+    }
 `;
 
 const CloseEditIcon = styled.span`
     cursor: pointer;
+    positon: relative;
+    top: 13px;px;
 `;
 
 class Description extends PureComponent {

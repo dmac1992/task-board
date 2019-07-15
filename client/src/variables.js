@@ -16,7 +16,10 @@ const variables = {
 
     boardColorOptions: ['#AB9975', '#BECACA', '#CB8582', '#F34924', '#900C3F', '#61A147', '#FFC300', '#933D9E', '#7BD592'],
     redLockColor: '#eb5a46',
-    greenPlanetColor: '#61bd4f'
+    greenPlanetColor: '#61bd4f',
+
+
+    taskPopupSectionHeaderFontSize: '16px'
     
 }
 
